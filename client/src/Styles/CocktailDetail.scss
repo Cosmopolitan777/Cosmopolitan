@@ -1,0 +1,17 @@
+@import "~bootstrap/scss/bootstrap";
+.CocktailDetail {
+  background-color: aquamarine;
+  height: 300px;
+  .SlideDiv {
+    background-color: aquamarine;
+    height: 300px;
+    width: 400px;
+  }
+  button {
+    width: 100px;
+    height: 100px;
+  }
+  .slick-prev {
+    z-index: 9999;
+  }
+}
