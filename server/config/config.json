@@ -1,0 +1,11 @@
+{
+  "development": {
+    "username": "user", //변경
+    "password": "1234", //변경
+    "database": "codingon", //변경
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {},
+  "production": {}
+}
