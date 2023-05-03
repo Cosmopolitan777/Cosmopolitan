@@ -15,9 +15,9 @@ export default class SimpleSlider extends Component {
     return (
       <div className="CocktailDetail">
         {/* <h2> Single Item</h2> */}
-        <Slider {...settings}>
+        <Slider className="Slider" {...settings}>
           <div className="SlideDiv">
-            <h3>1</h3>
+            <h3>dfgrgdg1</h3>
           </div>
           <div className="SlideDiv">
             <h3>2</h3>

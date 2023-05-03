@@ -1,5 +1,4 @@
-import CocktailDetail from "./Components/CocktailDetail";
-
+import CocktailDetail from "./pages/CocktailDetail";
 function App() {
   return (
     <div className="App">
