@@ -10,7 +10,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const todoRouter = require("./routes/todo");
+const cocktailRouter = require("./routes/cocktail");
 app.use("/api", todoRouter);
+app.use("/cocktail",cocktailRouter);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

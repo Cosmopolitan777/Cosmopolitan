@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "user", //변경
-    "password": "1234", //변경
-    "database": "codingon", //변경
+    "username": "user",
+    "password": "1234",
+    "database": "codingon",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
