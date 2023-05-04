@@ -15,4 +15,9 @@ db.Sequelize = Sequelize;
 
 // TODO: model 연결
 db.Todo = require("./Todo")(sequelize, Sequelize);
+
+// Cocktail model 연결
+db.Cocktail = require("./Cocktail")(sequelize,Sequelize);
+
 module.exports = db;
+
