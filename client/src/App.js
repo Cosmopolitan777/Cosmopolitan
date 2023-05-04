@@ -1,7 +1,10 @@
-import "./App.css";
-
+import CocktailDetail from "./pages/CocktailDetail";
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <CocktailDetail />
+    </div>
+  );
 }
 
 export default App;
