@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+// my card
+// .card {
+//   // width: 240px;
+//   // background-color: black;
+//   margin: 8px;
+// }
+// .card_img-holder {
+//   // max-width: 240px;
+// }
+// img {
+//   // max-width: 240px;
+//   object-fit: cover;
+// }
+// .card_body {
+//   height: 24px;
+//   color: #fff;
+// }
+// h2 {
+//   font-size: 18px;
+//   font-weight: 700;
+// }
+// .card_body-favorite {
+//   display: flex;
+// }
+// .btn-favorite {
+//   margin-right: 8px;
+// }
+
+// bootstrap
+img {
+  max-height: 200px !important;
+  object-fit: cover;
+}
+.favorite-container {
+  display: flex;
+  align-items: center;
+}
+.favorite-btn {
+  border: none;
+  margin-right: 8px;
+  background-color: transparent;
+}
+.favorite-counter {
+  font-size: 18px;
+}
+.card:hover {
+  transform: rotateY(180deg);
+  transition: ease-in-out 600ms;
+}
