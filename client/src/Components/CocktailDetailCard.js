@@ -1,16 +1,20 @@
+import {useState} from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import "../Styles/CocktailDetailCard.scss";
-const KitchenSinkExample = () => {
+const KitchenSinkExample = ({item}) => {
+  const [cocktailItem, setCocktailItem] = useState(item);
   return (
-    <Card style={{width: "20rem"}}>
-      <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+    <Card className="Card" style={{width: "20rem"}}>
+      <Card.Title>{item.name}</Card.Title>
+
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
+        <Card.Img
+          className="CardImg"
+          variant="top"
+          src={process.env.PUBLIC_URL + `/img/cocktail.jpeg`}
+        />
+        <Card.Text>{item.instruction}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroup.Item>Cras justo odio</ListGroup.Item>

@@ -17,48 +17,15 @@ body {
 
 .CocktailDetail {
   height: 100vh;
-  //   margin-top: 200px;
-  //   top: 50%;
-  //   left: 50%;
-  //   transform: translate(-50%, -50%);
-  //   .mySwiper {
+
   .swiper {
     height: 100% !important;
 
-    // display: flex !important;
-    // align-items: center !important;
-    // height: 500px; /* 원하는 높이 값으로 변경 */
     .swiper-wrapper {
-      top: 30%;
-      transform: translateY(-30%);
+      top: 10%;
+      transform: translateY(-10%);
     }
   }
-  //   .mySwiper {
-  //   .swiper-slide {
-  //     height: 100%;
-  //   }
-  // display: flex;
-  // background-color: aliceblue;
-  // .swiper-wrapper {
-  //   position: absolute;
-  //   top: 50%;
-  //   left: 50%;
-  //   transform: translate(-50%, -50%);
-  // }
-  // height: 100vh;
-  // width: $breakpoint-mobile;
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
-  //   }
-  //   .swiper-button-prev {
-  //     background-color: white;
-  //     width: 100px;
-  //     height: 100px;
-  //     zoom: 2;
-  //     z-index: 999;
-  //   }
 
   .swiper {
     --swiper-theme-color: #fff;

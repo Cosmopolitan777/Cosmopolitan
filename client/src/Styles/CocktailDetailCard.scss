@@ -2,41 +2,11 @@
 @import "~include-media/dist/include-media";
 @import "./_utils.scss";
 @import url("//fonts.googleapis.com/earlyaccess/jejugothic.css");
-
-// * {
-//   box-sizing: border-box;
-//   margin: 0;
-//   padding: 0;
-//   font-family: "Jeju Gothic";
-// }
-
-// body {
-//   //   background-color: $primary-color;
-//   overflow-x: hidden;
-// }
-// .CocktailDetail {
-//   height: 100vh;
-//   .Swiper {
-//     height: 100%;
-//     color: white;
-//   }
-// }
-// h4 {
-//   color: #fff;
-//   height: 19.5px;
-//   margin: 5px 0px 5px;
-//   overflow: hidden;
-//   font-weight: lighter;
-// }
-// .card {
-//   -webkit-box-reflect: below 30px
-//     linear-gradient(transparent, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
-// }
-// .swiper {
-//   --swiper-theme-color: #fff;
-// }
-// #card :hover {
-//   background-color: #000;
-//   opacity: 80%;
-//   transition: all 1s;
-// }
+.Card {
+  padding: 1rem;
+  height: 700px !important;
+  .CardImg {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+}

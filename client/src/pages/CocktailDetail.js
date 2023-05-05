@@ -31,7 +31,7 @@ const CocktailDetail = ({cocktailItems}) => {
       >
         <div className="container">
           {cocktailItems.map(item => (
-            <SwiperSlide>
+            <SwiperSlide key={item.cocktail_id}>
               <CocktailDetailCard
                 key={item.cocktail_id}
                 item={item}
@@ -40,15 +40,6 @@ const CocktailDetail = ({cocktailItems}) => {
               />{" "}
             </SwiperSlide>
           ))}
-          <SwiperSlide>
-            <CocktailDetailCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CocktailDetailCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CocktailDetailCard />
-          </SwiperSlide>
         </div>
       </Swiper>
     </div>
