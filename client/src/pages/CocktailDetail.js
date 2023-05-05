@@ -1,7 +1,5 @@
-// import React, {Component} from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {EffectCoverflow, Navigation, Mousewheel} from "swiper";
-// import {EffectCoverflow, Navigation, Mousewheel} from "swiper";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -11,7 +9,7 @@ import "swiper/css/scrollbar";
 import "../Styles/CocktailDetail.scss";
 import CocktailDetailCard from "../Components/CocktailDetailCard";
 
-const CocktailDetail = () => {
+const CocktailDetail = ({cocktailItems}) => {
   return (
     <div className="CocktailDetail">
       <Swiper
@@ -32,41 +30,25 @@ const CocktailDetail = () => {
         className="mySwiper"
       >
         <div className="container">
-          {/* {movies.map(movie => ( */}
+          {cocktailItems.map(item => (
+            <SwiperSlide>
+              <CocktailDetailCard
+                key={item.cocktail_id}
+                item={item}
+
+                // average={item.vote_average}
+              />{" "}
+            </SwiperSlide>
+          ))}
           <SwiperSlide>
-            {/* <Movie
-                id={movie.id}
-                key={movie.id}
-                poster_path={movie.poster_path}
-                title={movie.title}
-                average={movie.vote_average}
-              />{" "} */}
-            <CocktailDetailCard />
-          </SwiperSlide>
-          {/* ))}{" "} */}
-          <SwiperSlide>
-            {/* <Movie
-                id={movie.id}
-                key={movie.id}
-                poster_path={movie.poster_path}
-                title={movie.title}
-                average={movie.vote_average}
-              />{" "} */}
             <CocktailDetailCard />
           </SwiperSlide>
           <SwiperSlide>
-            {/* <Movie
-                id={movie.id}
-                key={movie.id}
-                poster_path={movie.poster_path}
-                title={movie.title}
-                average={movie.vote_average}
-              />{" "} */}
             <CocktailDetailCard />
           </SwiperSlide>
-          <div className="swiper-button-prev"></div>
-          <div className="swiper-button-next"></div>
-          <div className="swiper-pagination"></div>
+          <SwiperSlide>
+            <CocktailDetailCard />
+          </SwiperSlide>
         </div>
       </Swiper>
     </div>

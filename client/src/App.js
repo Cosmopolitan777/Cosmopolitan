@@ -9,14 +9,14 @@ function App() {
     console.log("mount 완료");
     const getCocktails = async () => {
       const res = await axios.get(`${API_BASE_URL}/cocktail/showlist`);
-      setCocktailItems(res.data);
+      setCocktailItems(res.data.slice(0, 10)); //테스트를 위한 슬라이스
       console.log("res.data", res.data);
     };
     getCocktails();
   }, []);
   return (
     <div className="App">
-      <CocktailDetail />
+      <CocktailDetail cocktailItems={cocktailItems} />
       {/* <CocktailItem /> */}
     </div>
   );
