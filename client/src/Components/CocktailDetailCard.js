@@ -3,7 +3,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import "../Styles/CocktailDetailCard.scss";
 const KitchenSinkExample = () => {
   return (
-    <Card style={{width: "18rem"}}>
+    <Card style={{width: "20rem"}}>
       <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
       <Card.Body>
         <Card.Title>Card Title</Card.Title>

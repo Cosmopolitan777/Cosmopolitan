@@ -14,20 +14,6 @@ import CocktailDetailCard from "../Components/CocktailDetailCard";
 const CocktailDetail = () => {
   return (
     <div className="CocktailDetail">
-      {/* <Swiper
-        className="Swiper"
-        style={style}
-        spaceBetween={50}
-        slidesPerView={1}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={swiper => console.log(swiper)}
-      >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        ...
-      </Swiper> */}
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
