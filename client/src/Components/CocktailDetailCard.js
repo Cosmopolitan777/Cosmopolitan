@@ -1,16 +1,16 @@
 import {useState} from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import "../Styles/CocktailDetailCard.scss";
+import "../styles/CocktailDetailCard.scss";
 // import {AiOutlineMinus, AiOutlinePlus} from "react-icons/ai";
 import CocktailDetailCardMenu from "./CocktailDetailCardMenu";
 const KitchenSinkExample = ({item}) => {
   const [cocktailItem, setCocktailItem] = useState(item);
   // info를 클릭시에 볼수있도록 버튼 만들기
   const [showInfos, setShowInfos] = useState([
-    {id: 1, show: false},
-    {id: 2, show: false},
-    {id: 3, show: false},
+    {id: 1, title: "glass", show: false},
+    {id: 2, title: "ingredient", show: false},
+    {id: 3, title: "instruction", show: false},
   ]);
   const updateShowInfos = newshowInfo => {
     const exshowInfo = showInfos.filter(item => item.id !== newshowInfo.id);
@@ -21,7 +21,7 @@ const KitchenSinkExample = ({item}) => {
     );
   };
   return (
-    <Card className="Card" style={{width: "20rem"}}>
+    <Card className="Card">
       <Card.Img
         className="CardImg"
         variant="top"
@@ -37,12 +37,14 @@ const KitchenSinkExample = ({item}) => {
 
         {/* </Card.Body> */}
         <ListGroup className="list-group-flush">
-          {showInfos.map(item => {
+          {showInfos.map(showItem => {
             return (
               <CocktailDetailCardMenu
-                key={item.id}
-                item={item}
+                className="CocktailDetailCardMenu"
+                key={showItem.id}
+                showItem={showItem}
                 updateShowInfos={updateShowInfos}
+                cocktailInfo={item}
               />
             );
           })}

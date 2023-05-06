@@ -6,8 +6,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 
-import "../Styles/CocktailDetail.scss";
-import CocktailDetailCard from "../Components/CocktailDetailCard";
+import "../styles/CocktailDetail.scss";
+import CocktailDetailCard from "../components/CocktailDetailCard";
 
 const CocktailDetail = ({cocktailItems}) => {
   return (
