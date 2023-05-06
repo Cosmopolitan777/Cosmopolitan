@@ -154,7 +154,7 @@ const Cocktail = function (Sequelize,DataTypes) {
         type:DataTypes.TEXT,
         allowNULL: true,
       },
-      videolink: {
+      imagelink: {
         type:DataTypes.TEXT,
         allowNULL: true,
       },

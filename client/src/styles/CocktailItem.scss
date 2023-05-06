@@ -32,6 +32,9 @@
 // }
 
 // bootstrap
+.card {
+  max-width: 240px;
+}
 img {
   max-height: 200px !important;
   object-fit: cover;
@@ -48,7 +51,7 @@ img {
 .favorite-counter {
   font-size: 18px;
 }
-.card:hover {
-  transform: rotateY(180deg);
-  transition: ease-in-out 600ms;
-}
+// .card:hover {
+//   transform: rotateY(180deg);
+//   transition: ease-in-out 600ms;
+// }
