@@ -7,12 +7,13 @@ const Wall = () => {
     <>
       <mesh
         // position={[-10, 11.7, -1.5]}
-        position={[10, 10, 10]}
-        rotation={[0, -Math.PI * 0.5, 0]}
+        position={[-90, 138, -362]}
+        rotation={[0, -Math.PI * 2, 0]}
         castShadow
         receiveShadow
       >
-        <boxGeometry args={[27, 15, 0.5]} />
+        {/* <ambientLight intensity={0.1} /> */}
+        <boxGeometry args={[550, 335, 10]} />
         <meshLambertMaterial color={"gray"} />
       </mesh>
     </>
@@ -26,7 +27,7 @@ const Cocktail = () => {
     <mesh>
       <primitive
         object={gltf.scene}
-        scale={[0.1, 0.1, 0.1]}
+        scale={[0.125, 0.125, 0.125]}
         position={[-160, 97, -40]}
       />
     </mesh>
@@ -41,10 +42,13 @@ const Box = () => {
       <ambientLight intensity={1} color={"#00BFFF"} />
       <primitive
         object={gltf.scene}
-        scale={[0.05, 0.05, 0.05]}
-        position={[-4, 19, 10]}
+        // scale={[0.05, 0.05, 0.05]}
+        scale={[0.3, 0.3, 0.3]}
+        // position={[-4, 19, 10]}
+        position={[8, -10, 16]}
         color={"blue"}
-        rotation={[0, -Math.PI * 1.59, 0]}
+        // rotation={[0, -Math.PI * 1.38, 0]}
+        rotation={[0, -Math.PI * 1.592, 0]}
       >
         <Wall />
         <Cocktail />

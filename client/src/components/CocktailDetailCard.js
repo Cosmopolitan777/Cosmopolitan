@@ -1,7 +1,7 @@
 import {useState} from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import "../Styles/CocktailDetailCard.scss";
+import "../styles/CocktailDetailCard.scss";
 import {AiOutlineMinus, AiOutlinePlus} from "react-icons/ai";
 const KitchenSinkExample = ({item}) => {
   const [cocktailItem, setCocktailItem] = useState(item);
