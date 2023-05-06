@@ -1,4 +1,4 @@
-import CocktailList from "./pages/CocktailList";
+// import CocktailList from "./pages/CocktailList";
 import {useState, useEffect} from "react";
 import CocktailItem from "./components/CocktailItem";
 // import CocktailDetail from "./pages/CocktailDetail";
@@ -19,6 +19,9 @@ function App() {
   }, []);
   return (
     <div className="App">
+      {/* <CocktailList /> */}
+      <CocktailDetail cocktailItems={cocktailItems} />
+      {/* <CocktailItem /> */}
       <CocktailList cocktailItems={cocktailItems} />
       {/* <CocktailDetail cocktailItems={cocktailItems} /> */}
       {/* <CocktailItem cocktailItems={cocktailItems} /> */}
