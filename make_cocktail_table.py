@@ -42,7 +42,7 @@ def create_cocktailtable(cc):
             measure14      VARCHAR(50) NULL        COMMENT '재료14 용량',\
             measure15      VARCHAR(50) NULL        COMMENT '재료15 용량',\
             tags           text        NULL        COMMENT '칵테일 태그',\
-            videolink      TEXT        NULL        COMMENT '메이킹비디오 링크',\
+            imagelink      TEXT        NULL        COMMENT '칵테일 이미지 링크',\
             instruction    TEXT        NULL        COMMENT '칵테일 제조방법',\
             updatedate     DATETIME DEFAULT CURRENT_TIMESTAMP    NULL        COMMENT '수정 일자',\
             PRIMARY KEY (cocktail_id)\
@@ -59,7 +59,7 @@ def sqlinsert(ill,cc):
         measure1,measure2,measure3,measure4,measure5,\
         measure6,measure7,measure8,measure9,measure10,\
         measure11,measure12,measure13,measure14,measure15,\
-        tags,videolink,instruction)\
+        tags,imagelink,instruction)\
         values\
         (\
         %s,%s,%s,%s,%s,\
@@ -76,18 +76,26 @@ def sqlinsert(ill,cc):
 
 
 cur.execute("show tables like 'cocktail'")
-if len(cur.fetchall()) == 0:
-    create_cocktailtable(cur)
-    conn.commit()
-    print("cocktail 테이블 생성 완료! \n칵테일 데이터를 추가합니다.")
-    f = open("cocktaillisttable.txt","r",encoding="utf-8")
-    rl = f.readlines()
+if len(cur.fetchall()) != 0:
 
-    for i in rl:
-        il = i.split("|")
-        sqlinsert(il,cur)
-        conn.commit()
-
-    print("칵테일 데이터 추가가 완료되었습니다! \nMysql에서 cocktail 테이블을 확인해주세요")
-else:
     print("이미 cocktail 이란 테이블이 존재합니다.")
+    print("기존의 cocktail 테이블을 삭제합니다.")
+    sql = "drop table cocktail;"
+    cur.execute(sql)
+    conn.commit()
+    print("삭제하였습니다. 새로운 테이블을 생성합니다.")
+
+create_cocktailtable(cur)
+conn.commit()
+print("cocktail 테이블 생성 완료! \n칵테일 데이터를 추가합니다.")
+f = open("cocktaillisttable.txt","r",encoding="utf-8")
+rl = f.readlines()
+
+for i in rl:
+    il = i.split("|")
+    sqlinsert(il,cur)
+    conn.commit()
+
+print("칵테일 데이터 추가가 완료되었습니다! \nMysql에서 cocktail 테이블을 확인해주세요")
+
+    
