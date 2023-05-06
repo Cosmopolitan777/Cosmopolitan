@@ -9,11 +9,14 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-icons/all-files": "^4.1.0",
+    "@react-three/drei": "^9.66.3",
+    "@react-three/fiber": "^8.13.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/three": "^0.152.0",
     "axios": "^1.4.0",
-    "create-react-app": "^5.0.1",
     "bootstrap": "^5.2.3",
+    "create-react-app": "^5.0.1",
     "include-media": "^2.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
@@ -24,6 +27,7 @@
     "sass": "^1.62.1",
     "slick-carousel": "^1.8.1",
     "swiper": "^9.2.4",
+    "three": "^0.152.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
