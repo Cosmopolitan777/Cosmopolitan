@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cyberpunk bar
+* source:	https://sketchfab.com/3d-models/cyberpunk-bar-a5d3fe72a0f6485a89b2dfdf28b1f838
+* author:	Korvoid (https://sketchfab.com/Korvoid)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cyberpunk bar" (https://sketchfab.com/3d-models/cyberpunk-bar-a5d3fe72a0f6485a89b2dfdf28b1f838) by Korvoid (https://sketchfab.com/Korvoid) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

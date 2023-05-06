@@ -1,24 +1,33 @@
 @import "~bootstrap/scss/bootstrap";
+@import "~include-media/dist/include-media";
+@import "./_utils.scss";
+@import url("//fonts.googleapis.com/earlyaccess/jejugothic.css");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Jeju Gothic";
+}
+
+body {
+  background-color: $primary-color !important;
+  overflow-x: hidden;
+}
+
 .CocktailDetail {
   height: 100vh;
-  .Slider {
-    height: 100%;
-    width: 100%;
-    .slick-list {
-      background-color: rgb(0, 0, 0, 0.3);
-      height: 100%;
-      width: 100%;
-    }
-    button {
-      width: 100px;
-      height: 100px;
-      zoom: 1.5;
-    }
-    .slick-prev {
-      z-index: 9999;
+
+  .swiper {
+    height: 100% !important;
+
+    .swiper-wrapper {
+      top: 10%;
+      transform: translateY(-10%);
     }
   }
-  //   .slick-next {
-  //     z-index: 9999;
-  //   }
+
+  .swiper {
+    --swiper-theme-color: #fff;
+  }
 }
