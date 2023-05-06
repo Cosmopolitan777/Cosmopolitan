@@ -2,11 +2,24 @@ import {useState} from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import "../Styles/CocktailDetailCard.scss";
-import {AiOutlineMinus, AiOutlinePlus} from "react-icons/ai";
+// import {AiOutlineMinus, AiOutlinePlus} from "react-icons/ai";
+import CocktailDetailCardMenu from "./CocktailDetailCardMenu";
 const KitchenSinkExample = ({item}) => {
   const [cocktailItem, setCocktailItem] = useState(item);
   // info를 클릭시에 볼수있도록 버튼 만들기
-  const [showInfo, setShowInfo] = useState(false);
+  const [showInfos, setShowInfos] = useState([
+    {id: 1, show: false},
+    {id: 2, show: false},
+    {id: 3, show: false},
+  ]);
+  const updateShowInfos = newshowInfo => {
+    const exshowInfo = showInfos.filter(item => item.id !== newshowInfo.id);
+    setShowInfos(
+      [...exshowInfo, newshowInfo].sort(function (a, b) {
+        return a.id - b.id; //아이디 기준 정렬
+      }),
+    );
+  };
   return (
     <Card className="Card" style={{width: "20rem"}}>
       <Card.Img
@@ -24,22 +37,15 @@ const KitchenSinkExample = ({item}) => {
 
         {/* </Card.Body> */}
         <ListGroup className="list-group-flush">
-          <ListGroup.Item className="ListGroupItem">
-            Cras justo odio{" "}
-            {/* 버튼 클릭시 setShowInfo보이기 : useState(false) + (!showInfo) = true */}
-            <button className="btn" onClick={() => setShowInfo(!showInfo)}>
-              {/* showInfo가 true라면 -표시 , false라면 +표시 */}
-              {showInfo ? <AiOutlineMinus /> : <AiOutlinePlus />}
-            </button>
-          </ListGroup.Item>
-          {showInfo ? (
-            <p>{item.instruction}</p>
-          ) : (
-            <>
-              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-              <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-            </>
-          )}
+          {showInfos.map(item => {
+            return (
+              <CocktailDetailCardMenu
+                key={item.id}
+                item={item}
+                updateShowInfos={updateShowInfos}
+              />
+            );
+          })}
         </ListGroup>
       </Card.Body>
       <Card.Body>
