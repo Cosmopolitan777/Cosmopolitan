@@ -3,6 +3,7 @@ import {useState, useEffect} from "react";
 import CocktailDetail from "./pages/CocktailDetail";
 import axios from "axios";
 import {API_BASE_URL} from "./app-config";
+import MainPage from "./pages/MainPage";
 function App() {
   const [cocktailItems, setCocktailItems] = useState([]);
   useEffect(() => {
@@ -18,6 +19,7 @@ function App() {
     <div className="App">
       <CocktailDetail cocktailItems={cocktailItems} />
       {/* <CocktailItem /> */}
+      <MainPage />
     </div>
   );
 }
