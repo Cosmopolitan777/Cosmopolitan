@@ -9,4 +9,9 @@
     aspect-ratio: 1/1;
     object-fit: cover;
   }
+  .ListGroupItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
