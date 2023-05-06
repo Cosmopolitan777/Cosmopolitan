@@ -1,10 +1,12 @@
 import CocktailItem from "./components/CocktailItem";
-import CocktailDetail from "./pages/CocktailDetail";
+import CocktailList from "./pages/CocktailList";
+// import CocktailDetail from "./pages/CocktailDetail";
 function App() {
   return (
     <div className="App">
-      <CocktailDetail />
-      <CocktailItem />
+      {/* <CocktailDetail /> */}
+      {/* <CocktailItem /> */}
+      <CocktailList />
     </div>
   );
 }
