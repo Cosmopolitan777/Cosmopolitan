@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import "../Styles/CocktailItem.scss";
+import "../styles/CocktailItem.scss";
 
 const CocktailItem = ({item}) => {
   const favoriteIconStyle = {
