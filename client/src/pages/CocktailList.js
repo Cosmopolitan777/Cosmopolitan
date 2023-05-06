@@ -1,6 +1,6 @@
 import {useState} from "react";
-import CocktailItem from "../components/CocktailItem";
-import "../styles/CocktailList.scss";
+import CocktailItem from "../Components/CocktailItem";
+import "../Styles/CocktailList.scss";
 
 const CocktailList = ({cocktailItems}) => {
   console.log(cocktailItems);

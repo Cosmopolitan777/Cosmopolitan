@@ -1,6 +1,6 @@
 import CocktailList from "./pages/CocktailList";
 import {useState, useEffect} from "react";
-import CocktailItem from "./components/CocktailItem";
+import CocktailItem from "./Components/CocktailItem";
 // import CocktailDetail from "./pages/CocktailDetail";
 import axios from "axios";
 import {API_BASE_URL} from "./app-config";
