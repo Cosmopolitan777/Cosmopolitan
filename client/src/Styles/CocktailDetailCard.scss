@@ -5,13 +5,14 @@
 .Card {
   padding: 1rem;
   height: 700px !important;
+  width: 22rem !important;
   .CardImg {
     aspect-ratio: 1/1;
     object-fit: cover;
   }
-  .ListGroupItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  //   .CocktailDetailCardMenu {
+  //     display: flex;
+  //     justify-content: space-between;
+  //     align-items: center;
+  //   }
 }

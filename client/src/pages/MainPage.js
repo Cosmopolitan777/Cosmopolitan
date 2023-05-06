@@ -1,7 +1,7 @@
 import {Canvas} from "@react-three/fiber";
 import {OrbitControls} from "@react-three/drei";
 import React, {useRef} from "react";
-import Box from "../Components/MainPageScene";
+import Box from "../components/MainPageScene";
 
 const MainPage = () => {
   const cameraRef = useRef();
