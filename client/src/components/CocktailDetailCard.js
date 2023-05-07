@@ -20,22 +20,37 @@ const KitchenSinkExample = ({item}) => {
       }),
     );
   };
+  const isShowTrue = showInfos.findIndex(i => i.show === true);
+  console.log("showInfos>>", showInfos);
+  const style = {
+    backgroundImage: `url(${item.imagelink})`,
+  };
   return (
-    <Card className="Card">
+    <Card
+      className="Card"
+      style={
+        isShowTrue !== -1 ? {backgroundImage: `url(${item.imagelink})`} : {}
+      }
+    >
       <Card.Img
-        className="CardImg"
+        className={isShowTrue !== -1 ? "CardImg Dnone" : "CardImg"}
         variant="top"
-        src={process.env.PUBLIC_URL + `/img/cocktail.jpeg`}
+        src={item.imagelink}
       />
       <Card.Body>
-        <Card.Title>{item.name}</Card.Title>
-        <Card.Text>
+        <Card.Title
+          className={isShowTrue !== -1 ? "CardTitle ColorWhite" : "CardTitle"}
+        >
+          {item.name}
+        </Card.Title>
+        <Card.Text
+          className={isShowTrue !== -1 ? "CardText ColorWhite" : "CardText"}
+        >
           {item.category} / {item.alcholic}{" "}
           {item.tags !== "null" && <>/{item.tags}</>}
         </Card.Text>
         <Card.Text></Card.Text>
 
-        {/* </Card.Body> */}
         <ListGroup className="list-group-flush">
           {showInfos.map(showItem => {
             return (
