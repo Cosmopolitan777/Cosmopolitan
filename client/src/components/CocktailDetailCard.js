@@ -35,13 +35,10 @@ const KitchenSinkExample = ({item}) => {
 
   return (
     <Card
-      className="Card "
+      className="Card"
       style={
         isShowTrue !== -1
           ? {
-              // backgroundImage:`url(${item.imagelink})`,
-              // backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url(${item.imagelink}))`,
-              // backgroundImage: `linear-gradient(190deg, #fa7c30 30%, rgba(0, 0, 0, 0)30%), url(${item.imagelink})`,
               backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)), url(${item.imagelink})`,
             }
           : {}
