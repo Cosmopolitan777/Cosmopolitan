@@ -1,7 +1,7 @@
 // import CocktailList from "./pages/CocktailList";
 import {useState, useEffect} from "react";
-import CocktailItem from "./components/CocktailItem";
-// import CocktailDetail from "./pages/CocktailDetail";
+// import CocktailItem from "./components/CocktailItem";
+import CocktailDetail from "./pages/CocktailDetail";
 import axios from "axios";
 import {API_BASE_URL} from "./app-config";
 // import MainPage from "./pages/MainPage";
@@ -22,7 +22,7 @@ function App() {
       {/* <CocktailList /> */}
       <CocktailDetail cocktailItems={cocktailItems} />
       {/* <CocktailItem /> */}
-      <CocktailList cocktailItems={cocktailItems} />
+      {/* <CocktailList cocktailItems={cocktailItems} /> */}
       {/* <CocktailDetail cocktailItems={cocktailItems} /> */}
       {/* <CocktailItem cocktailItems={cocktailItems} /> */}
       {/* {cocktailItems.map(item => {

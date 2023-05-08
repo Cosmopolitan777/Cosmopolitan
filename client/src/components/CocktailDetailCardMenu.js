@@ -26,7 +26,7 @@ const CocktailDetailCardMenu = ({showItem, updateShowInfos, cocktailInfo}) => {
             }`,
           );
       }
-      console.log("contents>>", contents);
+
       return contents;
     }
     contents.push(cocktailInfo[showInfo.title]);
