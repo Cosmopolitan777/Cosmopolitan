@@ -3,7 +3,6 @@ import {Rating} from "react-simple-star-rating";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import "../styles/CocktailDetailCard.scss";
-// import {AiOutlineMinus, AiOutlinePlus} from "react-icons/ai";
 import CocktailDetailCardMenu from "./CocktailDetailCardMenu";
 const KitchenSinkExample = ({item}) => {
   const [cocktailItem, setCocktailItem] = useState(item);
@@ -23,10 +22,7 @@ const KitchenSinkExample = ({item}) => {
     );
   };
   const isShowTrue = showInfos.findIndex(i => i.show === true);
-  // const style = {
-  //   backgroundImage: `url(${item.imagelink})`,
-  //   backgroundColor: "rgba(0, 0, 0, 0.8)",
-  // };
+
   //star rating
   const handleRating = (rate: number) => {
     setRating(rate);
@@ -35,7 +31,7 @@ const KitchenSinkExample = ({item}) => {
 
   return (
     <Card
-      className="Card"
+      className="CocktailDetailCard "
       style={
         isShowTrue !== -1
           ? {
