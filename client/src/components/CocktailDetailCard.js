@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {Rating} from "react-simple-star-rating";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import "../styles/CocktailDetailCard.scss";
@@ -12,6 +13,7 @@ const KitchenSinkExample = ({item}) => {
     {id: 2, title: "ingredient", show: false},
     {id: 3, title: "instruction", show: false},
   ]);
+  const [rating, setRating] = useState(0);
   const updateShowInfos = newshowInfo => {
     const exshowInfo = showInfos.filter(item => item.id !== newshowInfo.id);
     setShowInfos(
@@ -21,15 +23,25 @@ const KitchenSinkExample = ({item}) => {
     );
   };
   const isShowTrue = showInfos.findIndex(i => i.show === true);
-  console.log("showInfos>>", showInfos);
-  const style = {
-    backgroundImage: `url(${item.imagelink})`,
+  // const style = {
+  //   backgroundImage: `url(${item.imagelink})`,
+  //   backgroundColor: "rgba(0, 0, 0, 0.8)",
+  // };
+  //star rating
+  const handleRating = (rate: number) => {
+    setRating(rate);
+    // console.log(item.name, rate); //'A midsummernight dream' 3
   };
+
   return (
     <Card
       className="Card"
       style={
-        isShowTrue !== -1 ? {backgroundImage: `url(${item.imagelink})`} : {}
+        isShowTrue !== -1
+          ? {
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)), url(${item.imagelink})`,
+            }
+          : {}
       }
     >
       <Card.Img
@@ -51,7 +63,7 @@ const KitchenSinkExample = ({item}) => {
         </Card.Text>
         <Card.Text></Card.Text>
 
-        <ListGroup className="list-group-flush">
+        <ListGroup className="list-group-flush ListGroup">
           {showInfos.map(showItem => {
             return (
               <CocktailDetailCardMenu
@@ -64,11 +76,14 @@ const KitchenSinkExample = ({item}) => {
             );
           })}
         </ListGroup>
+        <div className="RatingContainer">
+          <Rating className="Rating" onClick={handleRating} initialValue={0} />
+        </div>
       </Card.Body>
-      <Card.Body>
+      {/* <Card.Body>
         <Card.Link href="#">Card Link</Card.Link>
         <Card.Link href="#">Another Link</Card.Link>
-      </Card.Body>
+      </Card.Body> */}
     </Card>
   );
 };
