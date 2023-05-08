@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <%- include('./includes/header.ejs') %>
+    <title>INDEX</title>
+</head>
+<body>
+<form action="/result" name='register' method='post'>
+    <!--    회원가입 폼 post-->
+    <!--    아이디-->
+    <!--    비밀번호-->
+    <!--    이름-->
+    <!--    프로필 사진?-->
+    <div class="hero is-fullheight ">
+        <h1>회원가입 페이지 </h1>
+        <div class="hero-body is-justify-content-center is-align-items-center">
+            <div class="columns is-flex is-flex-direction-column box">
+                <div class="column">
+                    <label class="label" for="id">아이디</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input is-primary" type="text" placeholder="아이디를 입력하세요." name='userId' id='id'>
+                        <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+                        <span class="icon is-small is-right"><i class="fas fa-check"></i></span>
+                    </div>
+                    <p class="help is-success" id="idCorrect" style='display: none'>사용할 수 없는 아이디입니다.</p>
+                </div>
+                <div class="column">
+                    <label class="label" for="password">비밀번호</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input is-primary" type="password" placeholder="패스워드를 입력하세요." name="userPw" id="pw">
+                        <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+                        <span class="icon is-small is-right"><i class="fas fa-check"></i></span>
+                    </div>
+
+                </div>
+                <div class="column">
+                    <label for="name" class='label'>이름</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input is-primary" type="text" placeholder="이름을 입력하세요." name='userName' id='name'>
+                        <span class="icon is-small is-left"><i class="fas fa-user-circle"></i></span>
+                        <span class="icon is-small is-right"><i class="fas fa-check"></i></span>
+                    </div>
+
+                    <!--                    <input type="checkbox">-->
+                    <!--                    I agree to the <a href="#" class="has-text-primary">terms and conditions</a>-->
+                </div>
+                <div class='column pl-4 p-2'>
+                <p id="formCorrect"  class='is-fullwidth has-text-danger' style='display: none'>정확한 정보를 입력해 주세요.</p>
+                </div>
+                <div class="column">
+                    <button class="button is-primary is-fullwidth" type="button" id='btn'>회원 가입</button>
+                </div>
+                <div class="has-text-centered">
+                    <p> 이미 계정이 있으신가요? <a href="/login" class="has-text-primary">로그인 하기 </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+const form = document.forms['register'];
+// 아이디 중복검사 (유효성 검사) (AXIOS)
+// 아이디가 중복일경우 idCorrect 가 display block 됨 아이디가 중복일경우 idCorrect의 값이 사용할수없는 아이디라고 표시
+// 아이디가 유효할 경우 다음 페이지로 넘어가기.
+const inputID = document.querySelector('#id');
+const inputPw = document.querySelector('#pw');
+const inputName = document.querySelector('#name');
+const idCorrect = document.querySelector('#idCorrect');
+const formCorrect =document.querySelector('#formCorrect');
+const btn = document.querySelector('#btn')
+const checkIcon = document.querySelectorAll('.fa-check');
+
+
+
+    const checkUserForm = async (e) => {
+    e.preventDefault();
+    if (true) {
+        // if (e.type === 'click'|| e.type === 'keydown') {
+    if (inputPw.value ===''|| inputID.value ==='' || inputName.value ==='') {
+        formCorrect.style.display='block';
+        if(inputID.value === '') {
+            inputID.closest('div').querySelector('.fa-check').style.color='red';
+            inputID.focus();
+        } else if (inputPw.value ===''){
+            inputPw.closest('div').querySelector('.fa-check').style.color='red';
+            inputPw.focus();
+        } else if (inputName.value ===''){
+            inputName.closest('div').querySelector('.fa-check').style.color='red';
+            inputName.focus();
+        }
+        return;
+    } else if(!(inputPw.value ===''&& inputID.value ==='' && inputName ==='')){
+        inputID.closest('div').querySelector('.fa-check').style.color='#dbdbdb';
+        inputPw.closest('div').querySelector('.fa-check').style.color='#dbdbdb';
+        inputName.closest('div').querySelector('.fa-check').style.color='#dbdbdb';
+        formCorrect.style.display='none';
+// form.addEventListener('submit', async function(e){
+//     폼/ 버튼 전송시 아이디 중복검사
+    const response = await axios.post('/check_userid',{id:form.userId.value});
+    console.log('response.data',response.data);
+    // const isCorrect = response.data.isCorrect;
+    const {hasId, errorText} = response.data;
+    console.log(hasId);
+    if (hasId) {
+        idCorrect.style.color='red';
+        idCorrect.textContent = errorText;
+        idCorrect.style.display='block';
+        // inputID.children('.fa-check').style.color ='red'
+    } else {
+        // checkIcon.style.color ='hsl(171, 100%, 41%)'
+        form.submit();
+    }
+    }
+        }
+}
+
+btn.addEventListener('click',checkUserForm);
+// inputID.addEventListener('keydown',checkUserForm);
+// inputPw.addEventListener('keydown',checkUserForm);
+// inputName.addEventListener('keydown',checkUserForm);
+
+// input 에 마우스 올리면 메세지 지우기
+inputID.addEventListener('focus', function(){
+    idCorrect.style.display='none';
+})
+
+</script>
+</body>
+</html>
