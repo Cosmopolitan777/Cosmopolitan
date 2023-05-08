@@ -33,7 +33,7 @@
 -- DESC todo;
 -- SELECT * FROM todo;
 
-use kdt;
+use codingon;
 
 create table user (
                       id int not null primary key auto_increment,
@@ -41,5 +41,6 @@ create table user (
                       name varchar(10) not null,
                       pw text not null,
                       master varchar(1) null,
-                      something text null
+                      something text null,
+                      snsId varchar(20) not null
 );
