@@ -1,4 +1,5 @@
 import {useState} from "react";
+
 import ListGroup from "react-bootstrap/ListGroup";
 import {AiOutlineMinus, AiOutlinePlus} from "react-icons/ai";
 const CocktailDetailCardMenu = ({showItem, updateShowInfos, cocktailInfo}) => {
@@ -26,27 +27,38 @@ const CocktailDetailCardMenu = ({showItem, updateShowInfos, cocktailInfo}) => {
             }`,
           );
       }
-      console.log("contents>>", contents);
+
       return contents;
     }
     contents.push(cocktailInfo[showInfo.title]);
     return contents;
   };
+
   return (
-    <ListGroup.Item>
-      {showInfo.title}
-      <button className="btn" onClick={onshowEventHandlerClick}>
-        {/* showInfo가 true라면 -표시 , false라면 +표시 */}
-        {showInfo.show ? <AiOutlineMinus /> : <AiOutlinePlus />}
-      </button>
-      {showInfo.show && (
-        <p>
-          {eachTitleContent().map(e => {
-            return <li>{e}</li>;
-          })}
-        </p>
-      )}
-    </ListGroup.Item>
+    <>
+      <ListGroup.Item>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <span>{showInfo.title}</span>
+          <button className="btn" onClick={onshowEventHandlerClick}>
+            {/* showInfo가 true라면 -표시 , false라면 +표시 */}
+            {showInfo.show ? <AiOutlineMinus /> : <AiOutlinePlus />}
+          </button>
+        </div>
+        {showInfo.show && (
+          <p>
+            {eachTitleContent().map(e => {
+              return <li>{e}</li>;
+            })}
+          </p>
+        )}
+      </ListGroup.Item>
+    </>
   );
 };
 export default CocktailDetailCardMenu;

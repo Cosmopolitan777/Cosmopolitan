@@ -1,15 +1,14 @@
-// import CocktailList from "./pages/CocktailList";
-
-//
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import CocktailList from "./pages/CocktailList";
 import {useState, useEffect} from "react";
 import CocktailItem from "./components/CocktailItem";
-import CocktailList from "./pages/CocktailList";
 import CocktailDetail from "./pages/CocktailDetail";
 import axios from "axios";
 import {API_BASE_URL} from "./app-config";
 import MainPage from "./pages/MainPage";
 import {Header, LoginHeader} from "./components/Header";
 import Mypage from "./pages/Mypage";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const [cocktailItems, setCocktailItems] = useState([]);
@@ -24,20 +23,22 @@ function App() {
   }, []);
   return (
     <div className="App">
-      {}
-      {/* <Header /> */}
-      <LoginHeader />
-      {/* <Mypage /> */}
-      {/* <CocktailList /> */}
-      {/* <CocktailDetail cocktailItems={cocktailItems} /> */}
-      {/* <CocktailItem /> */}
-      {/* <CocktailList cocktailItems={cocktailItems} /> */}
-      {/* <CocktailDetail cocktailItems={cocktailItems} /> */}
-      {/* <CocktailItem cocktailItems={cocktailItems} /> */}
-      {/* {cocktailItems.map(item => {
-        return <CocktailItem key={item.cocktail_id} item={item} />;
-      })} */}
-      <MainPage />
+      <BrowserRouter>
+        <Header />
+        {/* <LoginHeader /> */}
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route
+            path="/cocktails"
+            element={<CocktailList cocktailItems={cocktailItems} />}
+          />
+          <Route
+            path="/cocktails/:cocktailId"
+            element={<CocktailDetail cocktailItems={cocktailItems} />}
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

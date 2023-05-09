@@ -7,13 +7,12 @@ const Wall = () => {
     <>
       <mesh
         // position={[-10, 11.7, -1.5]}
-        position={[-90, 138, -362]}
-        rotation={[0, -Math.PI * 2, 0]}
+        position={[10, 10, 10]}
+        rotation={[0, -Math.PI * 0.5, 0]}
         castShadow
         receiveShadow
       >
-        {/* <ambientLight intensity={0.1} /> */}
-        <boxGeometry args={[550, 335, 10]} />
+        <boxGeometry args={[27, 15, 0.5]} />
         <meshLambertMaterial color={"gray"} />
       </mesh>
     </>
@@ -27,7 +26,7 @@ const Cocktail = () => {
     <mesh>
       <primitive
         object={gltf.scene}
-        scale={[0.125, 0.125, 0.125]}
+        scale={[0.1, 0.1, 0.1]}
         position={[-160, 97, -40]}
       />
     </mesh>
@@ -42,13 +41,10 @@ const Box = () => {
       <ambientLight intensity={1} color={"#00BFFF"} />
       <primitive
         object={gltf.scene}
-        // scale={[0.05, 0.05, 0.05]}
-        scale={[0.3, 0.3, 0.3]}
-        // position={[-4, 19, 10]}
-        position={[8, -10, 16]}
+        scale={[0.05, 0.05, 0.05]}
+        position={[-4, 19, 10]}
         color={"blue"}
-        // rotation={[0, -Math.PI * 1.38, 0]}
-        rotation={[0, -Math.PI * 1.592, 0]}
+        rotation={[0, -Math.PI * 1.59, 0]}
       >
         <Wall />
         <Cocktail />
@@ -58,25 +54,3 @@ const Box = () => {
 };
 
 export default Box;
-
-// import React from "react";
-
-// function Box() {
-//   return (
-//     <div
-//       title="Chatsubo Bar - Neuromancer"
-//       width="100%"
-//       height="480"
-//       src="https://sketchfab.com/models/817d6cf117de4da9a32f1729dba752ec/embed?ui_theme=dark"
-//       frameBorder="0"
-//       allowFullScreen
-//       mozallowfullscreen="true"
-//       webkitallowfullscreen="true"
-//       allow="autoplay; fullscreen; xr-spatial-tracking"
-//       execution-while-out-of-viewport
-//       execution-while-not-rendered
-//       web-share
-//     ></div>
-//   );
-// }
-// export default Box;

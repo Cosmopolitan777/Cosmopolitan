@@ -68,7 +68,7 @@ export const LoginHeader = () => {
 
 // 기본 헤더
 
-function Header() {
+export function Header() {
   //   const onEnterKeyDown = e => {
   //     if (e.key === "Enter") {
   //       onButtonClick();
@@ -146,4 +146,4 @@ function Header() {
 }
 
 // export default NavScrollExample;
-export default Header;
+// export default Header;

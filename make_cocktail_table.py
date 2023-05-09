@@ -1,5 +1,5 @@
 import pymysql
-conn = pymysql.connect(host="127.0.0.1",user="user",password="1234",db="codingon",charset="utf8")
+conn = pymysql.connect(host="127.0.0.1",user="user",password="4321",db="codingon",charset="utf8")
 cur = conn.cursor()
 
 def create_cocktailtable(cc):
@@ -97,5 +97,3 @@ for i in rl:
     conn.commit()
 
 print("칵테일 데이터 추가가 완료되었습니다! \nMysql에서 cocktail 테이블을 확인해주세요")
-
-    
