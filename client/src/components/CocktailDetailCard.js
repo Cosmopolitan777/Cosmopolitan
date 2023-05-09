@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import "../styles/CocktailDetailCard.scss";
 import CocktailDetailCardMenu from "./CocktailDetailCardMenu";
+
 const KitchenSinkExample = ({item}) => {
   const [cocktailItem, setCocktailItem] = useState(item);
   // info를 클릭시에 볼수있도록 버튼 만들기

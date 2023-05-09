@@ -6,6 +6,8 @@ import CocktailDetail from "./pages/CocktailDetail";
 import axios from "axios";
 import {API_BASE_URL} from "./app-config";
 import MainPage from "./pages/MainPage";
+import {Header, LoginHeader} from "./components/Header";
+import Mypage from "./pages/Mypage";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Header />
+        {/* <LoginHeader /> */}
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route
