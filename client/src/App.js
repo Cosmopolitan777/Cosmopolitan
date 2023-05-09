@@ -9,6 +9,7 @@ import MainPage from "./pages/MainPage";
 import {Header, LoginHeader} from "./components/Header";
 import Mypage from "./pages/Mypage";
 import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
 
 function App() {
   const [cocktailItems, setCocktailItems] = useState([]);
@@ -36,6 +37,7 @@ function App() {
             path="/cocktails/:cocktailId"
             element={<CocktailDetail cocktailItems={cocktailItems} />}
           />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
