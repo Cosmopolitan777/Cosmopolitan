@@ -58,3 +58,25 @@ const Box = () => {
 };
 
 export default Box;
+
+// import React from "react";
+
+// function Box() {
+//   return (
+//     <div
+//       title="Chatsubo Bar - Neuromancer"
+//       width="100%"
+//       height="480"
+//       src="https://sketchfab.com/models/817d6cf117de4da9a32f1729dba752ec/embed?ui_theme=dark"
+//       frameBorder="0"
+//       allowFullScreen
+//       mozallowfullscreen="true"
+//       webkitallowfullscreen="true"
+//       allow="autoplay; fullscreen; xr-spatial-tracking"
+//       execution-while-out-of-viewport
+//       execution-while-not-rendered
+//       web-share
+//     ></div>
+//   );
+// }
+// export default Box;

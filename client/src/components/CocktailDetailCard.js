@@ -2,12 +2,10 @@ import {useState} from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import "../styles/CocktailDetailCard.scss";
-<<<<<<< HEAD:client/src/components/CocktailDetailCard.js
-import {AiOutlineMinus, AiOutlinePlus} from "react-icons/ai";
-=======
+// import {AiOutlineMinus, AiOutlinePlus} from "react-icons/ai";
 // import {AiOutlineMinus, AiOutlinePlus} from "react-icons/ai";
 import CocktailDetailCardMenu from "./CocktailDetailCardMenu";
->>>>>>> ba7e83625fb47893f884092883716f377c49b2c1:client/src/Components/CocktailDetailCard.js
+
 const KitchenSinkExample = ({item}) => {
   const [cocktailItem, setCocktailItem] = useState(item);
   // info를 클릭시에 볼수있도록 버튼 만들기
