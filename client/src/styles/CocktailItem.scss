@@ -32,13 +32,16 @@
 // }
 
 // bootstrap
-.card {
+// .card {
+.CocktailItemCard {
   max-width: 240px;
+  .CocktailItemImage {
+    max-height: 200px !important;
+    object-fit: cover;
+  }
 }
-img {
-  max-height: 200px !important;
-  object-fit: cover;
-}
+// img {
+
 .favorite-container {
   display: flex;
   align-items: center;
