@@ -1,5 +1,6 @@
 import {Swiper, SwiperSlide} from "swiper/react";
-import {useParams, useNavigate} from "react-router-dom";
+// import {useParams, useNavigate} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {EffectCoverflow, Navigation, Mousewheel} from "swiper";
 import "swiper/css";
 import "swiper/css/effect-coverflow";

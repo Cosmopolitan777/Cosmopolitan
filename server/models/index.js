@@ -15,13 +15,13 @@ const sequelize = new Sequelize(
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-// // TODO: model 연결
-db.Todo = require("./Todo")(sequelize, Sequelize);
-
 // Cocktail model 연결
 db.Cocktail = require("./Cocktail")(sequelize, Sequelize);
 
 // // login model 연결
 // db.Model = require("./Model")(sequelize, Sequelize);
+
+//추천 model 연결
+db.Evaluation = require("./Evaluation")(sequelize, Sequelize);
 
 module.exports = db;
