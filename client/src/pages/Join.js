@@ -4,38 +4,36 @@ import Button from "react-bootstrap/Button";
 import {API_BASE_URL} from "../app-config";
 import axios from "axios";
 
-export default function Login() {
+export default function Join() {
   const [userId, setUserId] = useState("");
-
-  const [password, setPassword] = useState("");
+  const [userPw, setUserPw] = useState("");
+  const [userName, setUserName] = useState("");
 
   const validateForm = () => {
-    return userId.length > 0 && password.length > 0;
+    return userId.length > 0 && userPw.length > 0 && userName.length > 0;
   };
 
   const handleSubmit = event => {
     event.preventDefault();
     console.log(userId);
-    console.log(password);
+    console.log(userPw);
+    console.log(userName);
+
     axios({
       method: "post",
-      url: `${API_BASE_URL}/checkLogin`,
+      url: `${API_BASE_URL}/result`,
       data: {
         userId: userId,
-        password: password,
+        userPw: userPw,
+        userName: userName,
       },
     }).then(res => console.log(res));
   };
-  const postKakao = async () => {
-    await axios.post(`${API_BASE_URL}/auth/kakao`);
-  };
-  const getNaver = async () => {
-    await axios.get(`${API_BASE_URL}/auth/naver`);
-  };
+
   return (
     <div className="Login" style={{width: "20rem", color: "white"}}>
       <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="userId">
+        <Form.Group size="lg" controlId="id">
           <Form.Label>ID</Form.Label>
 
           <Form.Control
@@ -51,19 +49,26 @@ export default function Login() {
 
           <Form.Control
             type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
+            value={userPw}
+            onChange={e => setUserPw(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group size="lg" controlId="name">
+          <Form.Label>Nickname</Form.Label>
+
+          <Form.Control
+            type="text"
+            value={userName}
+            onChange={e => setUserName(e.target.value)}
           />
         </Form.Group>
 
         <Button blocksize="lg" type="submit" disabled={!validateForm()}>
-          Login
+          Join
         </Button>
         <br />
       </Form>
-
-      <button onClick={postKakao}>카카오 로그인하기 </button>
-      <button onClick={getNaver}>네이버 로그인하기 </button>
     </div>
   );
 }
