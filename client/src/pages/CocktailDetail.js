@@ -12,6 +12,7 @@ import "../styles/CocktailDetail.scss";
 import CocktailDetailCard from "../components/CocktailDetailCard";
 
 const CocktailDetail = ({cocktailItems}) => {
+  console.log("cocktailItems>> ", cocktailItems);
   const {cocktailId} = useParams();
   const [targetProduct] = cocktailItems.filter(
     c => c.cocktail_id === Number(cocktailId),
