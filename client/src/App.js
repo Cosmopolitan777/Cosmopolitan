@@ -6,6 +6,7 @@ import axios from "axios";
 import {API_BASE_URL} from "./app-config";
 import MainPage from "./pages/MainPage";
 import {Header, LoginHeader} from "./components/Header";
+import Mypage from "./pages/Mypage";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Join from "./pages/Join";
@@ -36,8 +37,11 @@ function App() {
             path="/cocktails/:cocktailId"
             element={<CocktailDetail cocktailItems={cocktailItems} />}
           />
+          <Route path="/Mypage" element={<Mypage />} />
+          {/* <Route path="/Mypage/:Like" element={<Like />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
