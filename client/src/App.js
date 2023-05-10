@@ -25,8 +25,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
-        {/* <LoginHeader /> */}
+        {/* <Header /> */}
+        <LoginHeader />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route
@@ -37,7 +37,10 @@ function App() {
             path="/cocktails/:cocktailId"
             element={<CocktailDetail cocktailItems={cocktailItems} />}
           />
-          <Route path="/Mypage" element={<Mypage />} />
+          <Route
+            path="/Mypage"
+            element={<Mypage cocktailItems={cocktailItems} />}
+          />
           {/* <Route path="/Mypage/:Like" element={<Like />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
