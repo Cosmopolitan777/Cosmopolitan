@@ -12,10 +12,10 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 const cocktailRouter = require("./routes/cocktail");
-// const evaluationRouter = require("./routes/evaluation");
+const evaluationRouter = require("./routes/evaluation");
 
 app.use("/cocktail", cocktailRouter);
-// app.use("/evaluation", evaluationRouter);
+app.use("/evaluation", evaluationRouter);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

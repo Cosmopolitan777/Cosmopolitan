@@ -22,6 +22,6 @@ db.Cocktail = require("./Cocktail")(sequelize, Sequelize);
 // db.Model = require("./Model")(sequelize, Sequelize);
 
 //추천 model 연결
-// db.Evaluation = require("./Evaluation")(sequelize, Sequelize);
+db.Evaluation = require("./Evaluation")(sequelize, Sequelize);
 
 module.exports = db;

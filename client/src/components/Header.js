@@ -13,7 +13,7 @@ export const LoginHeader = () => {
   return (
     <Navbar bg="light" expand="lg" className="Navbar">
       <Container fluid>
-        <Navbar.Brand href="#" className="logo">
+        <Navbar.Brand href="/" className="logo">
           Header
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -32,10 +32,10 @@ export const LoginHeader = () => {
             </Link> */}
             {/* test code */}
 
-            <Nav.Link href="#action1" className="Nav">
+            <Nav.Link href="/" className="Nav">
               Home
             </Nav.Link>
-            <Nav.Link href="#action2" className="Nav">
+            <Nav.Link href="/cocktails" className="Nav">
               Cocktail
             </Nav.Link>
             <Nav.Link href="#action3" className="Nav">
@@ -77,7 +77,7 @@ export function Header() {
   return (
     <Navbar bg="light" expand="lg" className="Navbar">
       <Container fluid>
-        <Navbar.Brand href="#" className="logo">
+        <Navbar.Brand href="/" className="logo">
           Header
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -96,19 +96,19 @@ export function Header() {
             </Link> */}
             {/* test code */}
 
-            <Nav.Link href="#action1" className="Nav">
+            <Nav.Link href="/" className="Nav">
               Home
             </Nav.Link>
-            <Nav.Link href="#action2" className="Nav">
+            <Nav.Link href="/cocktails" className="Nav">
               Cocktail
             </Nav.Link>
             <Nav.Link href="#action3" className="Nav">
               Community
             </Nav.Link>
-            <Nav.Link href="#action4" className="Nav">
+            <Nav.Link href="/login" className="Nav">
               login
             </Nav.Link>
-            <Nav.Link href="#action5" className="Nav">
+            <Nav.Link href="/join" className="Nav">
               join
             </Nav.Link>
             {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
