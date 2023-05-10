@@ -37,7 +37,7 @@ function App() {
             element={<CocktailDetail cocktailItems={cocktailItems} />}
           />
           <Route path="/login" element={<Login />} />
-          <Route path="/Join" element={<Join />} />
+          <Route path="/join" element={<Join />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
