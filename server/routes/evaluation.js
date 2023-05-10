@@ -9,3 +9,4 @@ router.get("/rate", controller.getRates);
 router.post("/rate", controller.createRate); //하나 추가(생성)
 
 module.exports = router;
+
