@@ -14,7 +14,9 @@ export const LoginHeader = () => {
     <Navbar bg="light" expand="lg" className="Navbar">
       <Container fluid>
         <Navbar.Brand href="/" className="logo">
-          Header
+          <>
+            <div className="neon">Cosmopolitan</div>
+          </>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -44,7 +46,7 @@ export const LoginHeader = () => {
             <Nav.Link href="#action4" className="Nav">
               Logout
             </Nav.Link>
-            <Nav.Link href="#action5" className="Nav">
+            <Nav.Link href="/Mypage" className="Nav">
               Mypage
             </Nav.Link>
           </Nav>
@@ -78,7 +80,9 @@ export function Header() {
     <Navbar bg="light" expand="lg" className="Navbar">
       <Container fluid>
         <Navbar.Brand href="/" className="logo">
-          Header
+          <>
+            <div className="neon">Cosmopolitan</div>
+          </>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
