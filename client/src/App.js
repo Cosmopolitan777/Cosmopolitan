@@ -7,7 +7,9 @@ import axios from "axios";
 import {API_BASE_URL} from "./app-config";
 import MainPage from "./pages/MainPage";
 import {Header, LoginHeader} from "./components/Header";
+// 마이페이지
 import Mypage from "./pages/Mypage";
+
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
             path="/cocktails/:cocktailId"
             element={<CocktailDetail cocktailItems={cocktailItems} />}
           />
+          <Route path="/Mypage" element={<Mypage />} />
+          {/* <Route path="/Mypage/:Like" element={<Like />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
