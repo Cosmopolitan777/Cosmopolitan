@@ -31,7 +31,7 @@ export default function Join() {
   };
 
   return (
-    <div className="Login" style={{width: "20rem", color: "white"}}>
+    <div className="Jogin" style={{width: "20rem", color: "white"}}>
       <Form onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="id">
           <Form.Label>ID</Form.Label>
@@ -48,6 +48,7 @@ export default function Join() {
           <Form.Label>Password</Form.Label>
 
           <Form.Control
+              style={{fontFamily: "Jalnan"}}
             type="password"
             value={userPw}
             onChange={e => setUserPw(e.target.value)}

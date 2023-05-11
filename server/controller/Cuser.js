@@ -1,4 +1,5 @@
 const models = require("../models/");
+const bcrypt = require('bcrypt')
 // const bcrypt = require("bcrypt");
 //(1) 메인 화면
 exports.getIndex = async (req, res) => {
@@ -25,6 +26,7 @@ exports.postCheckLogin = async (req, res) => {
       userid: req.body.userId,
     },
   });
+  console.log("response>>>", response)
 
   if (!response) {
     return res.send({
@@ -32,9 +34,9 @@ exports.postCheckLogin = async (req, res) => {
     });
   } else {
     console.log("^^^^^^^^^^^^^^^", typeof req.body.password);
-    // const match = await bcrypt.compare(req.body.password, response.pw);
+    const match = await bcrypt.compare(req.body.password, response.pw);
 
-    if (req.body.password === response.pw) {
+    if (match) {
       req.session.name = response.name;
       return res.send({
         hasInfo: true,
