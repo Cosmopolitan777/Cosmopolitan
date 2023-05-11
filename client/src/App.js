@@ -10,6 +10,7 @@ import Mypage from "./pages/Mypage";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Join from "./pages/Join";
+import Editor from "./components/Editor";
 axios.defaults.withCredentials = true;
 function App() {
   const [cocktailItems, setCocktailItems] = useState([]);
@@ -59,6 +60,8 @@ function App() {
           <Route path="/join" element={<Join />} />
 
           <Route path="*" element={<NotFound />} />
+
+          <Route path="/editor" element={<Editor />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,0 +1,19 @@
+.editor-block {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  &.editor-input-title {
+    font-size: 3rem;
+    outline: none;
+    padding-bottom: 0.5rem;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+  &.editor-quill-container {
+    padding: 0;
+    min-height: 320px;
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+}
