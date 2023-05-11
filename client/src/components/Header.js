@@ -9,7 +9,7 @@ import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/Header.scss";
 
-export const LoginHeader = () => {
+export const LoginHeader = ({getLogout}) => {
   return (
     <Navbar bg="light" expand="lg" className="Navbar">
       <Container fluid>
@@ -43,7 +43,7 @@ export const LoginHeader = () => {
             <Nav.Link href="#action3" className="Nav">
               Community
             </Nav.Link>
-            <Nav.Link href="#action4" className="Nav">
+            <Nav.Link href="/" className="Nav" onClick={getLogout}>
               Logout
             </Nav.Link>
             <Nav.Link href="/Mypage" className="Nav">
