@@ -25,8 +25,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* <Header /> */}
-        <LoginHeader />
+        <Header />
+        {/* <LoginHeader /> */}
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route
