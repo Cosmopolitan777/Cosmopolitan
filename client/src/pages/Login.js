@@ -26,9 +26,8 @@ export default function Login() {
         password: password,
       },
     }).then(
-      res =>
-        console.log("res.data.hasInfo>>",res.data)
-        // res.data.hasInfo && (document.location.href = "/"),
+      // res => console.log("res.data.hasInfo>>", res.data),
+      res => res.data.hasInfo && (document.location.href = "/"),
     );
   };
   const postKakao = async () => {
@@ -48,28 +47,24 @@ export default function Login() {
               type="text"
               value={userId}
               onChange={e => setUserId(e.target.value)}
-              placeholder="email"
+              placeholder="ID"
             />
           </Form.Group>
 
           <Form.Group size="lg" controlId="password" style={{margin: "20px 0"}}>
             {/* <Form.Label>Password</Form.Label> */}
 
-
-          <Form.Control
-            style={{fontFamily: "Jalnan"}}
-            className="FormPassword"
-            type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            placeholder="password"
-          />
-        </Form.Group>
-
+            <Form.Control
+              style={{fontFamily: "Jalnan"}}
+              className="FormPassword"
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              placeholder="password"
+            />
+          </Form.Group>
 
           <button onClick={postKakao}>카카오 로그인하기</button>
-          <button onClick={getNaver}>네이버 로그인하기</button>
-
 
           <Button
             blocksize="lg"
@@ -82,7 +77,6 @@ export default function Login() {
           <br />
         </Form>
       </div>
-
     </div>
   );
 }

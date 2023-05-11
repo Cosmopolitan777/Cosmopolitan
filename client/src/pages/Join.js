@@ -32,9 +32,7 @@ export default function Join() {
   };
 
   return (
-
     <div className="Jogin" style={{width: "500px", color: "white"}}>
-
       <Form onSubmit={handleSubmit}>
         <h3>회원가입</h3>
         <Form.Group size="lg" controlId="id" style={{margin: "20px 0"}}>
@@ -45,21 +43,18 @@ export default function Join() {
             type="text"
             value={userId}
             onChange={e => setUserId(e.target.value)}
-            placeholder="email"
+            placeholder="ID"
           />
         </Form.Group>
         <Form.Group size="lg" controlId="name" style={{margin: "20px 0"}}>
           {/* <Form.Label>Nickname</Form.Label> */}
 
           <Form.Control
-
             style={{fontFamily: "Jalnan"}}
             type="password"
             value={userPw}
             onChange={e => setUserPw(e.target.value)}
-            placeholder="name"
-            
-
+            placeholder="password"
           />
         </Form.Group>
 
@@ -67,10 +62,10 @@ export default function Join() {
           {/* <Form.Label>Password</Form.Label> */}
 
           <Form.Control
-            type="password"
-            value={userPw}
-            onChange={e => setUserPw(e.target.value)}
-            placeholder="password"
+            type="text"
+            value={userName}
+            onChange={e => setUserName(e.target.value)}
+            placeholder="name"
           />
         </Form.Group>
 
