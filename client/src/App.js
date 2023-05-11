@@ -4,7 +4,7 @@ import {useState, useEffect} from "react";
 import CocktailDetail from "./pages/CocktailDetail";
 import axios from "axios";
 import {API_BASE_URL} from "./app-config";
-// import MainPage from "./pages/MainPage";
+import MainPage from "./pages/MainPage";
 import {Header, LoginHeader} from "./components/Header";
 import Mypage from "./pages/Mypage";
 import NotFound from "./pages/NotFound";
@@ -39,7 +39,7 @@ function App() {
       <BrowserRouter>
         {session ? <LoginHeader getLogout={getLogout} /> : <Header />}
         <Routes>
-          {/*<Route path="/" element={<MainPage />} />*/}
+          <Route path="/" element={<MainPage />} />
           <Route
             path="/cocktails"
             element={<CocktailList cocktailItems={cocktailItems} />}

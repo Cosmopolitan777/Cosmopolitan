@@ -1,5 +1,5 @@
 const models = require("../models/");
-const bcrypt = require('bcrypt')
+const bcrypt = require("bcrypt");
 
 //(1) 메인 화면
 exports.getIndex = async (req, res) => {
@@ -26,7 +26,7 @@ exports.postCheckLogin = async (req, res) => {
       userid: req.body.userId,
     },
   });
-  console.log("response>>>", response)
+  console.log("response>>>", response);
 
   if (!response) {
     return res.send({
@@ -34,8 +34,10 @@ exports.postCheckLogin = async (req, res) => {
     });
   } else {
     console.log("^^^^^^^^^^^^^^^", typeof req.body.password);
+    console.log(req.body.password);
+    console.log(response.pw);
     const match = await bcrypt.compare(req.body.password, response.pw);
-
+    console.log("match", match);
     if (match) {
       //세션 설정 userid로
       req.session.name = response.userid;
