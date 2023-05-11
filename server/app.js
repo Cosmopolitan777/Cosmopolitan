@@ -20,6 +20,7 @@ const indexRouter = require("./routes");
 const cocktailRouter = require("./routes/cocktail");
 const evaluationRouter = require("./routes/evaluation");
 const recommendRouter = require("./routes/recommend");
+const zzimRouter = require("./routes/zzim");
 
 app.use(
   session({
@@ -34,6 +35,7 @@ app.use("/", indexRouter);
 app.use("/cocktail", cocktailRouter);
 app.use("/evaluation", evaluationRouter);
 app.use("/recommend", recommendRouter);
+app.use("/zzim",zzimRouter);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
