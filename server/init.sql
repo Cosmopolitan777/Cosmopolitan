@@ -33,14 +33,18 @@
 -- DESC todo;
 -- SELECT * FROM todo;
 
-use codingon;
 
+use codingon;
+DROP TABLE IF EXISTS user;
 create table user (
                       id int not null primary key auto_increment,
-                      userid varchar(20) not null,
-                      name varchar(10) not null,
-                      pw text not null,
+                      userid varchar(20) null,
+                      name varchar(10) null,
+                      pw text null,
                       master varchar(1) null,
                       something text null,
-                      snsId varchar(20) not null
+                      snsId text null
 );
+
+INSERT INTO user VALUES (null, '333', '333', '333',null,null,null);
+SELECT * FROM user
