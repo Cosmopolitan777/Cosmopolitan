@@ -1,11 +1,7 @@
-import "../styles/MainPage.scss";
+// import "../styles/MainPage.scss";
 
-const Background = () => {
-  return (
-    <>
-      <div className="neon">Cosmopolitan</div>
-    </>
-  );
-};
+// const Background = () => {
+//   return <>{/* <div className="neon">Cosmopolitan</div> */}</>;
+// };
 
-export default Background;
+// export default Background;

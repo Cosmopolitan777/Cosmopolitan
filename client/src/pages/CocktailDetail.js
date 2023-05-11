@@ -1,5 +1,6 @@
 import {Swiper, SwiperSlide} from "swiper/react";
-import {useParams, useNavigate} from "react-router-dom";
+// import {useParams, useNavigate} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {EffectCoverflow, Navigation, Mousewheel} from "swiper";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -11,6 +12,7 @@ import "../styles/CocktailDetail.scss";
 import CocktailDetailCard from "../components/CocktailDetailCard";
 
 const CocktailDetail = ({cocktailItems}) => {
+  console.log("cocktailItems>> ", cocktailItems);
   const {cocktailId} = useParams();
   const [targetProduct] = cocktailItems.filter(
     c => c.cocktail_id === Number(cocktailId),
