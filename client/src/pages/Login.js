@@ -26,8 +26,8 @@ export default function Login() {
       },
     }).then(
       res =>
-        // console.log("res.data session>>", res.data.session),
-        res.data.hasInfo && (document.location.href = "/"),
+        console.log("res.data.hasInfo>>",res.data)
+        // res.data.hasInfo && (document.location.href = "/"),
     );
   };
   const postKakao = async () => {
