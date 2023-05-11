@@ -24,4 +24,7 @@ db.User = require("./User")(sequelize, Sequelize);
 //추천 model 연결
 db.Evaluation = require("./Evaluation")(sequelize, Sequelize);
 
+//찜 model 연결
+db.Zzim = require("./Zzim")(sequelize,Sequelize);
+
 module.exports = db;
