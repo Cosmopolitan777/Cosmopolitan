@@ -49,7 +49,9 @@ function App() {
           />
           <Route
             path="/cocktails/:cocktailId"
-            element={<CocktailDetail cocktailItems={cocktailItems} />}
+            element={
+              <CocktailDetail cocktailItems={cocktailItems} session={session} />
+            }
           />
           <Route
             path="/Mypage"
