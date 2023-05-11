@@ -38,9 +38,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
         {session ? <LoginHeader getLogout={getLogout} /> : <Header />}
-        {/* <Header /> */}
-        {/* <LoginHeader /> */}
-        {console.log()}
         <Routes>
           {/*<Route path="/" element={<MainPage />} />*/}
           <Route

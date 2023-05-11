@@ -24,7 +24,7 @@ export default Mypage;
 
 function TabsExample({cocktailItems}) {
   return (
-    <div style={{padding: "40px 30px ", backgroundColor: "white"}}>
+    <div style={{padding: "40px 30px "}}>
       <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
         <Row>
           <Col sm={2}>
@@ -40,6 +40,7 @@ function TabsExample({cocktailItems}) {
               </ListGroup.Item>
             </ListGroup>
           </Col>
+          {/* <div> */}
           <Col sm={2}>
             <Tab.Content>
               <Tab.Pane eventKey="#link1">
@@ -47,13 +48,14 @@ function TabsExample({cocktailItems}) {
                 <LikeList cocktailItems={cocktailItems} />
               </Tab.Pane>
               <Tab.Pane eventKey="#link2">
-                <Recommendation />
+                <Recommendation cocktailItems={cocktailItems} />
               </Tab.Pane>
               <Tab.Pane eventKey="#link3">
                 <InformationModify />
               </Tab.Pane>
             </Tab.Content>
           </Col>
+          {/* </div> */}
         </Row>
       </Tab.Container>
     </div>

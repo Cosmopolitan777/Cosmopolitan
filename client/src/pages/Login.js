@@ -1,3 +1,4 @@
+import "../styles/Login.scss";
 import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -35,21 +36,25 @@ export default function Login() {
   };
 
   return (
-    <div className="Login" style={{width: "20rem", color: "white"}}>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="userId">
-          <Form.Label>ID</Form.Label>
+    <div className="LoginBox">
+      <div className="Login" style={{width: "500px", color: "white"}}>
+        <h3>로그인</h3>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group size="lg" controlId="userId">
+            {/* <div>이메일</div> */}
 
-          <Form.Control
-            autoFocus
-            type="text"
-            value={userId}
-            onChange={e => setUserId(e.target.value)}
-          />
-        </Form.Group>
+            <Form.Control
+              autoFocus
+              type="text"
+              value={userId}
+              onChange={e => setUserId(e.target.value)}
+              placeholder="email"
+            />
+          </Form.Group>
 
-        <Form.Group size="lg" controlId="password">
-          <Form.Label>Password</Form.Label>
+          <Form.Group size="lg" controlId="password" style={{margin: "20px 0"}}>
+            {/* <Form.Label>Password</Form.Label> */}
+
 
           <Form.Control
             style={{fontFamily: "Jalnan"}}
@@ -57,16 +62,27 @@ export default function Login() {
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
+            placeholder="password"
           />
         </Form.Group>
 
-        <Button blocksize="lg" type="submit" disabled={!validateForm()}>
-          Login
-        </Button>
-        <br />
-      </Form>
 
-      <button onClick={postKakao}>카카오 로그인하기 </button>
+          <button onClick={postKakao}>카카오 로그인하기</button>
+          <button onClick={getNaver}>네이버 로그인하기</button>
+
+
+          <Button
+            blocksize="lg"
+            type="submit"
+            disabled={!validateForm()}
+            style={{width: "250px", margin: "10px"}}
+          >
+            Login
+          </Button>
+          <br />
+        </Form>
+      </div>
+
     </div>
   );
 }

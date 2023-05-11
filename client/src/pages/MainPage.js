@@ -33,7 +33,7 @@ const MainPage = () => {
       >
         <pointLight position={[12, 10, 10]} />
         <Box OrbitControls />
-        <OrbitControls camera={cameraRef.current} enableZoom={true} />
+        <OrbitControls camera={cameraRef.current} enableZoom={false} />
         <ambientLight intensity={0.1} />
         {/* <sketchfab url={sketchfabEmbedCode} /> */}
       </Canvas>

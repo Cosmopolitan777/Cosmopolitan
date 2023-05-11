@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {API_BASE_URL} from "../app-config";
 import axios from "axios";
+import "../styles/Join.scss";
 
 export default function Join() {
   const [userId, setUserId] = useState("");
@@ -31,41 +32,54 @@ export default function Join() {
   };
 
   return (
-    <div className="Jogin" style={{width: "20rem", color: "white"}}>
+
+    <div className="Jogin" style={{width: "500px", color: "white"}}>
+
       <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="id">
-          <Form.Label>ID</Form.Label>
+        <h3>회원가입</h3>
+        <Form.Group size="lg" controlId="id" style={{margin: "20px 0"}}>
+          {/* <Form.Label>ID</Form.Label> */}
 
           <Form.Control
             autoFocus
             type="text"
             value={userId}
             onChange={e => setUserId(e.target.value)}
+            placeholder="email"
           />
         </Form.Group>
-
-        <Form.Group size="lg" controlId="password">
-          <Form.Label>Password</Form.Label>
+        <Form.Group size="lg" controlId="name" style={{margin: "20px 0"}}>
+          {/* <Form.Label>Nickname</Form.Label> */}
 
           <Form.Control
-              style={{fontFamily: "Jalnan"}}
+
+            style={{fontFamily: "Jalnan"}}
             type="password"
             value={userPw}
             onChange={e => setUserPw(e.target.value)}
+            placeholder="name"
+            
+
           />
         </Form.Group>
 
-        <Form.Group size="lg" controlId="name">
-          <Form.Label>Nickname</Form.Label>
+        <Form.Group size="lg" controlId="password" style={{margin: "20px 0"}}>
+          {/* <Form.Label>Password</Form.Label> */}
 
           <Form.Control
-            type="text"
-            value={userName}
-            onChange={e => setUserName(e.target.value)}
+            type="password"
+            value={userPw}
+            onChange={e => setUserPw(e.target.value)}
+            placeholder="password"
           />
         </Form.Group>
 
-        <Button blocksize="lg" type="submit" disabled={!validateForm()}>
+        <Button
+          blocksize="lg"
+          type="submit"
+          disabled={!validateForm()}
+          style={{width: "250px", margin: "10px"}}
+        >
           Join
         </Button>
         <br />

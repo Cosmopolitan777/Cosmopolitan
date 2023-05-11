@@ -1,7 +1,8 @@
 {
   "development": {
     "username": "user",
-    "password": "0531",
+    "password": "4321",
+
     "database": "codingon",
     "host": "127.0.0.1",
     "dialect": "mysql"
