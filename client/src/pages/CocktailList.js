@@ -3,7 +3,7 @@ import CocktailItem from "../components/CocktailItem";
 import "../styles/CocktailList.scss";
 
 const CocktailList = ({cocktailItems}) => {
-  console.log(cocktailItems);
+  // console.log(cocktailItems);
   return (
     <>
       <div className="search-bar d-flex justify-content-between">
@@ -52,6 +52,7 @@ const CocktailList = ({cocktailItems}) => {
           ))}
         </div>
       </div>
+      {/* pagenation */}
       <footer className="navbar-fixed-bottom mt-3">
         <nav aria-label="Page navigation example">
           <ul className="pagination d-flex justify-content-center">
