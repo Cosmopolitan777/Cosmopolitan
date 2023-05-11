@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {API_BASE_URL} from "../app-config";
 import axios from "axios";
-
+import "../styles/Login.scss";
 export default function Login() {
   const [userId, setUserId] = useState("");
 
@@ -16,8 +16,8 @@ export default function Login() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(userId);
-    console.log(password);
+    // console.log(userId);
+    // console.log(password);
     axios({
       method: "post",
       url: `${API_BASE_URL}/checkLogin`,
@@ -25,14 +25,16 @@ export default function Login() {
         userId: userId,
         password: password,
       },
-    }).then(res => console.log(res));
+    }).then(
+      res =>
+        console.log("res.data.hasInfo>>",res.data)
+        // res.data.hasInfo && (document.location.href = "/"),
+    );
   };
   const postKakao = async () => {
     await axios.post(`${API_BASE_URL}/auth/kakao`);
   };
-  const getNaver = async () => {
-    await axios.get(`${API_BASE_URL}/auth/naver`);
-  };
+
   return (
     <div className="LoginBox">
       <div className="Login" style={{width: "500px", color: "white"}}>
@@ -53,16 +55,21 @@ export default function Login() {
           <Form.Group size="lg" controlId="password" style={{margin: "20px 0"}}>
             {/* <Form.Label>Password</Form.Label> */}
 
-            <Form.Control
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder="password"
-            />
-          </Form.Group>
+
+          <Form.Control
+            style={{fontFamily: "Jalnan"}}
+            className="FormPassword"
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            placeholder="password"
+          />
+        </Form.Group>
+
 
           <button onClick={postKakao}>카카오 로그인하기</button>
           <button onClick={getNaver}>네이버 로그인하기</button>
+
 
           <Button
             blocksize="lg"
@@ -75,6 +82,7 @@ export default function Login() {
           <br />
         </Form>
       </div>
+
     </div>
   );
 }

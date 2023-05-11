@@ -41,7 +41,7 @@ exports.getRecommend = async (req, res) => {
   // evaluate by ndcg
   let ndcg = evaluation.ndcg(gtr, result);
 
-  res.send(result); //추천 목록 10개
+  res.send(result); //추천 목록 10개 객체 반환
   // result
   //   "1": [
   //     {

@@ -11,7 +11,7 @@ import "swiper/css/scrollbar";
 import "../styles/CocktailDetail.scss";
 import CocktailDetailCard from "../components/CocktailDetailCard";
 
-const CocktailDetail = ({cocktailItems}) => {
+const CocktailDetail = ({cocktailItems, session}) => {
   console.log("cocktailItems>> ", cocktailItems);
   const {cocktailId} = useParams();
   const [targetProduct] = cocktailItems.filter(
@@ -65,6 +65,7 @@ const CocktailDetail = ({cocktailItems}) => {
               <CocktailDetailCard
                 key={item.cocktail_id}
                 item={item}
+                session={session}
                 // average={item.vote_average}
               />{" "}
             </SwiperSlide>

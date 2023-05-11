@@ -32,7 +32,9 @@ export default function Join() {
   };
 
   return (
-    <div className="Login" style={{width: "500px", color: "white"}}>
+
+    <div className="Jogin" style={{width: "500px", color: "white"}}>
+
       <Form onSubmit={handleSubmit}>
         <h3>회원가입</h3>
         <Form.Group size="lg" controlId="id" style={{margin: "20px 0"}}>
@@ -50,10 +52,14 @@ export default function Join() {
           {/* <Form.Label>Nickname</Form.Label> */}
 
           <Form.Control
-            type="text"
-            value={userName}
-            onChange={e => setUserName(e.target.value)}
+
+            style={{fontFamily: "Jalnan"}}
+            type="password"
+            value={userPw}
+            onChange={e => setUserPw(e.target.value)}
             placeholder="name"
+            
+
           />
         </Form.Group>
 
