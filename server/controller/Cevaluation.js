@@ -9,28 +9,54 @@ exports.getRates = async (req, res) => {
 // (2) POST /rate - create a new rate
 
 exports.createRate = async (req, res) => {
-  const ratedData = await models.Evaluation.findAll();
+  console.log(req.body); //{ user_id: 111, cocktail_id: 7, rating: 5 }
+  // 1. 로그인 여부 확인 로직 [0아니면 로그인된 상태 /0이면 게스트]
+  if (req.body.user_id !== 0) {
+    const result = await models.Evaluation.findAll({
+      where: {
+        user_id: req.body.user_id,
+        // user_id: 2,
+      },
+    });
+    //2.동일 아이디 동일 칵테일 값 조회
 
-  // 1. 로그인 여부 확인로직
-  // const userSession = req.session.userid;
-  // // console.log("main GET / userSession>> ", userSession);
-  // if (userSession !== undefined) {
-  //   const isLogin = true;
-  //   const userid = userSession;
-  //   // 2. 로그인 했을 경우 평가한 항목 중 동일한 항목(칵테일 아이디) 있는지 확인
-  //   const ratedData = await models.Evaluation.findAll();
-  //   if ()
-  //   // 3. 없다면 추가
-  //   // 4. 있고 평점 안동일하면 수정하시겠습니까? 창 뜨고 확인 버튼 클릭하면 수정하도록 함
-  //   // 5. 동일하면 그대로 둠
-  // const result = await models.Evaluation.create({
-  //   user_id: req.body.user_id,
-  //   cocktail_id: req.body.cocktail_id,
-  //   rating: req.body.rating,
-  // });
+    for (r of result) {
+      if (r.dataValues.cocktail_id === req.body.cocktail_id) {
+        var duplicationRateObj = r.dataValues;
+      }
+    }
+    console.log("duplicationRate>>>>", duplicationRateObj);
 
-  //   res.send(true);
-  // } else {
-  //   res.send(false);
-  // }
+    //3. 만약 중복 칵테일 평점 값이 [ 있다면 수정 / 만약 없다면 생성 ]
+    if (duplicationRateObj !== undefined) {
+      const response = await models.Evaluation.update(
+        {
+          rating: req.body.rating,
+        },
+        {
+          where: {
+            user_id: req.body.user_id,
+          },
+        },
+      );
+      console.log("중복 0 >>>>", response);
+      res.send(true);
+    } else {
+      const response = await models.Evaluation.create({
+        user_id: req.body.user_id,
+        cocktail_id: req.body.cocktail_id,
+        rating: req.body.rating,
+      });
+      console.log("중복 X >>>>", response);
+      res.send(true);
+    }
+  } else {
+    const response = await models.Evaluation.create({
+      user_id: req.body.user_id,
+      cocktail_id: req.body.cocktail_id,
+      rating: req.body.rating,
+    });
+    console.log("게스트 중복 X >>>>", response);
+    res.send(true);
+  }
 };
