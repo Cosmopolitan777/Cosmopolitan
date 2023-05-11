@@ -14,6 +14,7 @@ axios.defaults.withCredentials = true;
 function App() {
   const [cocktailItems, setCocktailItems] = useState([]);
   const [session, setSession] = useState();
+  const [recommends, setRecommends] = useState();
 
   useEffect(() => {
     console.log("mount 완료");
@@ -25,14 +26,22 @@ function App() {
     const getSession = async () => {
       const isLogin = (await axios.get(`${API_BASE_URL}/`)).data;
       setSession(isLogin);
+      console.log("isLogin>>", isLogin);
     };
     getCocktails();
     getSession();
   }, []);
   console.log("session", session);
+  //로그아웃
   const getLogout = async () => {
     const isLogout = (await axios.get(`${API_BASE_URL}/logout`)).data;
     setSession();
+  };
+  //추천
+  const getRecommend = async () => {
+    const res = await axios.get(`${API_BASE_URL}/recommend`);
+    setRecommends(res.data);
+    // console.log(" recommends res.data", res.data);
   };
   return (
     <div className="App">
@@ -52,7 +61,14 @@ function App() {
           />
           <Route
             path="/Mypage"
-            element={<Mypage cocktailItems={cocktailItems} />}
+            element={
+              <Mypage
+                cocktailItems={cocktailItems}
+                session={session}
+                recommends={recommends}
+                getRecommend={getRecommend}
+              />
+            }
           />
           {/* <Route path="/Mypage/:Like" element={<Like />} /> */}
           <Route path="/login" element={<Login />} />
