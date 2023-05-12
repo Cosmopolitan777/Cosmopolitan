@@ -3,9 +3,11 @@ import {Rating} from "react-simple-star-rating";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import "../styles/CocktailDetailCard.scss";
-// import {AiOutlineMinus, AiOutlinePlus} from "react-icons/ai";
 import CocktailDetailCardMenu from "./CocktailDetailCardMenu";
-const KitchenSinkExample = ({item}) => {
+import axios from "axios";
+import {API_BASE_URL} from "../app-config";
+
+const CocktailDetailCard = ({item, session}) => {
   const [cocktailItem, setCocktailItem] = useState(item);
   // info를 클릭시에 볼수있도록 버튼 만들기
   const [showInfos, setShowInfos] = useState([
@@ -23,19 +25,33 @@ const KitchenSinkExample = ({item}) => {
     );
   };
   const isShowTrue = showInfos.findIndex(i => i.show === true);
-  // const style = {
-  //   backgroundImage: `url(${item.imagelink})`,
-  //   backgroundColor: "rgba(0, 0, 0, 0.8)",
-  // };
+
   //star rating
-  const handleRating = (rate: number) => {
-    setRating(rate);
-    // console.log(item.name, rate); //'A midsummernight dream' 3
+  const handleRating = (rating: number) => {
+    setRating(rating);
+    //게스트인경우 userId 0 으로 구분
+    var user_id; //조건문 내 사용하기 위해 전역변수 var지정
+    {
+      session ? (user_id = session) : (user_id = 0);
+    }
+    const createRate = async () => {
+      await axios
+        .post(`${API_BASE_URL}/evaluation`, {
+          user_id: user_id,
+          cocktail_id: item.cocktail_id,
+          rating: rating,
+        })
+        .then(res => {
+          console.log("createRate res>>", res.data);
+        });
+    };
+
+    createRate();
   };
 
   return (
     <Card
-      className="Card"
+      className="CocktailDetailCard "
       style={
         isShowTrue !== -1
           ? {
@@ -80,12 +96,8 @@ const KitchenSinkExample = ({item}) => {
           <Rating className="Rating" onClick={handleRating} initialValue={0} />
         </div>
       </Card.Body>
-      {/* <Card.Body>
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
-      </Card.Body> */}
     </Card>
   );
 };
 
-export default KitchenSinkExample;
+export default CocktailDetailCard;
