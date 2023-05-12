@@ -94,11 +94,9 @@ function App() {
           {/* <Route path="/Mypage/:Like" element={<Like />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
-
-          <Route path="*" element={<NotFound />} />
-
           <Route path="/boardList" element={<BoardList />} />
           <Route path="/boardDetail/" element={<BoardDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
