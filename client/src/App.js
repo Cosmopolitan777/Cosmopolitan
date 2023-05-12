@@ -17,6 +17,7 @@ function App() {
   const [cocktailItems, setCocktailItems] = useState([]);
   const [session, setSession] = useState();
   const [recommends, setRecommends] = useState();
+  const [zzims, setZzims] = useState([]);
 
   useEffect(() => {
     console.log("mount 완료");
@@ -26,17 +27,27 @@ function App() {
       console.log("res.data", res.data);
     };
     const getSession = async () => {
-      const isLogin = (await axios.get(`${API_BASE_URL}/`)).data;
-      setSession(isLogin);
-      console.log("isLogin>>", isLogin);
+      const [sessionId] = (await axios.get(`${API_BASE_URL}/`)).data;
+      setSession(sessionId);
+      console.log("sessionId>>", sessionId);
     };
+    const postZzim = async () => {
+      const zzimList = (await axios.post(`${API_BASE_URL}/zzim/sz`)).data;
+      {
+        zzimList && setZzims(zzimList);
+      }
+      console.log("zzims>>", zzimList);
+    };
+
     getCocktails();
     getSession();
+    postZzim();
   }, []);
   console.log("session", session);
   //로그아웃
   const getLogout = async () => {
     const isLogout = (await axios.get(`${API_BASE_URL}/logout`)).data;
+    console.log("isLogout", isLogout);
     setSession();
   };
   //추천
@@ -45,6 +56,8 @@ function App() {
     setRecommends(res.data);
     // console.log(" recommends res.data", res.data);
   };
+  //
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -53,7 +66,13 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route
             path="/cocktails"
-            element={<CocktailList cocktailItems={cocktailItems} />}
+            element={
+              <CocktailList
+                cocktailItems={cocktailItems}
+                session={session}
+                zzims={zzims}
+              />
+            }
           />
           <Route
             path="/cocktails/:cocktailId"

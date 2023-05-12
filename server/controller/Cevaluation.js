@@ -11,6 +11,9 @@ exports.getRates = async (req, res) => {
 exports.createRate = async (req, res) => {
   console.log(req.body); //{ user_id: 111, cocktail_id: 7, rating: 5 }
   // 1. 로그인 여부 확인 로직 [0아니면 로그인된 상태 /0이면 게스트]
+  console.log("req.body.user_id!!!!", req.body.user_id);
+  console.log("typeof req.body.user_id!!!!", typeof req.body.user_id);
+  // console.log("typeof req.body.user_id!!!!", req.body.user_id);
   if (req.body.user_id !== 0) {
     const result = await models.Evaluation.findAll({
       where: {

@@ -14,21 +14,34 @@ export default function Join() {
     return userId.length > 0 && userPw.length > 0 && userName.length > 0;
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
     console.log(userId);
     console.log(userPw);
     console.log(userName);
 
-    axios({
+    await axios({
       method: "post",
-      url: `${API_BASE_URL}/result`,
+      url: `${API_BASE_URL}/check_userid`,
       data: {
         userId: userId,
-        userPw: userPw,
-        userName: userName,
       },
-    }).then(res => console.log(res));
+    }).then(async res => {
+      if (res.data.hasId) {
+        return;
+      }
+      await axios({
+        method: "post",
+        url: `${API_BASE_URL}/result`,
+        data: {
+          userId: userId,
+          userPw: userPw,
+          userName: userName,
+        },
+      }).then(res => {
+        console.log(res.data);
+      });
+    });
   };
 
   return (
