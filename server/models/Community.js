@@ -16,7 +16,7 @@ const Model = (Sequelize, DataTypes) => {
           allowNull: false
         },
         writer: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.STRING(50),
           allowNull: false
         },
         content: {
