@@ -21,8 +21,7 @@ exports.getRecommend = async (req, res) => {
     // if (Math.random() > 0.8) test.push(data[i]); //랜덤이용방법
     //특정 사용자 아이디만 test[]에 담음
     // if (data[i].user_id === req.sessionID) test.push(data[i]);
-    if (data[i].user_id === Number(req.session.name))
-      test.push(data[i]); //수정 요함
+    if (data[i].user_id === req.session.name) test.push(data[i]); //수정 요함
     else train.push(data[i]);
   }
 
