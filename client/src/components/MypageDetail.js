@@ -71,7 +71,7 @@ export const LikeList = ({cocktailItems}) => {
 };
 
 //(2) 추천목록
-export const Recommendation = ({cocktailItems, recommends}) => {
+export const Recommendation = ({recommends}) => {
   // console.log("Recommendation session", Recommendation);
 
   return (
