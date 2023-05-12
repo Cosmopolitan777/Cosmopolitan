@@ -46,7 +46,7 @@ const CocktailItem = ({item}) => {
           </div>
         </div>
       </div>
-    </Link>
+    </>
   );
 };
 

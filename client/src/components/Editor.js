@@ -28,17 +28,17 @@ const Editor = ({addBoard}) => {
   // Modal
   const [show, setShow] = useState(false);
   const onSave = () => {
-    // const cannotSave =
-    //   boardItem.title.trim().length !== 0 ||
-    //   boardItem.content.trim().length !== 0;
+    const cannotSave =
+      boardItem.title.trim().length === 0 ||
+      boardItem.content.trim().length === 0;
 
-    // if (!cannotSave) {
-    //   alert("제목 또는 내용을 입력해주세요");
-    // } else {
-    console.log(boardItem);
-    addBoard(boardItem);
-    alert("게시글 등록이 완료되었습니다.");
-    // }
+    if (cannotSave) {
+      alert("제목 또는 내용을 입력해주세요");
+    } else {
+      console.log(boardItem);
+      addBoard(boardItem);
+      alert("게시글 등록이 완료되었습니다.");
+    }
     setBoardItem({
       title: "",
       writer: "",
