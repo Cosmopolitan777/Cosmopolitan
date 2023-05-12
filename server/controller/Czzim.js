@@ -53,7 +53,7 @@ exports.showzzim = async (req, res) => {
       raw: true,
     });
     const result = [];
-    for (z of zzimlist) {
+    for (let z of zzimlist) {
       result.push(z["cocktail_id"]);
     } // [ 3 ] cocktail_id 숫자만
 

@@ -43,7 +43,7 @@ export const LoginHeader = ({getLogout}) => {
             <Nav.Link href="/boardList" className="Nav">
               Community
             </Nav.Link>
-            <Nav.Link href="/logout" className="Nav" onClick={getLogout}>
+            <Nav.Link href="/" className="Nav" onClick={getLogout}>
               Logout
             </Nav.Link>
             <Nav.Link href="/Mypage" className="Nav">
