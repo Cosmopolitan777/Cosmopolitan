@@ -8,8 +8,9 @@ import Button from "react-bootstrap/Button";
 import {API_BASE_URL} from "../app-config";
 import axios from "axios";
 
+//(1) 찜목록
 export const LikeList = ({cocktailItems}) => {
-  console.log(cocktailItems);
+  // console.log(cocktailItems);
   return (
     <div
       style={{
@@ -69,8 +70,10 @@ export const LikeList = ({cocktailItems}) => {
   );
 };
 
-export const Recommendation = ({cocktailItems}) => {
-  console.log(cocktailItems);
+//(2) 추천목록
+export const Recommendation = ({recommends}) => {
+  // console.log("Recommendation session", Recommendation);
+
   return (
     <div
       // className="Recommendation"
@@ -89,37 +92,24 @@ export const Recommendation = ({cocktailItems}) => {
         {/* <FontAwesomeIcon icon={faHandHoldingHeart} className="Icon Holding" /> */}
         추천목록
       </h3>
-      {/* <div className="Text"> */}
       <div className="row row-cols-4" style={{padding: "3%"}}>
-        {cocktailItems.map(item => (
-          <div className="col mt-3">
-            <LikeListItem key={item.cocktail_id} item={item} />
-          </div>
-        ))}
+        {recommends ? (
+          recommends.map(item => (
+            <div className="col mt-3">
+              <LikeListItem key={item.cocktail_id} item={item} />
+            </div>
+          ))
+        ) : (
+          <h5 style={{width: "100%", color: "#fa942e"}}>
+            최소 한 개의 별점이 필요해요 🥲
+          </h5>
+        )}
       </div>
     </div>
   );
 };
 
-// export const InformationModify = () => {
-//   return (
-//     <div
-//       style={{
-//         backgroundColor: "white",
-//         height: "800px",
-//         width: "60vw",
-//         padding: "5%",
-//         margin: "0 5%",
-//         borderRadius: "6px",
-//       }}
-//     >
-//       <h3 style={{margin: "0 3%"}}>회원정보수정</h3>
-//     </div>
-//   );
-// };
-
-// 두번째
-
+//(3) 회원정보 수정
 export function InformationModify() {
   const [userId, setUserId] = useState("");
   const [userPw, setUserPw] = useState("");
@@ -234,35 +224,17 @@ export function InformationModify() {
 // LikeList에 들어가는 하위 컴포넌트
 
 const LikeListItem = ({item}) => {
-  const favoriteIconStyle = {
-    color: "#fb3958",
-    fontSize: "15px",
-  };
-  const [favoriteCount, setFavoriteCount] = useState(1);
-  // const [cocktailItem, setCocktailItem] = useState(item);
-
   return (
     <Link to={"/cocktails/" + item.cocktail_id}>
-      {/* <div className="card" style={{width: "20rem"}}> */}
       <div className="CocktailItemCard" style={{width: "20rem"}}>
         <img
-          // src="/img/cocktail.jpeg"
           src={item.imagelink}
-          // className="card-img-top"
           className="CocktailItemImage"
           alt="test image"
           style={{padding: "20px"}}
         />
         <div className="card-body">
           <p className="card-title">{item.name}</p>
-          {/* <p className="card-text">뭔가 들어갈 설명</p> */}
-          <div className="favorite-container">
-            <button className="favorite-btn" style={{padding: "0 10%"}}>
-              <i className="fa-solid fa-heart" style={favoriteIconStyle}></i>
-            </button>
-            {/* <i class="fa-regular fa-heart" style="color: #e0e0e0;"></i> */}
-            <div className="favorite-counter">{favoriteCount}</div>
-          </div>
         </div>
       </div>
     </Link>
