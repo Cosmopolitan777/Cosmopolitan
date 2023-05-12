@@ -1,26 +1,102 @@
+import {useState} from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 import "../styles/Editor.scss";
 
-const Editor = ({title, setTitle, content, setContent}) => {
+const Editor = ({addBoard}) => {
+  function getCreateDate() {
+    const today = new Date();
+    const createDate =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1 < 9
+        ? "0" + (today.getMonth() + 1)
+        : today.getMonth() + 1) +
+      "-" +
+      (today.getDate() < 9 ? "0" + today.getDate() : today.getDate());
+    return createDate;
+  }
+
+  const [boardItem, setBoardItem] = useState({
+    title: "",
+    writer: "",
+    content: "",
+    createDate: getCreateDate(),
+  });
+
+  // Modal
+  const [show, setShow] = useState(false);
+  const onSave = () => {
+    // const cannotSave =
+    //   boardItem.title.trim().length !== 0 ||
+    //   boardItem.content.trim().length !== 0;
+
+    // if (!cannotSave) {
+    //   alert("제목 또는 내용을 입력해주세요");
+    // } else {
+    console.log(boardItem);
+    addBoard(boardItem);
+    alert("게시글 등록이 완료되었습니다.");
+    // }
+    setBoardItem({
+      title: "",
+      writer: "",
+      content: "",
+      createDate: "",
+    });
+    setShow(false);
+  };
+  const onCancel = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <div className="EditorBlock">
-      <input
-        className="EditorInputTitle"
-        placeholder="제목을 입력하세요"
-        value={title}
-        onChange={e => {
-          setTitle(e.target.value);
-        }}
-      />
-      <div className="EditorContainer">
-        <textarea
-          className="EditorContent"
-          placeholder="내용을 입력하세요"
-          value={content}
-          onChange={e => {
-            setContent(e.target.value);
-          }}
-        />
-      </div>
+    <div className="BoardListButton">
+      <Button variant="primary" onClick={handleShow}>
+        글쓰기
+      </Button>
+      <Modal show={show} onHide={onCancel} backdrop="static">
+        <Modal.Header closeButton>
+          <Modal.Title>게시글 작성</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Control
+                type="text"
+                placeholder="제목을 입력해주세요"
+                value={boardItem.title}
+                onChange={e =>
+                  setBoardItem({...boardItem, title: e.target.value})
+                }
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Control
+                as="textarea"
+                rows={9}
+                placeholder="내용을 입력해주세요"
+                value={boardItem.content}
+                onChange={e =>
+                  setBoardItem({...boardItem, content: e.target.value})
+                }
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={onSave}>
+            등록
+          </Button>
+          <Button variant="secondary" onClick={onCancel}>
+            취소
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
