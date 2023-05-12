@@ -13,9 +13,10 @@ const zzimStyles = {
 
 const CocktailItem = ({item, session, iszzim}) => {
   const [rating, setRating] = useState(iszzim);
-  console.log("iszzimiszzimiszzimiszzimiszzim");
-  console.log("item,iszzim>>", item.cocktail_id, iszzim);
-  console.log("rating", rating);
+
+  // console.log("iszzimiszzimiszzimiszzimiszzim");
+  // console.log("item,iszzim>>", item.cocktail_id, iszzim);
+  // console.log("rating", rating);
   const handleZzim = (rating: number) => {
     console.log(rating);
     setRating(rating);

@@ -28,11 +28,17 @@ export const LikeList = ({zzimCocktailInfos}) => {
 
       <div className="container">
         <div className="row row-cols-4" style={{padding: "3%"}}>
-          {zzimCocktailInfos.map(item => (
-            <div className="col mt-3" style={{padding: "0 0 10px 0"}}>
-              <LikeListItem key={item.cocktail_id} item={item} />
-            </div>
-          ))}
+          {zzimCocktailInfos[0] ? (
+            zzimCocktailInfos.map(item => (
+              <div className="col mt-3" style={{padding: "0 0 10px 0"}}>
+                <LikeListItem key={item.cocktail_id} item={item} />
+              </div>
+            ))
+          ) : (
+            <h5 style={{width: "100%", color: "#fa942e"}}>
+              찜한 상품이 없습니다 🥲
+            </h5>
+          )}
         </div>
       </div>
       <footer className="navbar-fixed-bottom mt-3">
