@@ -12,11 +12,21 @@ const BoardList = () => {
   useEffect(() => {
     console.log("게시물 리스트 마운트 완료");
     const getBoards = async () => {
-      const res = await axios.get(`${API_BASE_URL}`);
-      setBoardItems(res.data.slice(0, 10));
+      let array = [];
+      const res = await axios.get(`${API_BASE_URL}/community/tr`);
+      console.log(res.data[0].idx);
+      for (let i = 0; i < res.data.length; i++) {
+        const res2 = await axios.get(
+          `${API_BASE_URL}/community/st/${res.data[i].idx}`,
+        );
+        array.push(res2.data);
+      }
+      setBoardItems(array);
     };
     getBoards();
   }, []);
+
+  console.log(boardItems);
 
   const addBoard = async newBoard => {
     console.log("newBoard", newBoard);
@@ -24,7 +34,7 @@ const BoardList = () => {
     const res = await axios.post(`${API_BASE_URL}`, newBoard);
     console.log(res);
 
-    newBoard.id = boardItems.length + 1;
+    newBoard.idx = boardItems.length + 1;
     setBoardItems([...boardItems, newBoard]);
   };
 
@@ -56,19 +66,18 @@ const BoardList = () => {
           <tbody>
             {boardItems.length > 0 ? (
               boardItems.map(board => {
-                console.log(board);
                 return (
-                  <tr key={board.id} board={board}>
-                    <td>{board.id}</td>
+                  <tr key={board.idx} board={board}>
+                    <td>{board.idx}</td>
 
                     <td>
-                      <Link to={`/boardDetail/${board.id}`}>
+                      <Link to={`/boardDetail/${board.idx}`}>
                         {board.title.slice(0, 10)}
                       </Link>
                     </td>
 
                     <td>{board.writer}</td>
-                    <td>{board.createDate}</td>
+                    <td>{board.updatedate}</td>
                   </tr>
                 );
               })
