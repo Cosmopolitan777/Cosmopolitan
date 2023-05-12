@@ -25,8 +25,12 @@ db.User = require("./User")(sequelize, Sequelize);
 db.Evaluation = require("./Evaluation")(sequelize, Sequelize);
 
 //찜 model 연결
-db.Zzim = require("./Zzim")(sequelize,Sequelize);
+db.Zzim = require("./Zzim")(sequelize, Sequelize);
 
 //댓글 model 연결
 db.Reply = require("./Reply")(sequelize,Sequelize);
+
+// community model 연결
+db.Community = require("./Community")(sequelize, Sequelize);
+
 module.exports = db;
