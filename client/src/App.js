@@ -29,7 +29,7 @@ function App() {
       setSession(sessionId);
       console.log("sessionId>>", sessionId);
     };
-    const getZzim = async () => {
+    const postZzim = async () => {
       const zzimList = (await axios.post(`${API_BASE_URL}/zzim/sz`)).data;
       {
         zzimList && setZzims(zzimList);
@@ -39,7 +39,7 @@ function App() {
 
     getCocktails();
     getSession();
-    getZzim();
+    postZzim();
   }, []);
   console.log("session", session);
   //로그아웃
