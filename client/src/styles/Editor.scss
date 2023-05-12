@@ -1,0 +1,18 @@
+.EditorBlock {
+  padding: 16px;
+  &.EditorInputTitle {
+    font-size: 3rem;
+    outline: none;
+    padding-bottom: 0.5rem;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 16px;
+    width: 100%;
+  }
+  &.EditorContainer {
+    height: 650px;
+    padding: 0;
+    min-height: 320px;
+    line-height: 1.5;
+  }
+}
