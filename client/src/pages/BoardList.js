@@ -1,9 +1,9 @@
 import {useState, useEffect} from "react";
-import {Link} from "react-router-dom";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Editor from "../components/Editor";
+import BoardListItem from "../components/BoardListItem";
 import {API_BASE_URL} from "../app-config";
 
 const BoardList = () => {
@@ -12,35 +12,39 @@ const BoardList = () => {
   useEffect(() => {
     console.log("게시물 리스트 마운트 완료");
     const getBoards = async () => {
-      let array = [];
       const res = await axios.get(`${API_BASE_URL}/community/tr`);
-      console.log(res.data[0].idx);
-      for (let i = 0; i < res.data.length; i++) {
-        const res2 = await axios.get(
-          `${API_BASE_URL}/community/st/${res.data[i].idx}`,
-        );
-        array.push(res2.data);
-      }
-      setBoardItems(array);
+      console.log(res.data);
+
+      setBoardItems(res.data);
     };
     getBoards();
   }, []);
 
-  console.log(boardItems);
-
   const addBoard = async newBoard => {
     console.log("newBoard", newBoard);
 
-    const res = await axios.post(`${API_BASE_URL}`, newBoard);
-    console.log(res);
+    const res = await axios.post(`${API_BASE_URL}/community/tc`, newBoard);
+    console.log(res.data);
 
-    newBoard.idx = boardItems.length + 1;
-    setBoardItems([...boardItems, newBoard]);
+    setBoardItems([...boardItems, res.data]);
   };
 
-  const deleteBoard = () => {};
+  const deleteBoard = async targetBoard => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      await axios.delete(`${API_BASE_URL}/community/td/${targetBoard.idx}`);
+      const newBoardItems = boardItems.filter(
+        board => board.idx !== targetBoard.idx,
+      );
+      setBoardItems(newBoardItems);
+    }
+  };
 
-  const updateBoard = () => {};
+  const updateBoard = async targetBoard => {
+    await axios.patch(
+      `${API_BASE_URL}/community/tu/${targetBoard.idx}`,
+      targetBoard,
+    );
+  };
 
   const [currentPage, setCurrentPage] = useState(1);
   const [boardPerPage] = useState(10);
@@ -54,31 +58,26 @@ const BoardList = () => {
     <>
       <Editor addBoard={addBoard} />
       <div className="BoardListContainer">
-        <Table striped bordered hover>
+        <Table striped bordered hover responsive style={{textAlign: "center"}}>
           <thead>
             <tr>
               <th>번호</th>
               <th style={{width: "50%"}}>제목</th>
               <th>작성자</th>
               <th>등록일</th>
+              <th colSpan={2}></th>
             </tr>
           </thead>
           <tbody>
             {boardItems.length > 0 ? (
               boardItems.map(board => {
                 return (
-                  <tr key={board.idx} board={board}>
-                    <td>{board.idx}</td>
-
-                    <td>
-                      <Link to={`/boardDetail/${board.idx}`}>
-                        {board.title.slice(0, 10)}
-                      </Link>
-                    </td>
-
-                    <td>{board.writer}</td>
-                    <td>{board.updatedate}</td>
-                  </tr>
+                  <BoardListItem
+                    key={board.idx}
+                    board={board}
+                    deleteBoard={deleteBoard}
+                    updateBoard={updateBoard}
+                  />
                 );
               })
             ) : (

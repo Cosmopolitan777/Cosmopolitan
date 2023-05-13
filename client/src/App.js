@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Join from "./pages/Join";
 import BoardList from "./pages/BoardList";
 import BoardDetail from "./pages/BoardDetail";
+
 axios.defaults.withCredentials = true;
 function App() {
   const [cocktailItems, setCocktailItems] = useState([]);
@@ -22,7 +23,7 @@ function App() {
     console.log("mount 완료");
     const getCocktails = async () => {
       const res = await axios.get(`${API_BASE_URL}/cocktail/showlist`);
-      setCocktailItems(res.data.slice(0, 10)); //테스트를 위한 슬라이스
+      setCocktailItems(res.data.slice(0, 20)); //테스트를 위한 슬라이스
       console.log("res.data", res.data);
     };
     const getSession = async () => {
@@ -79,7 +80,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
 
           <Route path="/boardList" element={<BoardList />} />
-          <Route path="/boardDetail/" element={<BoardDetail />} />
+          <Route path="/boardDetail/:idx" element={<BoardDetail />} />
         </Routes>
       </BrowserRouter>
     </div>

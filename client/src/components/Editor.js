@@ -22,7 +22,6 @@ const Editor = ({addBoard}) => {
     title: "",
     writer: "",
     content: "",
-    createDate: getCreateDate(),
   });
 
   // Modal
@@ -43,7 +42,6 @@ const Editor = ({addBoard}) => {
       title: "",
       writer: "",
       content: "",
-      createDate: "",
     });
     setShow(false);
   };
