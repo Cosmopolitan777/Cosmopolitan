@@ -43,9 +43,13 @@ create table user (
                       pw text null,
                       master varchar(1) null,
                       something text null,
-                      snsId text null
+                      snsId text null,
+                      snsPw text null,
+                      email text null,
+                      provider text null
 );
 
--- INSERT INTO user VALUES (null, '333', '333', '333',null,null,null);
-use codingon
+
+INSERT INTO user VALUES (null, '333', '333', '333',null,null,null);
 SELECT * FROM user
+

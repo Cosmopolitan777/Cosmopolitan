@@ -9,5 +9,6 @@ exports.test = (req, res) => {
   res.send({
     id: req.sessionID,
     name: req.session.name,
+    snsId: req.session.snsId,
   });
 };
