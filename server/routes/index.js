@@ -30,4 +30,10 @@ router.delete("/my_profile/delete", controller.deleteUserInfo);
 //(10) 로그 아웃
 router.get("/logout", session.deleteSession);
 
+// kakao 로그인을 위한 토큰 보내기
+router.post("/kakaoLogin", controller.kakaoLogin);
+// router.post("/checkLogin", controller.kakaoLogin);
+// kakao 로그인
+router.post("/checkKakaoLogin", controller.checkKakaoLogin)
+
 module.exports = router;

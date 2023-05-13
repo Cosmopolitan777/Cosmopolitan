@@ -4,7 +4,7 @@ import {useState, useEffect} from "react";
 import CocktailDetail from "./pages/CocktailDetail";
 import axios from "axios";
 import {API_BASE_URL} from "./app-config";
-import MainPage from "./pages/MainPage";
+// import MainPage from "./pages/MainPage";
 import {Header, LoginHeader} from "./components/Header";
 import Mypage from "./pages/Mypage";
 import NotFound from "./pages/NotFound";
@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Join from "./pages/Join";
 import BoardList from "./pages/BoardList";
 import BoardDetail from "./pages/BoardDetail";
+import KakaoLogin from './components/KakaoLogin'
 axios.defaults.withCredentials = true;
 function App() {
   const [cocktailItems, setCocktailItems] = useState([]);
@@ -63,7 +64,7 @@ function App() {
       <BrowserRouter>
         {session ? <LoginHeader getLogout={getLogout} /> : <Header />}
         <Routes>
-          <Route path="/" element={<MainPage />} />
+          {/*<Route path="/" element={<MainPage />} />*/}
           <Route
             path="/cocktails"
             element={
@@ -91,9 +92,11 @@ function App() {
               />
             }
           />
-          {/* <Route path="/Mypage/:Like" element={<Like />} /> */}
+           {/*<Route path="/Mypage/:Like" element={<Like />} />*/}
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
+          <Route  path='/auth' element={<KakaoLogin />} />
+          {/*<Route path="/loginSuccess" element={<Login />} />*/}
 
           <Route path="*" element={<NotFound />} />
 
