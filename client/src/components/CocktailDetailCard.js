@@ -9,6 +9,7 @@ import {API_BASE_URL} from "../app-config";
 
 const CocktailDetailCard = ({item, session, isstar}) => {
   const [cocktailItem, setCocktailItem] = useState(item);
+
   const [star, setStar] = useState(isstar);
   // info를 클릭시에 볼수있도록 버튼 만들기
   const [showInfos, setShowInfos] = useState([

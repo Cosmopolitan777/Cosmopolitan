@@ -58,9 +58,7 @@ function App() {
       }
     };
 
-    
     getCocktails();
-    
 
     getSession();
     postZzim();
@@ -122,6 +120,7 @@ function App() {
               />
             }
           />
+
           <Route
             path="/Mypage"
             element={
