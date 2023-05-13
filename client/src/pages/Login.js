@@ -111,6 +111,15 @@ export default function Login() {
             placeholder="password"
           />
         </Form.Group>
+
+        <button
+          onClick={postKakao}
+          style={{width: "185px", outlineStyle: "none"}}
+        >
+          <img alt="kakao" src="img/kakao_login.png" />
+        </button>
+
+
         <Button
           blocksize="lg"
           type="submit"
