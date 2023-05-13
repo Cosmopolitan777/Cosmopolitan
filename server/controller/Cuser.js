@@ -125,29 +125,37 @@ exports.postMyProfile = async (req, res) => {
 //(8) 내정보 수정 화면
 exports.patchUserInfo = async (req, res) => {
   console.log("내정보 수정 patchUserInfo req.body", req.body);
-
-  const saltRounds = 10;
-  const hashedPw = await bcrypt.hash(req.body.pw, saltRounds);
-
+  const user = await models.User.findOne({
+    where: {
+      id: req.body.id,
+    },
+  });
+  let hashedPw;
+  if (req.body.pw) {
+    const saltRounds = 10;
+    hashedPw = await bcrypt.hash(req.body.pw, saltRounds);
+  } else {
+    hashedPw = user.pw;
+  }
   const response = await models.User.update(
-    //     Update user set userId='${data.userId}', pw    ='${data.pw}', name='${data.name}' where id = '${data.id}'
-    {
-      userid: req.body.userId,
-      pw: hashedPw,
-      name: req.body.name,
-    },
-    {
-      where: {
-        id: req.body.id,
+      //     Update user set userId='${data.userId}', pw    ='${data.pw}', name='${data.name}' where id = '${data.id}'
+      {
+        userid: req.body.userId,
+        pw: hashedPw,
+        name: req.body.name,
       },
-    },
+      {
+        where: {
+          id: req.body.id,
+        },
+      },
   );
   res.send({
     hasSuccess: true,
     newName: req.body.name,
     id: req.body.id,
   });
-};
+}
 
 //(9) 회원 탈퇴
 exports.deleteUserInfo = async (req, res) => {
