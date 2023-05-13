@@ -46,5 +46,6 @@ create table user (
                       snsId text null
 );
 
-INSERT INTO user VALUES (null, '333', '333', '333',null,null,null);
+-- INSERT INTO user VALUES (null, '333', '333', '333',null,null,null);
+use codingon
 SELECT * FROM user
