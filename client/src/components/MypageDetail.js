@@ -259,7 +259,7 @@ const LikeListItem = ({item}) => {
           alt="test image"
           style={{padding: "20px"}}
         />
-        <div className="card-body" style={{color: "white"}}>
+        <div className="card-body">
           <p className="card-title">{item.name}</p>
         </div>
       </div>

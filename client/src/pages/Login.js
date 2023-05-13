@@ -68,7 +68,12 @@ export default function Login() {
           />
         </Form.Group>
 
-        <button onClick={postKakao}>카카오 로그인하기</button>
+        <button
+          onClick={postKakao}
+          style={{width: "185px", outlineStyle: "none"}}
+        >
+          <img alt="kakao" src="img/kakao_login.png" />
+        </button>
 
         <Button
           blocksize="lg"

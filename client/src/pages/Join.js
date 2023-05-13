@@ -38,9 +38,8 @@ export default function Join() {
           userPw: userPw,
           userName: userName,
         },
-      }).then(res => {
-        console.log(res.data);
-      });
+      }).then(res => console.log((document.location.href = "/")));
+      // }).then(res => (document.location.href = "/"));
     });
   };
 

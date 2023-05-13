@@ -60,17 +60,14 @@ const CocktailDetail = ({cocktailItems, session, stars}) => {
             forShowCocktailItems: forShowCocktailItems[restArrNum - 1],
             slidesPerView: 1,
           },
-          500: {
-            forShowCocktailItems: forShowCocktailItems.slice(
-              restArrNum - 2,
-              restArrNum + 2,
-            ),
-            slidesPerview: 4,
-
-            // centeredSlides: false,
+          400: {
+            slidesPerview: 2,
           },
-          768: {
-            slidesPerView: 4,
+          // 500: {
+          //   slidesPerView: 2,
+          // },
+          600: {
+            slidesPerView: 3,
           },
           1024: {
             slidesPerView: 4,
