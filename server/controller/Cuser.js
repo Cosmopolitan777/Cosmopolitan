@@ -1,10 +1,10 @@
 const models = require("../models/");
 const bcrypt = require("bcrypt");
-const { Model } = require('sequelize')
+const {Model} = require("sequelize");
 const axios = require("axios");
-const jwt = require('jsonwebtoken')
-const { config } = require('dotenv')
-const res = require('express/lib/response')
+const jwt = require("jsonwebtoken");
+const {config} = require("dotenv");
+const res = require("express/lib/response");
 
 //(1) 메인 화면
 exports.getIndex = async (req, res) => {
@@ -139,13 +139,13 @@ exports.patchUserInfo = async (req, res) => {
   console.log("내정보 수정 patchUserInfo req.body", req.body);
   const user = await models.User.findOne({
     where: {
-      id: req.body.id,
+      id: Number(req.session.name),
     },
   });
   let hashedPw;
-  if (req.body.pw) {
+  if (req.body.userPw !== user.pw) {
     const saltRounds = 10;
-    hashedPw = await bcrypt.hash(req.body.pw, saltRounds);
+    hashedPw = await bcrypt.hash(req.body.userPw, saltRounds);
   } else {
     hashedPw = user.pw;
   }
@@ -154,62 +154,68 @@ exports.patchUserInfo = async (req, res) => {
     {
       userid: req.body.userId,
       pw: hashedPw,
-      name: req.body.name,
+      name: req.body.userName,
     },
     {
       where: {
-        id: req.body.id,
+        id: Number(req.session.name),
       },
     },
   );
   res.send({
     hasSuccess: true,
-    newName: req.body.name,
+    newName: req.body.userName,
     id: req.body.id,
   });
 };
 
 //(9) 회원 탈퇴
 exports.deleteUserInfo = async (req, res) => {
-  const result = await models.User.destroy({
-    where: {userid: req.body.id},
+  await models.User.destroy({
+    where: {id: Number(req.session.name)},
   });
-  res.end();
+  await req.session.destroy(err => {
+    if (err) throw err;
+    // res.redirect("/");
+    res.send(true);
+  });
 };
 
 // kakao 로그인을 위한 토큰 발급 받기 (kakao server로 회원정보(나) 전송) & kakaoLogin
 exports.kakaoLogin = async (req, res) => {
   try {
     // const code = req.body.code;
-    console.log(Object.keys(req.body)[0])
+    console.log(Object.keys(req.body)[0]);
     const code = Object.keys(req.body)[0];
 
-
     const response = await axios.post(
-        'https://kauth.kakao.com/oauth/token',
-        `grant_type=authorization_code&client_id=d458501a6c2af3febf9576dfc71847f8&redirect_uri=http://localhost:3000/auth&code=${code}`,
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
-          },
+      "https://kauth.kakao.com/oauth/token",
+      `grant_type=authorization_code&client_id=d458501a6c2af3febf9576dfc71847f8&redirect_uri=http://localhost:3000/auth&code=${code}`,
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
         },
+      },
     );
 
     const accessToken = response.data.access_token;
 
-    const userResponse = await axios.get('https://kapi.kakao.com/v2/user/me', {
+    const userResponse = await axios.get("https://kapi.kakao.com/v2/user/me", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
 
     // const userId = userResponse.data.id;
-    const snsId = userResponse.data.kakao_account.profile.nickname
+    const snsId = userResponse.data.kakao_account.profile.nickname;
 
     //snsPw = 원래는 token임!! 임의로 토큰을 Pw로 바꿈!
-    const snsPw = jwt.sign({ userId: snsId.id }, "0a34de09cf6fe820f4ddb7881cdf764d");
-    const email = userResponse.data.kakao_account.email
-    const provider = "kakao"
+    const snsPw = jwt.sign(
+      {userId: snsId.id},
+      "0a34de09cf6fe820f4ddb7881cdf764d",
+    );
+    const email = userResponse.data.kakao_account.email;
+    const provider = "kakao";
 
     // kakao 회원정보 db 저장 (회원가입 & 로그인)
     let kakaoUser = await models.User.findOne({
@@ -231,10 +237,10 @@ exports.kakaoLogin = async (req, res) => {
       });
     }
 
-    res.json({ snsPw, snsId, email, provider});
+    res.json({snsPw, snsId, email, provider});
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Failed ' });
+    res.status(500).json({message: "Failed "});
   }
 };
 
@@ -245,7 +251,7 @@ exports.checkKakaoLogin = async (req, res) => {
   const response = await models.User.findOne({
     where: {
       userid: req.body.userId,
-      pw: req.body.password
+      pw: req.body.password,
     },
   });
   console.log("response>>>", response);

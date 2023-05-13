@@ -31,7 +31,11 @@ export default function Login() {
       },
     }).then(
       // res => console.log("res.data.hasInfo>>", res.data),
-      res => res.data.hasInfo && (document.location.href = "/"),
+      res => {
+        res.data.hasInfo
+          ? (document.location.href = "/")
+          : alert("로그인에 실패했습니다");
+      },
     );
   };
 
