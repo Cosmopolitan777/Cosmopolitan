@@ -45,7 +45,7 @@ export default function Join() {
   };
 
   return (
-    <div className="Jogin" style={{width: "500px", color: "white"}}>
+    <div className="Jogin" style={{width: "500px", color: "black"}}>
       <Form onSubmit={handleSubmit}>
         <h3>회원가입</h3>
         <Form.Group size="lg" controlId="id" style={{margin: "20px 0"}}>
