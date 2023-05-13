@@ -116,28 +116,25 @@ exports.postResult = async (req, res) => {
   res.send(true);
 };
 
-//(7) 내정보 화면
-exports.postMyProfile = async (req, res) => {
-  console.log("req.body", req.body);
+//(7) 내정보 화면 /my_profile
+exports.getMyProfile = async (req, res) => {
+  console.log("req.session.name", req.session.name);
   const response = await models.User.findOne({
     where: {
-      userid: req.body.id,
+      id: Number(req.session.name),
     },
   });
   console.log("(내정보화면)postMyProfile 함수의 *** findOne", response);
-  console.log("내정보화면에서의 세션 ", req.sessionID, req.session.name);
-  res.send("my_profile", {
-    pageTitle: "내 정보",
+  // console.log("내정보화면에서의 세션 ", req.sessionID, req.session.name);
+  res.send({
     userName: response.name,
     userId: response.userid,
     userPw: response.pw,
     id: response.id,
-    // SID: req.sessionID, //session ID 체크
-    // SNAME: req.session.name, //session name 체크
   });
 };
 
-//(8) 내정보 수정 화면
+//(8) 내정보 수정 화면 /result
 exports.patchUserInfo = async (req, res) => {
   console.log("내정보 수정 patchUserInfo req.body", req.body);
   const user = await models.User.findOne({
