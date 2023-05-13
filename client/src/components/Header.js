@@ -6,10 +6,8 @@ import Navbar from "react-bootstrap/Navbar";
 // import NavDropdown from "react-bootstrap/NavDropdown";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
-
 import "../styles/Header.scss";
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
 
 export const LoginHeader = ({
   getLogout,
@@ -32,15 +30,6 @@ export const LoginHeader = ({
             style={{maxHeight: "100px"}}
             navbarScroll
           >
-            {/* test code */}
-            {/* <Link to="/" className="menu-item">
-              home
-            </Link>
-            <Link to="/CocktailDetail" className="menu-item">
-              CocktailDetail
-            </Link> */}
-            {/* test code */}
-
             <Nav.Link href="/" className="Nav">
               Home
             </Nav.Link>
@@ -86,12 +75,19 @@ export function Header({
 }) {
   const [value, setValue] = useState("");
 
-  const navigate = useNavigate();
-
   function onSearch() {
-    // getCocktailWord(value);
     getSearchCocktail(value);
   }
+
+  const onEnterKeyDown = e => {
+    if (e.key === "Enter") {
+      onSearch();
+    }
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+  };
 
   return (
     <Navbar bg="light" expand="lg" className="Navbar" style={{padding: "0"}}>
@@ -108,15 +104,6 @@ export function Header({
             style={{maxHeight: "100px"}}
             navbarScroll
           >
-            {/* test code */}
-            {/* <Link to="/" className="menu-item">
-              home
-            </Link>
-            <Link to="/CocktailDetail" className="menu-item">
-              CocktailDetail
-            </Link> */}
-            {/* test code */}
-
             <Nav.Link href="/" className="Nav">
               Home
             </Nav.Link>
@@ -132,34 +119,22 @@ export function Header({
             <Nav.Link href="/join" className="Nav">
               join
             </Nav.Link>
-            {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link> */}
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex" onSubmit={handleSubmit}>
             <Form.Control
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
               style={{width: "250px", boxShadow: "none", outline: "none"}}
-              //   onKeyDown={onEnterKeyDown}
               value={value}
               onChange={e => setValue(e.target.value)}
+              onKeyDown={onEnterKeyDown}
             />
             {/* onClick={onButtonClick} */}
             <Button
               variant="outline-success"
+              type="button"
               onClick={() => {
                 onSearch();
               }}
