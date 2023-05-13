@@ -6,11 +6,15 @@ import Navbar from "react-bootstrap/Navbar";
 // import NavDropdown from "react-bootstrap/NavDropdown";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
-
 import "../styles/Header.scss";
 import {useState} from "react";
 
-export const LoginHeader = ({getLogout, cocktailWord, setCocktailWord}) => {
+export const LoginHeader = ({
+  getLogout,
+  cocktailWord,
+  setCocktailWord,
+  getSearchCocktail,
+}) => {
   return (
     <Navbar bg="light" expand="lg" className="Navbar">
       <Container fluid>
@@ -26,15 +30,6 @@ export const LoginHeader = ({getLogout, cocktailWord, setCocktailWord}) => {
             style={{maxHeight: "100px"}}
             navbarScroll
           >
-            {/* test code */}
-            {/* <Link to="/" className="menu-item">
-              home
-            </Link>
-            <Link to="/CocktailDetail" className="menu-item">
-              CocktailDetail
-            </Link> */}
-            {/* test code */}
-
             <Nav.Link href="/" className="Nav">
               Home
             </Nav.Link>
@@ -72,16 +67,26 @@ export const LoginHeader = ({getLogout, cocktailWord, setCocktailWord}) => {
 };
 
 // 기본 헤더
-
-export function Header({cocktailWord, setCocktailWord, getCocktailWord}) {
-  //   const onEnterKeyDown = e => {
-  //     if (e.key === "Enter") {
-  //       onButtonClick();
-  //     }
-  //   };
+export function Header({
+  cocktailWord,
+  setCocktailWord,
+  getCocktailWord,
+  getSearchCocktail,
+}) {
   const [value, setValue] = useState("");
-  const onSearch = () => {
-    getCocktailWord(value);
+
+  function onSearch() {
+    getSearchCocktail(value);
+  }
+
+  const onEnterKeyDown = e => {
+    if (e.key === "Enter") {
+      onSearch();
+    }
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
   };
 
   return (
@@ -99,15 +104,6 @@ export function Header({cocktailWord, setCocktailWord, getCocktailWord}) {
             style={{maxHeight: "100px"}}
             navbarScroll
           >
-            {/* test code */}
-            {/* <Link to="/" className="menu-item">
-              home
-            </Link>
-            <Link to="/CocktailDetail" className="menu-item">
-              CocktailDetail
-            </Link> */}
-            {/* test code */}
-
             <Nav.Link href="/" className="Nav">
               Home
             </Nav.Link>
@@ -123,33 +119,26 @@ export function Header({cocktailWord, setCocktailWord, getCocktailWord}) {
             <Nav.Link href="/join" className="Nav">
               join
             </Nav.Link>
-            {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link> */}
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex" onSubmit={handleSubmit}>
             <Form.Control
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
               style={{width: "250px", boxShadow: "none", outline: "none"}}
-              //   onKeyDown={onEnterKeyDown}
               value={value}
               onChange={e => setValue(e.target.value)}
+              onKeyDown={onEnterKeyDown}
             />
             {/* onClick={onButtonClick} */}
-            <Button variant="outline-success" onClick={onSearch}>
+            <Button
+              variant="outline-success"
+              type="button"
+              onClick={() => {
+                onSearch();
+              }}
+            >
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Button>
           </Form>
@@ -158,6 +147,3 @@ export function Header({cocktailWord, setCocktailWord, getCocktailWord}) {
     </Navbar>
   );
 }
-
-// export default NavScrollExample;
-// export default Header;
