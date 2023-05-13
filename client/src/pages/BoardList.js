@@ -12,7 +12,7 @@ const BoardList = () => {
   useEffect(() => {
     console.log("게시물 리스트 마운트 완료");
     const getBoards = async () => {
-      const res = await axios.get(`${API_BASE_URL}`);
+      const res = await axios.get(`${API_BASE_URL}/community/tr`);
       setBoardItems(res.data.slice(0, 10));
     };
     getBoards();
@@ -58,11 +58,11 @@ const BoardList = () => {
               boardItems.map(board => {
                 console.log(board);
                 return (
-                  <tr key={board.id} board={board}>
-                    <td>{board.id}</td>
+                  <tr key={board.idx} board={board}>
+                    <td>{board.idx}</td>
 
                     <td>
-                      <Link to={`/boardDetail/${board.id}`}>
+                      <Link to={`/boardDetail/${board.idx}`}>
                         {board.title.slice(0, 10)}
                       </Link>
                     </td>

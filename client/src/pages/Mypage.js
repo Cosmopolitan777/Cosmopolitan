@@ -15,7 +15,11 @@ import {
   Recommendation,
 } from "../components/MypageDetail";
 
-const Mypage = ({cocktailItems, session, recommends, getRecommend}) => {
+const Mypage = ({cocktailItems, session, recommends, getRecommend, zzims}) => {
+  const zzimCocktailInfos = cocktailItems.filter(
+    item => zzims.indexOf(item.cocktail_id) > -1,
+  );
+
   return (
     <>
       <TabsExample
@@ -23,6 +27,7 @@ const Mypage = ({cocktailItems, session, recommends, getRecommend}) => {
         session={session}
         recommends={recommends}
         getRecommend={getRecommend}
+        zzimCocktailInfos={zzimCocktailInfos}
       />
     </>
   );
@@ -30,7 +35,13 @@ const Mypage = ({cocktailItems, session, recommends, getRecommend}) => {
 
 export default Mypage;
 
-function TabsExample({cocktailItems, session, recommends, getRecommend}) {
+function TabsExample({
+  cocktailItems,
+  session,
+  recommends,
+  getRecommend,
+  zzimCocktailInfos,
+}) {
   return (
     <div style={{padding: "40px 30px "}}>
       <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
@@ -53,7 +64,7 @@ function TabsExample({cocktailItems, session, recommends, getRecommend}) {
             <Tab.Content>
               <Tab.Pane eventKey="#link1">
                 {/* <CocktailList /> */}
-                <LikeList cocktailItems={cocktailItems} />
+                <LikeList zzimCocktailInfos={zzimCocktailInfos} />
               </Tab.Pane>
               <Tab.Pane eventKey="#link2">
                 <Recommendation

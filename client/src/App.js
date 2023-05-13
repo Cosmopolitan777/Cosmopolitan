@@ -50,13 +50,12 @@ function App() {
     console.log("isLogout", isLogout);
     setSession();
   };
-  //추천
+  //클릭시 서버에서 해당 유저에 대한 추천 목록 받아옴
   const getRecommend = async () => {
     const res = await axios.get(`${API_BASE_URL}/recommend`);
     setRecommends(res.data);
     // console.log(" recommends res.data", res.data);
   };
-  //
 
   return (
     <div className="App">
@@ -88,17 +87,16 @@ function App() {
                 session={session}
                 recommends={recommends}
                 getRecommend={getRecommend}
+                zzims={zzims}
               />
             }
           />
           {/* <Route path="/Mypage/:Like" element={<Like />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
-
-          <Route path="*" element={<NotFound />} />
-
           <Route path="/boardList" element={<BoardList />} />
           <Route path="/boardDetail/" element={<BoardDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

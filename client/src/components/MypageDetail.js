@@ -9,8 +9,8 @@ import {API_BASE_URL} from "../app-config";
 import axios from "axios";
 
 //(1) 찜목록
-export const LikeList = ({cocktailItems}) => {
-  // console.log(cocktailItems);
+export const LikeList = ({zzimCocktailInfos}) => {
+  console.log("zzimCocktailInfos..", zzimCocktailInfos);
   return (
     <div
       style={{
@@ -28,7 +28,7 @@ export const LikeList = ({cocktailItems}) => {
 
       <div className="container">
         <div className="row row-cols-4" style={{padding: "3%"}}>
-          {cocktailItems.map(item => (
+          {zzimCocktailInfos.map(item => (
             <div className="col mt-3" style={{padding: "0 0 10px 0"}}>
               <LikeListItem key={item.cocktail_id} item={item} />
             </div>

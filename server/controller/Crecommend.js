@@ -2,13 +2,13 @@ const models = require("../models");
 
 // (1) GET /recommend - 추천 목록 반환
 exports.getRecommend = async (req, res) => {
-  console.log("!!!!!!!!!!!!getRecommend");
-  console.log("getRecommend req.session.name>>", req.session.name);
+  // console.log("!!!!!!!!!!!!getRecommend");
+  // console.log("getRecommend req.session.name>>", req.session.name);
   if (!req.session.name) {
     return;
   }
 
-  console.log("getRecommend req.session.name>>", req.session.name);
+  // console.log("getRecommend req.session.name>>", req.session.name);
   const {CF, evaluation} = require("nodeml");
   const data = await models.Evaluation.findAll({
     raw: true,
