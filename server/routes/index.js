@@ -22,7 +22,7 @@ router.post("/check_userid", controller.postCheckUserId);
 router.post("/result", controller.postResult);
 
 //(7) 내정보 화면
-router.post("/my_profile", controller.postMyProfile);
+router.get("/my_profile", controller.getMyProfile);
 //(8) 내정보 수정 화면
 router.patch("/patchUserInfo", controller.patchUserInfo);
 //(9) 회원 탈퇴
