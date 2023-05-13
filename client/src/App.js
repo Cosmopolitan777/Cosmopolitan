@@ -63,7 +63,7 @@ function App() {
     if (cocktailWord !== "") {
       getSearchCocktail();
     } else {
-      getCocktails();
+    getCocktails();
     }
 
     getSession();
