@@ -7,7 +7,12 @@ import Box from "../components/MainPageScene";
 import Background from "../components/MainPageBackground";
 import {PerspectiveCamera} from "three";
 
-// sketchfab
+// fontawesome
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faChampagneGlasses} from "@fortawesome/free-solid-svg-icons";
+import {faMartiniGlassEmpty} from "@fortawesome/free-solid-svg-icons";
+import {faWineBottle} from "@fortawesome/free-solid-svg-icons";
+import {faWineGlass} from "@fortawesome/free-solid-svg-icons";
 
 const MainPage = () => {
   const cameraRef = useRef();
@@ -37,8 +42,29 @@ const MainPage = () => {
         <ambientLight intensity={0.1} />
         {/* <sketchfab url={sketchfabEmbedCode} /> */}
       </Canvas>
+      <Test />
     </>
   );
 };
 
 export default MainPage;
+
+const Test = () => {
+  return (
+    <>
+      <div>
+        <h3>같이 만들어보아요</h3>
+        <FontAwesomeIcon
+          icon={faChampagneGlasses}
+          style={{color: "brown", fontSize: "xxx-large"}}
+        />
+        <FontAwesomeIcon
+          icon={faMartiniGlassEmpty}
+          style={{color: "red", fontSize: "xxx-large"}}
+        />
+        <FontAwesomeIcon icon={faWineBottle} />
+        <FontAwesomeIcon icon={faWineGlass} />
+      </div>
+    </>
+  );
+};

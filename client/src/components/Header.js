@@ -77,7 +77,7 @@ export function Header() {
   //     }
   //   };
   return (
-    <Navbar bg="light" expand="lg" className="Navbar">
+    <Navbar bg="light" expand="lg" className="Navbar" style={{padding: "0"}}>
       <Container fluid>
         <Navbar.Brand href="/" className="logo">
           <>

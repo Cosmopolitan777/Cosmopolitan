@@ -1,4 +1,5 @@
-import "../styles/Mypage.scss";
+// import "../styles/Mypage.scss";
+import "../styles/MypageDetail.scss";
 // import CocktailItem from "./CocktailItem";
 import {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
@@ -13,18 +14,22 @@ export const LikeList = ({zzimCocktailInfos}) => {
   console.log("zzimCocktailInfos..", zzimCocktailInfos);
   return (
     <div
-      style={{
-        backgroundColor: "rgb(18,18,18)",
-        height: "100%",
-        width: "100vh",
-        padding: "0 10%",
-        margin: "0 20%",
-        borderRadius: "6px",
-        boxSizing: "border-box",
-        color: "white",
-      }}
+      className="LikeList"
+      style={
+        {
+          // backgroundColor: "rgb(18,18,18)",
+          // height: "100%",
+          // width: "100vh",
+          // padding: "0 10%",
+          // margin: "0 20%",
+          // borderRadius: "6px",
+          // boxSizing: "border-box",
+          // color: "white",
+          // color: "black",
+        }
+      }
     >
-      <h3 style={{margin: "0 3%"}}>찜 목록</h3>
+      <h3>찜 목록</h3>
 
       <div className="container">
         <div className="row row-cols-4" style={{padding: "3%"}}>
@@ -82,19 +87,20 @@ export const Recommendation = ({recommends}) => {
 
   return (
     <div
-      // className="Recommendation"
-      style={{
-        backgroundColor: "rgb(18,18,18)",
-        height: "100%",
-        width: "100vh",
-        padding: "0 10%",
-        margin: "0 20%",
-        borderRadius: "6px",
-        boxSizing: "border-box",
-        color: "white",
-      }}
+      className="Recommendation"
+      // style={{
+      //   // backgroundColor: "rgb(18,18,18)",
+      //   height: "100%",
+      //   width: "100vh",
+      //   padding: "0 10%",
+      //   margin: "0 20%",
+      //   borderRadius: "6px",
+      //   boxSizing: "border-box",
+      //   // color: "white",
+      //   color: "black",
+      // }}
     >
-      <h3 style={{margin: "0 3%"}}>
+      <h3>
         {/* <FontAwesomeIcon icon={faHandHoldingHeart} className="Icon Holding" /> */}
         추천목록
       </h3>
@@ -143,85 +149,99 @@ export function InformationModify() {
   };
 
   return (
-    <div
-      // className="Login"
-      style={{
-        backgroundColor: "rgb(18, 18, 18)",
-        height: "800px",
-        width: "60vw",
-        padding: "20%",
-        // margin: "0 5%",
-        borderRadius: "6px",
-        display: "flex",
-        justifyContent: "center",
-        color: "#FCFCFC",
-      }}
-    >
+    <div className="InformationModify">
       <div
-        style={{
-          width: "20rem",
-
-          boxShadow: "none",
-          outline: "none",
-        }}
+        className="InformationModify2"
+        style={
+          {
+            // 회색 박스 가운데 정렬
+            // display: "flex",
+            // justifyContent: "left",
+          }
+        }
+        //   // backgroundColor: "rgb(18, 18, 18)",
+        //   height: "800px",
+        //   width: "800px",
+        //   padding: "20%",
+        //   // margin: "0 5%",
+        //   borderRadius: "6px",
+        //   // color: "#FCFCFC",
+        //   color: "black",
+        // }}
       >
-        <h3 style={{margin: "0 0 50px 0"}}>개인정보수정</h3>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group size="lg" controlId="id" style={{margin: "15px 0"}}>
-            <Form.Label>이메일</Form.Label>
+        <div
+          style={{
+            width: "20rem",
+            boxShadow: "none",
+            outline: "none",
+          }}
+        >
+          <h3>개인정보수정</h3>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group size="lg" controlId="id" className="InformationModify2">
+              <Form.Label>아이디</Form.Label>
 
-            <Form.Control
-              autoFocus
-              type="text"
-              value={userId}
-              onChange={e => setUserId(e.target.value)}
-              // style={{backgroundColor: "#212529"}}
-              placeholder="email"
-            />
-          </Form.Group>
+              <Form.Control
+                autoFocus
+                type="text"
+                value={userId}
+                onChange={e => setUserId(e.target.value)}
+                // style={{backgroundColor: "#212529"}}
+                placeholder="ID"
+              />
+            </Form.Group>
 
-          <Form.Group size="lg" controlId="name" style={{margin: "15px 0"}}>
-            <Form.Label>닉네임</Form.Label>
-            {/* <div>닉네임</div> */}
-            <Form.Control
-              type="text"
-              value={userName}
-              onChange={e => setUserName(e.target.value)}
-              // style={{backgroundColor: "#212529"}}
-              placeholder="name"
-            />
-          </Form.Group>
-          <Form.Group size="lg" controlId="password" style={{margin: "15px 0"}}>
-            <Form.Label>비밀번호</Form.Label>
-
-            <Form.Control
-              type="password"
-              value={userPw}
-              onChange={e => setUserPw(e.target.value)}
-              // style={{backgroundColor: "#212529"}}
-
-              placeholder="passwaord"
-            />
-          </Form.Group>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              margin: "30px 0",
-            }}
-          >
-            <Button
-              blocksize="xx-lg"
-              type="submit"
-              disabled={!validateForm()}
-              style={{width: "350px"}}
+            <Form.Group
+              size="lg"
+              controlId="name"
+              className="InformationModify2"
             >
-              수정
-            </Button>
-          </div>
-          <br />
-        </Form>
+              <Form.Label>닉네임</Form.Label>
+              {/* <div>닉네임</div> */}
+              <Form.Control
+                type="text"
+                value={userName}
+                onChange={e => setUserName(e.target.value)}
+                // style={{backgroundColor: "#212529"}}
+                placeholder="name"
+              />
+            </Form.Group>
+            <Form.Group
+              size="lg"
+              controlId="password"
+              className="InformationModify2"
+            >
+              <Form.Label>비밀번호</Form.Label>
+
+              <Form.Control
+                type="password"
+                value={userPw}
+                onChange={e => setUserPw(e.target.value)}
+                // style={{backgroundColor: "#212529"}}
+
+                placeholder="passwaord"
+              />
+            </Form.Group>
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "30px 0",
+              }}
+            >
+              <Button
+                blocksize="xx-lg"
+                type="submit"
+                disabled={!validateForm()}
+                style={{width: "350px"}}
+              >
+                수정
+              </Button>
+            </div>
+            <br />
+          </Form>
+        </div>
       </div>
     </div>
   );
@@ -239,7 +259,7 @@ const LikeListItem = ({item}) => {
           alt="test image"
           style={{padding: "20px"}}
         />
-        <div className="card-body">
+        <div className="card-body" style={{color: "white"}}>
           <p className="card-title">{item.name}</p>
         </div>
       </div>

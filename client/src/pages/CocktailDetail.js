@@ -53,7 +53,29 @@ const CocktailDetail = ({cocktailItems, session, stars}) => {
         grabCursor={true}
         initialSlide={restArrNum - 1} //center 지정1
         centeredSlides={true} //center 지정1
-        slidesPerView={4}
+        // slidesPerView={4}
+        // slidesPerView={1}
+        breakpoints={{
+          0: {
+            forShowCocktailItems: forShowCocktailItems[restArrNum - 1],
+            slidesPerView: 1,
+          },
+          500: {
+            forShowCocktailItems: forShowCocktailItems.slice(
+              restArrNum - 2,
+              restArrNum + 2,
+            ),
+            slidesPerview: 4,
+
+            // centeredSlides: false,
+          },
+          768: {
+            slidesPerView: 4,
+          },
+          1024: {
+            slidesPerView: 4,
+          },
+        }}
         coverflowEffect={{
           rotate: 10, // 회전각도
           stretch: 0,

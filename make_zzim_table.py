@@ -3,7 +3,7 @@ import sys
 import random
 
 
-conn = pymysql.connect(host="127.0.0.1",user="user",password="1234",db="kdt",charset="utf8")
+conn = pymysql.connect(host="127.0.0.1",user="user",password="4321",db="codingon",charset="utf8")
 cur = conn.cursor()
 
 def create_zzimtable(cc):
