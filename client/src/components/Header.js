@@ -8,8 +8,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/Header.scss";
+import {useState} from "react";
 
-export const LoginHeader = ({getLogout}) => {
+export const LoginHeader = ({getLogout, cocktailWord, setCocktailWord}) => {
   return (
     <Navbar bg="light" expand="lg" className="Navbar">
       <Container fluid>
@@ -40,7 +41,7 @@ export const LoginHeader = ({getLogout}) => {
             <Nav.Link href="/cocktails" className="Nav">
               Cocktail
             </Nav.Link>
-            <Nav.Link href="#action3" className="Nav">
+            <Nav.Link href="/boardList" className="Nav">
               Community
             </Nav.Link>
             <Nav.Link href="/" className="Nav" onClick={getLogout}>
@@ -57,6 +58,8 @@ export const LoginHeader = ({getLogout}) => {
               className="me-2"
               aria-label="Search"
               style={{width: "250px", boxShadow: "none", outline: "none"}}
+              value={cocktailWord}
+              onChange={e => setCocktailWord(e.target.value)}
             />
             <Button variant="outline-success">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
@@ -70,14 +73,19 @@ export const LoginHeader = ({getLogout}) => {
 
 // 기본 헤더
 
-export function Header() {
+export function Header({cocktailWord, setCocktailWord, getCocktailWord}) {
   //   const onEnterKeyDown = e => {
   //     if (e.key === "Enter") {
   //       onButtonClick();
   //     }
   //   };
+  const [value, setValue] = useState("");
+  const onSearch = () => {
+    getCocktailWord(value);
+  };
+
   return (
-    <Navbar bg="light" expand="lg" className="Navbar">
+    <Navbar bg="light" expand="lg" className="Navbar" style={{padding: "0"}}>
       <Container fluid>
         <Navbar.Brand href="/" className="logo">
           <>
@@ -106,7 +114,7 @@ export function Header() {
             <Nav.Link href="/cocktails" className="Nav">
               Cocktail
             </Nav.Link>
-            <Nav.Link href="#action3" className="Nav">
+            <Nav.Link href="/boardList" className="Nav">
               Community
             </Nav.Link>
             <Nav.Link href="/login" className="Nav">
@@ -137,9 +145,11 @@ export function Header() {
               aria-label="Search"
               style={{width: "250px", boxShadow: "none", outline: "none"}}
               //   onKeyDown={onEnterKeyDown}
+              value={value}
+              onChange={e => setValue(e.target.value)}
             />
             {/* onClick={onButtonClick} */}
-            <Button variant="outline-success">
+            <Button variant="outline-success" onClick={onSearch}>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Button>
           </Form>

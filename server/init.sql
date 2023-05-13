@@ -34,7 +34,7 @@
 -- SELECT * FROM todo;
 
 
-use codingon;
+use kdt;
 DROP TABLE IF EXISTS user;
 create table user (
                       id int not null primary key auto_increment,
@@ -49,5 +49,7 @@ create table user (
                       provider text null
 );
 
+
 INSERT INTO user VALUES (null, '333', '333', '333',null,null,null);
 SELECT * FROM user
+

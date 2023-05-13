@@ -104,7 +104,16 @@ exports.postResult = async (req, res) => {
     name: req.body.userName,
   });
 
-  res.send(result);
+  const idx = await models.User.findOne({
+    attribute: ["id"],
+    where: {userid: req.body.userId},
+    row: true,
+  });
+  console.log("idx.id>>>>>>>>>>", idx.id);
+
+  req.session.name = idx.id;
+
+  res.send(true);
 };
 
 //(7) 내정보 화면
@@ -144,24 +153,24 @@ exports.patchUserInfo = async (req, res) => {
     hashedPw = user.pw;
   }
   const response = await models.User.update(
-      //     Update user set userId='${data.userId}', pw    ='${data.pw}', name='${data.name}' where id = '${data.id}'
-      {
-        userid: req.body.userId,
-        pw: hashedPw,
-        name: req.body.name,
+    //     Update user set userId='${data.userId}', pw    ='${data.pw}', name='${data.name}' where id = '${data.id}'
+    {
+      userid: req.body.userId,
+      pw: hashedPw,
+      name: req.body.name,
+    },
+    {
+      where: {
+        id: req.body.id,
       },
-      {
-        where: {
-          id: req.body.id,
-        },
-      },
+    },
   );
   res.send({
     hasSuccess: true,
     newName: req.body.name,
     id: req.body.id,
   });
-}
+};
 
 //(9) 회원 탈퇴
 exports.deleteUserInfo = async (req, res) => {

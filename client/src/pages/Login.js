@@ -6,6 +6,7 @@ import {API_BASE_URL} from "../app-config";
 import axios from "axios";
 import { Navigate, useNavigate } from 'react-router-dom';
 import "../styles/Login.scss";
+
 export default function Login() {
   const navigate = useNavigate();
 
@@ -82,24 +83,28 @@ export default function Login() {
   };
 
   return (
-    <div className="LoginBox">
-      <div className="Login" style={{width: "500px", color: "white"}}>
-        <h3>로그인</h3>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group size="lg" controlId="userId">
-            {/* <div>이메일</div> */}
+    // <div className="LoginBox">
+    <div
+      className="Login"
+      style={{width: "500px", color: "black", backgroundColor: "white"}}
+    >
+      <h3>로그인</h3>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group size="lg" controlId="userId">
+          {/* <div>이메일</div> */}
 
-            <Form.Control
-              autoFocus
-              type="text"
-              value={userId}
-              onChange={e => setUserId(e.target.value)}
-              placeholder="ID"
-            />
-          </Form.Group>
+          <Form.Control
+            autoFocus
+            type="text"
+            value={userId}
+            onChange={e => setUserId(e.target.value)}
+            placeholder="ID"
+          />
+        </Form.Group>
 
-          <Form.Group size="lg" controlId="password" style={{margin: "20px 0"}}>
-            {/* <Form.Label>Password</Form.Label> */}
+        <Form.Group size="lg" controlId="password" style={{margin: "20px 0"}}>
+          {/* <Form.Label>Password</Form.Label> */}
+
 
             <Form.Control
               style={{fontFamily: "Jalnan"}}
@@ -126,6 +131,7 @@ export default function Login() {
         <button onClick={kakaoHandleSubmit}>카카오 로그인하기</button>
 
       </div>
+
     </div>
   );
 }
