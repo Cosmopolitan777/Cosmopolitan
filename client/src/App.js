@@ -18,6 +18,7 @@ function App() {
   const [session, setSession] = useState();
   const [recommends, setRecommends] = useState();
   const [zzims, setZzims] = useState([]);
+  const [stars, setStars] = useState([]);
 
   useEffect(() => {
     console.log("mount 완료");
@@ -31,17 +32,32 @@ function App() {
       setSession(sessionId);
       console.log("sessionId>>", sessionId);
     };
+    //해당 유저에 대한 찜한 칵테일 아이디 배열 반환 ; 예) [4]
     const postZzim = async () => {
       const zzimList = (await axios.post(`${API_BASE_URL}/zzim/sz`)).data;
+
       {
         zzimList && setZzims(zzimList);
       }
+
       console.log("zzims>>", zzimList);
+    };
+
+    //해당 유저에 대한 찜한 별점 배열 반환 ; 예) [4]
+    const postStar = async () => {
+      const starList = (await axios.post(`${API_BASE_URL}/evaluation/userrate`))
+        .data;
+      console.log("starList>>", starList);
+
+      {
+        starList && setStars(starList);
+      }
     };
 
     getCocktails();
     getSession();
     postZzim();
+    postStar();
   }, []);
   console.log("session", session);
   //로그아웃
@@ -76,7 +92,11 @@ function App() {
           <Route
             path="/cocktails/:cocktailId"
             element={
-              <CocktailDetail cocktailItems={cocktailItems} session={session} />
+              <CocktailDetail
+                cocktailItems={cocktailItems}
+                session={session}
+                stars={stars}
+              />
             }
           />
           <Route
