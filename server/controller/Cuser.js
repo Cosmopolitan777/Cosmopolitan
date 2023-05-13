@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 //(1) 메인 화면
 exports.getIndex = async (req, res) => {
   console.log("req.session.name>>", req.session.name);
-  res.send(req.session.name);
+  res.send([req.session.name]);
 };
 
 //(2) 로그인 화면
@@ -40,7 +40,7 @@ exports.postCheckLogin = async (req, res) => {
     console.log("match", match);
     if (match) {
       //세션 설정 userid로
-      req.session.name = response.userid;
+      req.session.name = response.id;
 
       return res.send({
         hasInfo: true,
@@ -63,11 +63,12 @@ exports.getRegister = (req, res) => {
 //(5) 회원가입 아이디 중복 검사
 exports.postCheckUserId = async (req, res) => {
   console.log("requested req.body : ", req.body);
-  console.log("requested req.body.id : ", req.body.id);
+  console.log("requested req.body.id : ", req.body.userId);
   const result = await models.User.findOne({
     where: {
-      userid: req.body.id,
+      userid: req.body.userId,
     },
+    row: true,
   });
   console.log(result);
   //아이디가 없으면 null 값이나오고  아이디가 있으면 정보가있으니까
@@ -85,7 +86,7 @@ exports.postCheckUserId = async (req, res) => {
 };
 
 //(6) 회원가입 성공 화면
-exports.getResult = async (req, res) => {
+exports.postResult = async (req, res) => {
   console.log("^^^^ Post 회원가입 결과 getResult:", req.body);
   const saltRounds = 10;
   const hashedPw = await bcrypt.hash(req.body.userPw, saltRounds);
@@ -97,7 +98,7 @@ exports.getResult = async (req, res) => {
     name: req.body.userName,
   });
 
-  res.send("result");
+  res.send(result);
 };
 
 //(7) 내정보 화면
@@ -124,29 +125,37 @@ exports.postMyProfile = async (req, res) => {
 //(8) 내정보 수정 화면
 exports.patchUserInfo = async (req, res) => {
   console.log("내정보 수정 patchUserInfo req.body", req.body);
-
-  const saltRounds = 10;
-  const hashedPw = await bcrypt.hash(req.body.pw, saltRounds);
-
+  const user = await models.User.findOne({
+    where: {
+      id: req.body.id,
+    },
+  });
+  let hashedPw;
+  if (req.body.pw) {
+    const saltRounds = 10;
+    hashedPw = await bcrypt.hash(req.body.pw, saltRounds);
+  } else {
+    hashedPw = user.pw;
+  }
   const response = await models.User.update(
-    //     Update user set userId='${data.userId}', pw    ='${data.pw}', name='${data.name}' where id = '${data.id}'
-    {
-      userid: req.body.userId,
-      pw: hashedPw,
-      name: req.body.name,
-    },
-    {
-      where: {
-        id: req.body.id,
+      //     Update user set userId='${data.userId}', pw    ='${data.pw}', name='${data.name}' where id = '${data.id}'
+      {
+        userid: req.body.userId,
+        pw: hashedPw,
+        name: req.body.name,
       },
-    },
+      {
+        where: {
+          id: req.body.id,
+        },
+      },
   );
   res.send({
     hasSuccess: true,
     newName: req.body.name,
     id: req.body.id,
   });
-};
+}
 
 //(9) 회원 탈퇴
 exports.deleteUserInfo = async (req, res) => {

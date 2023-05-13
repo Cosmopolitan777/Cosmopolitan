@@ -2,13 +2,13 @@ const models = require("../models");
 
 // (1) GET /recommend - 추천 목록 반환
 exports.getRecommend = async (req, res) => {
-  console.log("!!!!!!!!!!!!getRecommend");
-  console.log("getRecommend req.session.name>>", req.session.name);
+  // console.log("!!!!!!!!!!!!getRecommend");
+  // console.log("getRecommend req.session.name>>", req.session.name);
   if (!req.session.name) {
     return;
   }
 
-  console.log("getRecommend req.session.name>>", req.session.name);
+  // console.log("getRecommend req.session.name>>", req.session.name);
   const {CF, evaluation} = require("nodeml");
   const data = await models.Evaluation.findAll({
     raw: true,
@@ -21,8 +21,7 @@ exports.getRecommend = async (req, res) => {
     // if (Math.random() > 0.8) test.push(data[i]); //랜덤이용방법
     //특정 사용자 아이디만 test[]에 담음
     // if (data[i].user_id === req.sessionID) test.push(data[i]);
-    if (data[i].user_id === Number(req.session.name))
-      test.push(data[i]); //수정 요함
+    if (data[i].user_id === req.session.name) test.push(data[i]); //수정 요함
     else train.push(data[i]);
   }
 

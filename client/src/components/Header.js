@@ -40,7 +40,7 @@ export const LoginHeader = ({getLogout}) => {
             <Nav.Link href="/cocktails" className="Nav">
               Cocktail
             </Nav.Link>
-            <Nav.Link href="#action3" className="Nav">
+            <Nav.Link href="/boardList" className="Nav">
               Community
             </Nav.Link>
             <Nav.Link href="/" className="Nav" onClick={getLogout}>
@@ -77,7 +77,7 @@ export function Header() {
   //     }
   //   };
   return (
-    <Navbar bg="light" expand="lg" className="Navbar">
+    <Navbar bg="light" expand="lg" className="Navbar" style={{padding: "0"}}>
       <Container fluid>
         <Navbar.Brand href="/" className="logo">
           <>
@@ -106,7 +106,7 @@ export function Header() {
             <Nav.Link href="/cocktails" className="Nav">
               Cocktail
             </Nav.Link>
-            <Nav.Link href="#action3" className="Nav">
+            <Nav.Link href="/boardList" className="Nav">
               Community
             </Nav.Link>
             <Nav.Link href="/login" className="Nav">

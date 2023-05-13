@@ -18,6 +18,8 @@ function App() {
   const [cocktailItems, setCocktailItems] = useState([]);
   const [session, setSession] = useState();
   const [recommends, setRecommends] = useState();
+  const [zzims, setZzims] = useState([]);
+  const [stars, setStars] = useState([]);
 
   useEffect(() => {
     console.log("mount 완료");
@@ -27,25 +29,51 @@ function App() {
       console.log("res.data", res.data);
     };
     const getSession = async () => {
-      const isLogin = (await axios.get(`${API_BASE_URL}/`)).data;
-      setSession(isLogin);
-      console.log("isLogin>>", isLogin);
+      const [sessionId] = (await axios.get(`${API_BASE_URL}/`)).data;
+      setSession(sessionId);
+      console.log("sessionId>>", sessionId);
     };
+    //해당 유저에 대한 찜한 칵테일 아이디 배열 반환 ; 예) [4]
+    const postZzim = async () => {
+      const zzimList = (await axios.post(`${API_BASE_URL}/zzim/sz`)).data;
+
+      {
+        zzimList && setZzims(zzimList);
+      }
+
+      console.log("zzims>>", zzimList);
+    };
+
+    //해당 유저에 대한 찜한 별점 배열 반환 ; 예) [4]
+    const postStar = async () => {
+      const starList = (await axios.post(`${API_BASE_URL}/evaluation/userrate`))
+        .data;
+      console.log("starList>>", starList);
+
+      {
+        starList && setStars(starList);
+      }
+    };
+
     getCocktails();
     getSession();
+    postZzim();
+    postStar();
   }, []);
   console.log("session", session);
   //로그아웃
   const getLogout = async () => {
     const isLogout = (await axios.get(`${API_BASE_URL}/logout`)).data;
+    console.log("isLogout", isLogout);
     setSession();
   };
-  //추천
+  //클릭시 서버에서 해당 유저에 대한 추천 목록 받아옴
   const getRecommend = async () => {
     const res = await axios.get(`${API_BASE_URL}/recommend`);
     setRecommends(res.data);
     // console.log(" recommends res.data", res.data);
   };
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -54,12 +82,22 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route
             path="/cocktails"
-            element={<CocktailList cocktailItems={cocktailItems} />}
+            element={
+              <CocktailList
+                cocktailItems={cocktailItems}
+                session={session}
+                zzims={zzims}
+              />
+            }
           />
           <Route
             path="/cocktails/:cocktailId"
             element={
-              <CocktailDetail cocktailItems={cocktailItems} session={session} />
+              <CocktailDetail
+                cocktailItems={cocktailItems}
+                session={session}
+                stars={stars}
+              />
             }
           />
           <Route
@@ -70,17 +108,16 @@ function App() {
                 session={session}
                 recommends={recommends}
                 getRecommend={getRecommend}
+                zzims={zzims}
               />
             }
           />
           {/* <Route path="/Mypage/:Like" element={<Like />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
-
-          <Route path="*" element={<NotFound />} />
-
           <Route path="/boardList" element={<BoardList />} />
           <Route path="/boardDetail/:idx" element={<BoardDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -14,7 +14,6 @@ const BoardList = () => {
     const getBoards = async () => {
       const res = await axios.get(`${API_BASE_URL}/community/tr`);
       console.log(res.data);
-
       setBoardItems(res.data);
     };
     getBoards();

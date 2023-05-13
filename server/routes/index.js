@@ -19,7 +19,7 @@ router.get("/register", controller.getRegister);
 //(5) 회원가입 아이디 중복 검사
 router.post("/check_userid", controller.postCheckUserId);
 //(6) 회원가입 성공 화면
-router.post("/result", controller.getResult);
+router.post("/result", controller.postResult);
 
 //(7) 내정보 화면
 router.post("/my_profile", controller.postMyProfile);
