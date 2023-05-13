@@ -34,7 +34,7 @@
 -- SELECT * FROM todo;
 
 
-use kdt;
+use codingon;
 DROP TABLE IF EXISTS user;
 create table user (
                       id int not null primary key auto_increment,
@@ -50,6 +50,11 @@ create table user (
 );
 
 
-INSERT INTO user VALUES (null, '333', '333', '333',null,null,null);
+
+use codingon;
+-- INSERT INTO user VALUES (null, '333', '333', '333',null,null,null);
+
+use codingon;
+desc user;
 SELECT * FROM user
 
