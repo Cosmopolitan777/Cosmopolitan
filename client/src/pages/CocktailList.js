@@ -2,8 +2,7 @@ import {useState} from "react";
 import CocktailItem from "../components/CocktailItem";
 import "../styles/CocktailList.scss";
 
-const CocktailList = ({cocktailItems}) => {
-  console.log(cocktailItems);
+const CocktailList = ({cocktailItems, session, zzims}) => {
   return (
     <>
       <div className="search-bar d-flex justify-content-between">
@@ -46,12 +45,19 @@ const CocktailList = ({cocktailItems}) => {
       <div className="container">
         <div className="row row-cols-4">
           {cocktailItems.map(item => (
+            // console.log(zzims.indexOf(item.cocktail_id))
             <div className="col mt-3">
-              <CocktailItem key={item.cocktail_id} item={item} />
+              <CocktailItem
+                key={item.cocktail_id}
+                item={item}
+                session={session}
+                iszzim={zzims.indexOf(item.cocktail_id) > -1 ? 1 : 0}
+              />
             </div>
           ))}
         </div>
       </div>
+      {/* pagenation */}
       <footer className="navbar-fixed-bottom mt-3">
         <nav aria-label="Page navigation example">
           <ul className="pagination d-flex justify-content-center">

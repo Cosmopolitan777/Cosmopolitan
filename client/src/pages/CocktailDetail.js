@@ -11,7 +11,7 @@ import "swiper/css/scrollbar";
 import "../styles/CocktailDetail.scss";
 import CocktailDetailCard from "../components/CocktailDetailCard";
 
-const CocktailDetail = ({cocktailItems, session}) => {
+const CocktailDetail = ({cocktailItems, session, stars}) => {
   console.log("cocktailItems>> ", cocktailItems);
   const {cocktailId} = useParams();
   const [targetProduct] = cocktailItems.filter(
@@ -20,7 +20,7 @@ const CocktailDetail = ({cocktailItems, session}) => {
   if (!targetProduct) {
     return <main className="ProductDetailPage">존재하지 않는 상품입니다.</main>;
   }
-  // 10개 지정
+  // [10개 지정 로직]
   const forShowCocktailItems = [];
   //왼쪽 최대 4개
   for (let i = 1; i < 5; i++) {
@@ -38,6 +38,13 @@ const CocktailDetail = ({cocktailItems, session}) => {
       forShowCocktailItems.push(cocktailItems[cocktailId - 1 + i]);
     }
   }
+  // [저장된 별점 관련 로직]
+  const existCockIds = [];
+  const existStarRates = [];
+  for (let s of stars) {
+    existCockIds.push(s["cocktail_id"]); //객체 내 각 속성 값갖는 배열 생성
+    existStarRates.push(s["rating"]);
+  }
 
   return (
     <div className="CocktailDetail">
@@ -50,9 +57,14 @@ const CocktailDetail = ({cocktailItems, session}) => {
         // slidesPerView={1}
         breakpoints={{
           0: {
+            forShowCocktailItems: forShowCocktailItems[restArrNum - 1],
             slidesPerView: 1,
           },
           500: {
+            forShowCocktailItems: forShowCocktailItems.slice(
+              restArrNum - 2,
+              restArrNum + 2,
+            ),
             slidesPerview: 4,
 
             // centeredSlides: false,
@@ -83,7 +95,11 @@ const CocktailDetail = ({cocktailItems, session}) => {
                 key={item.cocktail_id}
                 item={item}
                 session={session}
-
+                isstar={
+                  existCockIds.indexOf(item.cocktail_id) > -1
+                    ? existStarRates[existCockIds.indexOf(item.cocktail_id)]
+                    : 0
+                }
                 // average={item.vote_average}
               />{" "}
             </SwiperSlide>

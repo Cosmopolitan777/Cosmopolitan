@@ -7,8 +7,9 @@ import CocktailDetailCardMenu from "./CocktailDetailCardMenu";
 import axios from "axios";
 import {API_BASE_URL} from "../app-config";
 
-const CocktailDetailCard = ({item, session}) => {
+const CocktailDetailCard = ({item, session, isstar}) => {
   const [cocktailItem, setCocktailItem] = useState(item);
+  const [star, setStar] = useState(isstar);
   // info를 클릭시에 볼수있도록 버튼 만들기
   const [showInfos, setShowInfos] = useState([
     {id: 1, title: "glass", show: false},
@@ -93,7 +94,11 @@ const CocktailDetailCard = ({item, session}) => {
           })}
         </ListGroup>
         <div className="RatingContainer">
-          <Rating className="Rating" onClick={handleRating} initialValue={0} />
+          <Rating
+            className="Rating"
+            onClick={handleRating}
+            initialValue={star}
+          />
         </div>
       </Card.Body>
     </Card>

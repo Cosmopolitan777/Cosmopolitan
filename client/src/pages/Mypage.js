@@ -5,6 +5,9 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
+import {useState, useEffect} from "react";
+import axios from "axios";
+import {API_BASE_URL} from "../app-config";
 // import {TabsExample} from "../components/MypageDetail";
 import {
   InformationModify,
@@ -12,17 +15,33 @@ import {
   Recommendation,
 } from "../components/MypageDetail";
 
-const Mypage = ({cocktailItems}) => {
+const Mypage = ({cocktailItems, session, recommends, getRecommend, zzims}) => {
+  const zzimCocktailInfos = cocktailItems.filter(
+    item => zzims.indexOf(item.cocktail_id) > -1,
+  );
+
   return (
     <>
-      <TabsExample cocktailItems={cocktailItems} />
+      <TabsExample
+        cocktailItems={cocktailItems}
+        session={session}
+        recommends={recommends}
+        getRecommend={getRecommend}
+        zzimCocktailInfos={zzimCocktailInfos}
+      />
     </>
   );
 };
 
 export default Mypage;
 
-function TabsExample({cocktailItems}) {
+function TabsExample({
+  cocktailItems,
+  session,
+  recommends,
+  getRecommend,
+  zzimCocktailInfos,
+}) {
   return (
     <div style={{padding: "40px 30px "}}>
       <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
@@ -32,7 +51,7 @@ function TabsExample({cocktailItems}) {
               <ListGroup.Item action href="#link1">
                 찜 목록
               </ListGroup.Item>
-              <ListGroup.Item action href="#link2">
+              <ListGroup.Item action href="#link2" onClick={getRecommend}>
                 추천 목록
               </ListGroup.Item>
               <ListGroup.Item action href="#link3">
@@ -45,10 +64,14 @@ function TabsExample({cocktailItems}) {
             <Tab.Content>
               <Tab.Pane eventKey="#link1">
                 {/* <CocktailList /> */}
-                <LikeList cocktailItems={cocktailItems} />
+                <LikeList zzimCocktailInfos={zzimCocktailInfos} />
               </Tab.Pane>
               <Tab.Pane eventKey="#link2">
-                <Recommendation cocktailItems={cocktailItems} />
+                <Recommendation
+                  cocktailItems={cocktailItems}
+                  session={session}
+                  recommends={recommends}
+                />
               </Tab.Pane>
               <Tab.Pane eventKey="#link3">
                 <InformationModify />
