@@ -30,13 +30,7 @@ function App() {
       console.log("res.data", res.data);
     };
 
-    const getSearchCocktail = async () => {
-      console.log("cocktailword", cocktailWord);
-      const searchCocktailList = (
-        await axios.get(`${API_BASE_URL}/cocktail/searchcock/${cocktailWord}`)
-      ).data;
-      setCocktailItems(searchCocktailList.slice(0, 10));
-      console.log("searchCocktailList search", searchCocktailList);
+    const 3st search", searchCocktailList);
     };
 
     const getSession = async () => {
