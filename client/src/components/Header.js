@@ -9,8 +9,14 @@ import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/Header.scss";
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
-export const LoginHeader = ({getLogout, cocktailWord, setCocktailWord}) => {
+export const LoginHeader = ({
+  getLogout,
+  cocktailWord,
+  setCocktailWord,
+  getSearchCocktail,
+}) => {
   return (
     <Navbar bg="light" expand="lg" className="Navbar">
       <Container fluid>
@@ -72,20 +78,23 @@ export const LoginHeader = ({getLogout, cocktailWord, setCocktailWord}) => {
 };
 
 // 기본 헤더
-
-export function Header({cocktailWord, setCocktailWord, getCocktailWord}) {
-  //   const onEnterKeyDown = e => {
-  //     if (e.key === "Enter") {
-  //       onButtonClick();
-  //     }
-  //   };
+export function Header({
+  cocktailWord,
+  setCocktailWord,
+  getCocktailWord,
+  getSearchCocktail,
+}) {
   const [value, setValue] = useState("");
-  const onSearch = () => {
-    getCocktailWord(value);
-  };
+
+  const navigate = useNavigate();
+
+  function onSearch() {
+    // getCocktailWord(value);
+    getSearchCocktail(value);
+  }
 
   return (
-    <Navbar bg="light" expand="lg" className="Navbar">
+    <Navbar bg="light" expand="lg" className="Navbar" style={{padding: "0"}}>
       <Container fluid>
         <Navbar.Brand href="/" className="logo">
           <>
@@ -149,7 +158,12 @@ export function Header({cocktailWord, setCocktailWord, getCocktailWord}) {
               onChange={e => setValue(e.target.value)}
             />
             {/* onClick={onButtonClick} */}
-            <Button variant="outline-success" onClick={onSearch}>
+            <Button
+              variant="outline-success"
+              onClick={() => {
+                onSearch();
+              }}
+            >
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Button>
           </Form>
@@ -158,6 +172,3 @@ export function Header({cocktailWord, setCocktailWord, getCocktailWord}) {
     </Navbar>
   );
 }
-
-// export default NavScrollExample;
-// export default Header;
