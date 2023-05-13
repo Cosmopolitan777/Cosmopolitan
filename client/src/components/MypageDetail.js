@@ -123,38 +123,59 @@ export const Recommendation = ({recommends}) => {
 
 //(3) 회원정보 수정
 export function InformationModify() {
-  const [userInfo, setUserInfo] = useState();
-  const [userId, setUserId] = useState("");
-  const [userPw, setUserPw] = useState("");
-  const [userName, setUserName] = useState("");
+  const [userInfo, setUserInfo] = useState({
+    userId: "",
+    userPw: "",
+    userName: "",
+  });
+
   useEffect(() => {
+    //(3-1) 유저정보 받아옴
     const getMyProfile = async () => {
-      const userInfo = await axios.get(`${API_BASE_URL}/my_profile`);
+      const res = await axios.get(`${API_BASE_URL}/my_profile`);
+      setUserInfo(res.data);
     };
     getMyProfile();
-    setUserInfo(userInfo);
   }, []);
   console.log("getMyProfile userInfo>>>", userInfo);
 
   const validateForm = () => {
-    return userId.length > 0 && userPw.length > 0 && userName.length > 0;
+    return (
+      userInfo.userId.length > 0 &&
+      userInfo.userPw.length > 0 &&
+      userInfo.userName.length > 0
+    );
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(userId);
-    console.log(userPw);
-    console.log(userName);
-
-    //   axios({
-    //     method: "post",
-    //     url: `${API_BASE_URL}/result`,
-    //     data: {
-    //       userId: userId,
-    //       userPw: userPw,
-    //       userName: userName,
-    //     },
-    //   }).then(res => console.log(res));
+    //(3-2) 클릭 시 수정 patchUserInfo
+    axios({
+      method: "patch",
+      url: `${API_BASE_URL}/patchUserInfo`,
+      data: {
+        userId: userInfo.userId,
+        userPw: userInfo.userPw,
+        userName: userInfo.userName,
+      },
+    }).then(res => {
+      res.data.hasSuccess && alert("수정이 완료되었습니다");
+    });
+  };
+  //(3-3) 회원 탈퇴
+  const deleteUserInfo = async () => {
+    if (window.confirm("회원 탈퇴를 원하십니까?")) {
+      await axios({
+        method: "delete",
+        url: `${API_BASE_URL}/my_profile/delete`,
+      }).then(res => {
+        console.log(res.data);
+        if (res.data) {
+          alert("회원 탈퇴를 성공했습니다");
+          document.location.href = "/";
+        }
+      });
+    }
   };
 
   return (
@@ -175,8 +196,11 @@ export function InformationModify() {
               <Form.Control
                 autoFocus
                 type="text"
-                value={userId}
-                onChange={e => setUserId(e.target.value)}
+                value={userInfo && userInfo.userId}
+                onChange={e => {
+                  const {userId, ...rest} = userInfo;
+                  setUserInfo({...rest, userId: e.target.value});
+                }}
                 // style={{backgroundColor: "#212529"}}
                 placeholder="ID"
               />
@@ -191,8 +215,11 @@ export function InformationModify() {
 
               <Form.Control
                 type="password"
-                value={userPw}
-                onChange={e => setUserPw(e.target.value)}
+                value={userInfo && userInfo.userPw}
+                onChange={e => {
+                  const {userPw, ...rest} = userInfo;
+                  setUserInfo({...rest, userPw: e.target.value});
+                }}
                 style={{fontFamily: "Jalnan"}}
                 placeholder="passwaord"
               />
@@ -207,8 +234,11 @@ export function InformationModify() {
               {/* <div>닉네임</div> */}
               <Form.Control
                 type="text"
-                value={userName}
-                onChange={e => setUserName(e.target.value)}
+                value={userInfo && userInfo.userName}
+                onChange={e => {
+                  const {userName, ...rest} = userInfo;
+                  setUserInfo({...rest, userName: e.target.value});
+                }}
                 // style={{backgroundColor: "#212529"}}
                 placeholder="name"
               />
@@ -240,13 +270,14 @@ export function InformationModify() {
             >
               <Button
                 blocksize="xx-lg"
-                type="submit"
+                type="button"
                 disabled={!validateForm()}
                 style={{
                   width: "350px",
                   backgroundColor: "red",
                   border: "1px solid red",
                 }}
+                onClick={deleteUserInfo}
               >
                 회원 탈퇴
               </Button>
