@@ -1,4 +1,4 @@
-use codingon;
+use kdt;
 
 CREATE TABLE reply(
         idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 

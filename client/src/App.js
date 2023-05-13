@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Join from "./pages/Join";
 import BoardList from "./pages/BoardList";
 import BoardDetail from "./pages/BoardDetail";
+
 axios.defaults.withCredentials = true;
 function App() {
   const [cocktailItems, setCocktailItems] = useState([]);
@@ -24,11 +25,10 @@ function App() {
   useEffect(() => {
     console.log("mount 완료");
     const getCocktails = async () => {
-      const cocktailList = (
-        await axios.get(`${API_BASE_URL}/cocktail/showlist`)
-      ).data;
-      setCocktailItems(cocktailList.slice(0, 10)); //테스트를 위한 슬라이스
-      console.log("cocktailList", cocktailList);
+    const res = await axios.get(`${API_BASE_URL}/cocktail/showlist`);
+    setCocktailItems(res.data.slice(0, 20)); //테스트를 위한 슬라이스
+    console.log("res.data", res.data);
+
     };
 
     const getSearchCocktail = async () => {
@@ -151,7 +151,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
           <Route path="/boardList" element={<BoardList />} />
-          <Route path="/boardDetail/" element={<BoardDetail />} />
+          <Route path="/boardDetail/:idx" element={<BoardDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
