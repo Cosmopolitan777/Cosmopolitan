@@ -12,8 +12,11 @@ const CocktailItem = ({item}) => {
 
   return (
     <Link to={"/cocktails/" + item.cocktail_id}>
-      {/* <div className="card" style={{width: "20rem"}}> */}
-      <div className="CocktailItemCard" style={{width: "20rem"}}>
+      {/* <div className="card"> */}
+      <div
+        className="CocktailItemCard"
+        style={{width: "20rem", color: "white"}}
+      >
         <img
           // src="/img/cocktail.jpeg"
           src={item.imagelink}
@@ -29,10 +32,11 @@ const CocktailItem = ({item}) => {
               <i className="fa-solid fa-heart" style={favoriteIconStyle}></i>
             </button>
             {/* <i class="fa-regular fa-heart" style="color: #e0e0e0;"></i> */}
-            <div className="favorite-counter">{favoriteCount}</div>
+            {/* <div className="favorite-counter">{favoriteCount}</div> */}
           </div>
         </div>
       </div>
+      {/* </div> */}
     </Link>
   );
 };

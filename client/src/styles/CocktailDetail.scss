@@ -16,13 +16,18 @@ body {
 }
 
 .CocktailDetail {
-  height: 100vh;
+  // height: 100vh;
+  height: 87vh;
+  display: flex;
+  justify-content: center;
 
   .swiper {
+    // height: 100% !important;
     height: 100% !important;
 
     .swiper-wrapper {
-      top: 10%;
+      // top: 10%;
+      top: 3%;
       transform: translateY(-10%);
     }
   }
@@ -31,3 +36,17 @@ body {
     --swiper-theme-color: #fff;
   }
 }
+
+// .container {
+//   width: 100%;
+// }
+
+// @media (max-width: 768px) {
+//   .CocktailDetail {
+//     display: flex;
+//     justify-content: center;
+//     // align-items: center;
+
+//     // left: 0;
+//   }
+// }

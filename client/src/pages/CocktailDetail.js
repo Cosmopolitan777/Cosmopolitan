@@ -46,7 +46,24 @@ const CocktailDetail = ({cocktailItems, session}) => {
         grabCursor={true}
         initialSlide={restArrNum - 1} //center 지정1
         centeredSlides={true} //center 지정1
-        slidesPerView={4}
+        // slidesPerView={4}
+        // slidesPerView={1}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+          },
+          500: {
+            slidesPerview: 4,
+
+            // centeredSlides: false,
+          },
+          768: {
+            slidesPerView: 4,
+          },
+          1024: {
+            slidesPerView: 4,
+          },
+        }}
         coverflowEffect={{
           rotate: 10, // 회전각도
           stretch: 0,
@@ -66,6 +83,7 @@ const CocktailDetail = ({cocktailItems, session}) => {
                 key={item.cocktail_id}
                 item={item}
                 session={session}
+
                 // average={item.vote_average}
               />{" "}
             </SwiperSlide>

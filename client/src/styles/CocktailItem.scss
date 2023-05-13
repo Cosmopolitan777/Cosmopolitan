@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  // background-color: black;
 }
 // my card
 // .card {
@@ -33,11 +34,17 @@
 
 // bootstrap
 // .card {
+//   background-color: black;
+// }
+
 .CocktailItemCard {
   max-width: 240px;
+
   .CocktailItemImage {
     max-height: 200px !important;
     object-fit: cover;
+    // display: flex;
+    // justify-content: center;
   }
 }
 // img {
@@ -54,7 +61,26 @@
 .favorite-counter {
   font-size: 18px;
 }
+.card-title {
+  text-decoration: underline;
+  text-decoration-color: black;
+}
+.favorite-container {
+  display: inline;
+}
 // .card:hover {
 //   transform: rotateY(180deg);
 //   transition: ease-in-out 600ms;
 // }
+@media (max-width: 758px) {
+  .card {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+  }
+  .card-body {
+    font-size: x-small;
+  }
+  img {
+    width: 50%;
+  }
+}
