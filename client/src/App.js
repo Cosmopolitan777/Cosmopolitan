@@ -32,8 +32,6 @@ function App() {
       console.log("res.data", res.data);
     };
 
-    const 3st search", searchCocktailList);
-    };
 
     const getSession = async () => {
       const [sessionId] = (await axios.get(`${API_BASE_URL}/`)).data;
