@@ -9,6 +9,7 @@ exports.main = async (req, res) => {
 exports.read = async (req, res) => {
   try {
     const result = await Models.Community.findAll({});
+    console.log("?????????read>>", result);
     res.send(result);
   } catch (e) {
     console.log(e);
@@ -24,6 +25,7 @@ exports.create = async (req, res) => {
       writer: req.body.writer,
       content: req.body.content,
     });
+
     res.send(result);
   } catch (e) {
     console.log(e);

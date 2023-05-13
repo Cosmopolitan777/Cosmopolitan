@@ -25,10 +25,9 @@ function App() {
   useEffect(() => {
     console.log("mount 완료");
     const getCocktails = async () => {
-    const res = await axios.get(`${API_BASE_URL}/cocktail/showlist`);
-    setCocktailItems(res.data.slice(0, 20)); //테스트를 위한 슬라이스
-    console.log("res.data", res.data);
-
+      const res = await axios.get(`${API_BASE_URL}/cocktail/showlist`);
+      setCocktailItems(res.data.slice(0, 20)); //테스트를 위한 슬라이스
+      console.log("res.data", res.data);
     };
 
     const getSearchCocktail = async () => {
@@ -43,7 +42,7 @@ function App() {
     const getSession = async () => {
       const [sessionId] = (await axios.get(`${API_BASE_URL}/`)).data;
       setSession(sessionId);
-      console.log("sessionId>>", sessionId);
+      console.log("sessionId>>", sessionId); //3
     };
     //해당 유저에 대한 찜한 칵테일 아이디 배열 반환 ; 예) [4]
     const postZzim = async () => {
