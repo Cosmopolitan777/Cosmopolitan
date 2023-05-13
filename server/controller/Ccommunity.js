@@ -9,7 +9,7 @@ exports.main = async (req, res) => {
 exports.read = async (req, res) => {
   try{
     const result = await Models.Community.findAll({
-      attributes:["idx"]
+      // attributes:["idx"]
     });
     res.send(result);
   }catch(e){
@@ -26,7 +26,7 @@ exports.create = async (req, res) => {
       writer: req.body.writer,
       content: req.body.content,
     });
-    res.send("1");
+    res.send("result");
   }catch(e){
     console.log(e);
     res.send("0");
@@ -49,7 +49,7 @@ exports.update= async (req, res) => {
     res.end();
   }catch(e){
     console.log(e);
-    res.send("0");    
+    res.send("0");
   }
 };
 
@@ -80,7 +80,7 @@ exports.showtext  = async (req,res) =>{
     console.log(e);
     res.send("0");
   }
-  
+
 };
 
 
