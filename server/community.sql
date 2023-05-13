@@ -1,4 +1,4 @@
-use codingon;
+use kdt;
 create table community (
                            idx int not null primary key auto_increment,
                            title varchar(50) not null,

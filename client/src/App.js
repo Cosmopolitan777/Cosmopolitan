@@ -13,6 +13,8 @@ import Join from "./pages/Join";
 import BoardList from "./pages/BoardList";
 import BoardDetail from "./pages/BoardDetail";
 
+import KakaoLogin from "./components/KakaoLogin";
+
 axios.defaults.withCredentials = true;
 function App() {
   const [cocktailItems, setCocktailItems] = useState([]);
@@ -32,7 +34,7 @@ function App() {
     const getSession = async () => {
       const [sessionId] = (await axios.get(`${API_BASE_URL}/`)).data;
       setSession(sessionId);
-      console.log("sessionId>>", sessionId);
+      console.log("sessionId>>", sessionId); //3
     };
     //해당 유저에 대한 찜한 칵테일 아이디 배열 반환 ; 예) [4]
     const postZzim = async () => {
@@ -130,9 +132,12 @@ function App() {
               />
             }
           />
-          {/* <Route path="/Mypage/:Like" element={<Like />} /> */}
+          {/*<Route path="/Mypage/:Like" element={<Like />} />*/}
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
+
+          <Route path="/auth" element={<KakaoLogin />} />
+
           <Route path="/boardList" element={<BoardList />} />
           <Route path="/boardDetail/:idx" element={<BoardDetail />} />
           <Route path="*" element={<NotFound />} />

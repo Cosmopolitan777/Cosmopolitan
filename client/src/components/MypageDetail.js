@@ -123,9 +123,18 @@ export const Recommendation = ({recommends}) => {
 
 //(3) 회원정보 수정
 export function InformationModify() {
+  const [userInfo, setUserInfo] = useState();
   const [userId, setUserId] = useState("");
   const [userPw, setUserPw] = useState("");
   const [userName, setUserName] = useState("");
+  useEffect(() => {
+    const getMyProfile = async () => {
+      const userInfo = await axios.get(`${API_BASE_URL}/my_profile`);
+    };
+    getMyProfile();
+    setUserInfo(userInfo);
+  }, []);
+  console.log("getMyProfile userInfo>>>", userInfo);
 
   const validateForm = () => {
     return userId.length > 0 && userPw.length > 0 && userName.length > 0;
@@ -137,38 +146,20 @@ export function InformationModify() {
     console.log(userPw);
     console.log(userName);
 
-    axios({
-      method: "post",
-      url: `${API_BASE_URL}/result`,
-      data: {
-        userId: userId,
-        userPw: userPw,
-        userName: userName,
-      },
-    }).then(res => console.log(res));
+    //   axios({
+    //     method: "post",
+    //     url: `${API_BASE_URL}/result`,
+    //     data: {
+    //       userId: userId,
+    //       userPw: userPw,
+    //       userName: userName,
+    //     },
+    //   }).then(res => console.log(res));
   };
 
   return (
     <div className="InformationModify">
-      <div
-        className="InformationModify2"
-        style={
-          {
-            // 회색 박스 가운데 정렬
-            // display: "flex",
-            // justifyContent: "left",
-          }
-        }
-        //   // backgroundColor: "rgb(18, 18, 18)",
-        //   height: "800px",
-        //   width: "800px",
-        //   padding: "20%",
-        //   // margin: "0 5%",
-        //   borderRadius: "6px",
-        //   // color: "#FCFCFC",
-        //   color: "black",
-        // }}
-      >
+      <div className="InformationModify2">
         <div
           style={{
             width: "20rem",
@@ -193,6 +184,22 @@ export function InformationModify() {
 
             <Form.Group
               size="lg"
+              controlId="password"
+              className="InformationModify2"
+            >
+              <Form.Label>비밀번호</Form.Label>
+
+              <Form.Control
+                type="password"
+                value={userPw}
+                onChange={e => setUserPw(e.target.value)}
+                style={{fontFamily: "Jalnan"}}
+                placeholder="passwaord"
+              />
+            </Form.Group>
+
+            <Form.Group
+              size="lg"
               controlId="name"
               className="InformationModify2"
             >
@@ -204,22 +211,6 @@ export function InformationModify() {
                 onChange={e => setUserName(e.target.value)}
                 // style={{backgroundColor: "#212529"}}
                 placeholder="name"
-              />
-            </Form.Group>
-            <Form.Group
-              size="lg"
-              controlId="password"
-              className="InformationModify2"
-            >
-              <Form.Label>비밀번호</Form.Label>
-
-              <Form.Control
-                type="password"
-                value={userPw}
-                onChange={e => setUserPw(e.target.value)}
-                // style={{backgroundColor: "#212529"}}
-
-                placeholder="passwaord"
               />
             </Form.Group>
 
@@ -239,7 +230,27 @@ export function InformationModify() {
                 수정
               </Button>
             </div>
-            <br />
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "30px 0",
+              }}
+            >
+              <Button
+                blocksize="xx-lg"
+                type="submit"
+                disabled={!validateForm()}
+                style={{
+                  width: "350px",
+                  backgroundColor: "red",
+                  border: "1px solid red",
+                }}
+              >
+                회원 탈퇴
+              </Button>
+            </div>
           </Form>
         </div>
       </div>
@@ -259,7 +270,7 @@ const LikeListItem = ({item}) => {
           alt="test image"
           style={{padding: "20px"}}
         />
-        <div className="card-body" style={{color: "white"}}>
+        <div className="card-body">
           <p className="card-title">{item.name}</p>
         </div>
       </div>
