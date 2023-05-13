@@ -4,11 +4,13 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {API_BASE_URL} from "../app-config";
 import axios from "axios";
+import {Navigate, useNavigate} from "react-router-dom";
 import "../styles/Login.scss";
 
 export default function Login() {
-  const [userId, setUserId] = useState("");
+  const navigate = useNavigate();
 
+  const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
 
   const validateForm = () => {
@@ -17,8 +19,9 @@ export default function Login() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    // console.log(userId);
+    console.log(userId);
     // console.log(password);
+    // console.log("!!!!!!!!!!!!!!!!!!!!")
     axios({
       method: "post",
       url: `${API_BASE_URL}/checkLogin`,
@@ -31,8 +34,49 @@ export default function Login() {
       res => res.data.hasInfo && (document.location.href = "/"),
     );
   };
-  const postKakao = async () => {
-    await axios.post(`${API_BASE_URL}/auth/kakao`);
+
+  const kakaoHandleSubmit = event => {
+    event.preventDefault();
+    const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
+    console.log("*** REST_API_KEY", REST_API_KEY);
+    const REDIRECT_URI = process.env.REACT_APP_URL;
+    const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+    window.location.href = link;
+
+    // console.log(userId);
+    // console.log(password);
+    const userid = event.target.getAttribute("data-id");
+    const Password = event.target.getAttribute("data-pw");
+
+    console.log("####################", Password);
+    axios({
+      method: "post",
+      url: `${API_BASE_URL}/checkKakaoLogin`,
+      data: {
+        userId: userid,
+        password: Password,
+      },
+    })
+      .then(response => {
+        if (response.data.hasInfo) {
+          navigate("/", {replace: true});
+        } else {
+          alert("로그인에 실패했습니다.");
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        alert("서버와의 통신에 실패했습니다.");
+      });
+  };
+  const loginHandler = () => {
+    const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
+    console.log("*** REST_API_KEY", REST_API_KEY);
+    const REDIRECT_URI = process.env.REACT_APP_URL;
+    const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+    window.location.href = link;
   };
 
   return (
@@ -75,6 +119,7 @@ export default function Login() {
           <img alt="kakao" src="img/kakao_login.png" />
         </button>
 
+
         <Button
           blocksize="lg"
           type="submit"
@@ -83,9 +128,11 @@ export default function Login() {
         >
           Login
         </Button>
+
         <br />
       </Form>
-      {/* </div> */}
+      {/*<button data-id ={'정유진'} data-pw ={'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODM5NjA5Njh9.4-Li0MTMuA6EebEYEYtlP2zYU2cW7jzgRvskg2jk7iE'} data-email={"baby2783@naver.com"} onClick={kakaoHandleSubmit}>카카오 로그인하기</button>*/}
+      <button onClick={kakaoHandleSubmit}>카카오 로그인하기</button>
     </div>
   );
 }
