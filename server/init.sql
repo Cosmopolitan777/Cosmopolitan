@@ -34,7 +34,7 @@
 -- SELECT * FROM todo;
 
 
-use codingon;
+use kdt;
 DROP TABLE IF EXISTS user;
 create table user (
                       id int not null primary key auto_increment,
