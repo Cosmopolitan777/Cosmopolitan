@@ -36,7 +36,11 @@ export const LikeList = ({zzimCocktailInfos}) => {
           {zzimCocktailInfos[0] ? (
             zzimCocktailInfos.map(item => (
               <div className="col mt-3" style={{padding: "0 0 10px 0"}}>
-                <LikeListItem key={item.cocktail_id} item={item} />
+                <LikeListItem
+                  key={item.cocktail_id}
+                  item={item}
+                  eachItems={zzimCocktailInfos}
+                />
               </div>
             ))
           ) : (
@@ -108,7 +112,11 @@ export const Recommendation = ({recommends}) => {
         {recommends ? (
           recommends.map(item => (
             <div className="col mt-3">
-              <LikeListItem key={item.cocktail_id} item={item} />
+              <LikeListItem
+                key={item.cocktail_id}
+                item={item}
+                eachItems={recommends}
+              />
             </div>
           ))
         ) : (
@@ -291,9 +299,14 @@ export function InformationModify() {
 
 // LikeList에 들어가는 하위 컴포넌트
 
-const LikeListItem = ({item}) => {
+const LikeListItem = ({item, eachItems}) => {
   return (
-    <Link to={"/cocktails/" + item.cocktail_id}>
+    <Link
+      to={"/cocktails/" + item.cocktail_id}
+      state={{
+        eachPageItems: eachItems, // 해당 칵테일 목록 넘겨줌 ex) 찜 관련 칵테일 목록
+      }}
+    >
       <div className="CocktailItemCard" style={{width: "20rem"}}>
         <img
           src={item.imagelink}
