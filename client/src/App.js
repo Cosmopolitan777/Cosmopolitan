@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Join from "./pages/Join";
 import BoardList from "./pages/BoardList";
 import BoardDetail from "./pages/BoardDetail";
+
 axios.defaults.withCredentials = true;
 function App() {
   const [cocktailItems, setCocktailItems] = useState([]);
@@ -19,18 +20,29 @@ function App() {
   const [recommends, setRecommends] = useState();
   const [zzims, setZzims] = useState([]);
   const [stars, setStars] = useState([]);
+  const [cocktailWord, setCocktailWord] = useState("");
 
   useEffect(() => {
     console.log("mount 완료");
     const getCocktails = async () => {
       const res = await axios.get(`${API_BASE_URL}/cocktail/showlist`);
-      setCocktailItems(res.data.slice(0, 10)); //테스트를 위한 슬라이스
+      setCocktailItems(res.data.slice(0, 20)); //테스트를 위한 슬라이스
       console.log("res.data", res.data);
     };
+
+    const getSearchCocktail = async () => {
+      console.log("cocktailword", cocktailWord);
+      const searchCocktailList = (
+        await axios.get(`${API_BASE_URL}/cocktail/searchcock/${cocktailWord}`)
+      ).data;
+      setCocktailItems(searchCocktailList.slice(0, 10));
+      console.log("searchCocktailList search", searchCocktailList);
+    };
+
     const getSession = async () => {
       const [sessionId] = (await axios.get(`${API_BASE_URL}/`)).data;
       setSession(sessionId);
-      console.log("sessionId>>", sessionId);
+      console.log("sessionId>>", sessionId); //3
     };
     //해당 유저에 대한 찜한 칵테일 아이디 배열 반환 ; 예) [4]
     const postZzim = async () => {
@@ -54,7 +66,12 @@ function App() {
       }
     };
 
-    getCocktails();
+    if (cocktailWord !== "") {
+      getSearchCocktail();
+    } else {
+      getCocktails();
+    }
+
     getSession();
     postZzim();
     postStar();
@@ -72,11 +89,29 @@ function App() {
     setRecommends(res.data);
     // console.log(" recommends res.data", res.data);
   };
+  // 칵테일 검색
+  const getCocktailWord = word => {
+    console.log(word);
+    setCocktailWord(word);
+    console.log("cocktailword", cocktailWord);
+  };
 
   return (
     <div className="App">
       <BrowserRouter>
-        {session ? <LoginHeader getLogout={getLogout} /> : <Header />}
+        {session ? (
+          <LoginHeader
+            getLogout={getLogout}
+            cocktailWord={cocktailWord}
+            setCocktailWord={setCocktailWord}
+          />
+        ) : (
+          <Header
+            cocktailWord={cocktailWord}
+            setCocktailWord={setCocktailWord}
+            getCocktailWord={getCocktailWord}
+          />
+        )}
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route
@@ -115,7 +150,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
           <Route path="/boardList" element={<BoardList />} />
-          <Route path="/boardDetail/" element={<BoardDetail />} />
+          <Route path="/boardDetail/:idx" element={<BoardDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

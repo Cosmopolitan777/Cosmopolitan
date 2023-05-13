@@ -28,6 +28,7 @@ export default function Join() {
       },
     }).then(async res => {
       if (res.data.hasId) {
+        alert("이미 존재하는 아이디입니다");
         return;
       }
       await axios({
@@ -39,13 +40,15 @@ export default function Join() {
           userName: userName,
         },
       }).then(res => {
-        console.log(res.data);
+        {
+          res.data && (document.location.href = "/");
+        }
       });
     });
   };
 
   return (
-    <div className="Jogin" style={{width: "500px", color: "white"}}>
+    <div className="Jogin" style={{width: "500px", color: "black"}}>
       <Form onSubmit={handleSubmit}>
         <h3>회원가입</h3>
         <Form.Group size="lg" controlId="id" style={{margin: "20px 0"}}>

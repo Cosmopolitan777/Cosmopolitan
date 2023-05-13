@@ -15,7 +15,7 @@ exports.readCocks = async (req, res) => {
 // (2) GET /searchcock/:searchWord - show cocktail id
 exports.searchCocks = async (req,res) =>{
     const result = await models.Cocktail.findAll({
-        attributes:['cocktail_id'],
+
         where:{
             name:{
                 [Op.like]:"%"+req.params.searchWord+"%"

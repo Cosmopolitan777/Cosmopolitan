@@ -4,8 +4,23 @@
   box-sizing: border-box;
 }
 .search-bar {
-  margin: 16px 16px 0px 16px;
+  margin: 16px 16px 16px 16px;
+  color: white;
 }
 .search-item {
   padding: 8px;
+}
+.mt-3 {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  // left: 20px;
+  left: 2%;
+}
+
+@media (max-width: "768px") {
+  .mt-3 {
+    position: relative;
+    left: 10%;
+  }
 }

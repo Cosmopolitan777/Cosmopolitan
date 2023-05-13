@@ -98,7 +98,16 @@ exports.postResult = async (req, res) => {
     name: req.body.userName,
   });
 
-  res.send(result);
+  const idx = await models.User.findOne({
+    attribute: ["id"],
+    where: {userid: req.body.userId},
+    row: true,
+  });
+  console.log("idx.id>>>>>>>>>>", idx.id);
+
+  req.session.name = idx.id;
+
+  res.send(true);
 };
 
 //(7) 내정보 화면
@@ -125,10 +134,18 @@ exports.postMyProfile = async (req, res) => {
 //(8) 내정보 수정 화면
 exports.patchUserInfo = async (req, res) => {
   console.log("내정보 수정 patchUserInfo req.body", req.body);
-
-  const saltRounds = 10;
-  const hashedPw = await bcrypt.hash(req.body.pw, saltRounds);
-
+  const user = await models.User.findOne({
+    where: {
+      id: req.body.id,
+    },
+  });
+  let hashedPw;
+  if (req.body.pw) {
+    const saltRounds = 10;
+    hashedPw = await bcrypt.hash(req.body.pw, saltRounds);
+  } else {
+    hashedPw = user.pw;
+  }
   const response = await models.User.update(
     //     Update user set userId='${data.userId}', pw    ='${data.pw}', name='${data.name}' where id = '${data.id}'
     {
