@@ -60,11 +60,9 @@ function App() {
       }
     };
 
-    if (cocktailWord !== "") {
-      getSearchCocktail();
-    } else {
+    
     getCocktails();
-    }
+    
 
     getSession();
     postZzim();

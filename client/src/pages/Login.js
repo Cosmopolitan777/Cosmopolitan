@@ -138,7 +138,7 @@ export default function Login() {
        
       
       {/*<button data-id ={'정유진'} data-pw ={'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODM5NjA5Njh9.4-Li0MTMuA6EebEYEYtlP2zYU2cW7jzgRvskg2jk7iE'} data-email={"baby2783@naver.com"} onClick={kakaoHandleSubmit}>카카오 로그인하기</button>*/}
-      
+    </Form>
     </div>
   );
 }
