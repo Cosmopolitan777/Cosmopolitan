@@ -6,7 +6,7 @@ import Editor from "../components/Editor";
 import BoardListItem from "../components/BoardListItem";
 import {API_BASE_URL} from "../app-config";
 
-const BoardList = () => {
+const BoardList = ({boards}) => {
   const [boardItems, setBoardItems] = useState([]);
 
   useEffect(() => {
@@ -16,6 +16,7 @@ const BoardList = () => {
       console.log(res.data);
       setBoardItems(res.data);
     };
+
     getBoards();
   }, []);
 
@@ -30,19 +31,20 @@ const BoardList = () => {
 
   const deleteBoard = async targetBoard => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      await axios.post(`${API_BASE_URL}/community/td`, {id: targetBoard.id});
+      await axios.post(`${API_BASE_URL}/community/td`, {idx: targetBoard.idx});
       const newBoardItems = boardItems.filter(
-        board => board.idx !== targetBoard.idx,
+        board => board.idx != targetBoard.idx,
       );
       setBoardItems(newBoardItems);
     }
   };
 
   const updateBoard = async targetBoard => {
-    await axios.patch(
-      `${API_BASE_URL}/community/tu/${targetBoard.idx}`,
-      targetBoard,
-    );
+    await axios.patch(`${API_BASE_URL}/community/tu`, {
+      id: targetBoard.id,
+      title: targetBoard.title,
+      content: targetBoard.content,
+    });
   };
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -55,7 +57,7 @@ const BoardList = () => {
 
   return (
     <>
-      <Editor addBoard={addBoard} />
+      <Editor addBoard={addBoard} updateBoard={updateBoard} />
       <div className="BoardListContainer">
         <Table striped bordered hover responsive style={{textAlign: "center"}}>
           <thead>

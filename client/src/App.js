@@ -22,6 +22,7 @@ function App() {
   const [recommends, setRecommends] = useState();
   const [zzims, setZzims] = useState([]);
   const [stars, setStars] = useState([]);
+  const [boards, setBoards] = useState([]);
 
   useEffect(() => {
     console.log("mount 완료");
@@ -57,6 +58,14 @@ function App() {
         starList && setStars(starList);
       }
     };
+
+    const getBoards = async () => {
+      const res = await axios.get(`${API_BASE_URL}/community/tr`);
+      console.log(res.data);
+      setBoards(res.data);
+    };
+
+    getBoards();
 
     getCocktails();
 
@@ -139,8 +148,11 @@ function App() {
 
           <Route path="/auth" element={<KakaoLogin />} />
 
-          <Route path="/boardList" element={<BoardList />} />
-          <Route path="/boardDetail/:idx" element={<BoardDetail />} />
+          <Route path="/boardList" element={<BoardList boards={boards} />} />
+          <Route
+            path="/boardDetail/:idx"
+            element={<BoardDetail boards={boards} />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
