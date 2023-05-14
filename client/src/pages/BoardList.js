@@ -6,7 +6,7 @@ import Editor from "../components/Editor";
 import BoardListItem from "../components/BoardListItem";
 import {API_BASE_URL} from "../app-config";
 
-const BoardList = ({boards}) => {
+const BoardList = ({session}) => {
   const [boardItems, setBoardItems] = useState([]);
 
   useEffect(() => {
@@ -57,7 +57,16 @@ const BoardList = ({boards}) => {
 
   return (
     <>
-      <Editor addBoard={addBoard} updateBoard={updateBoard} />
+      {session ? (
+        <Editor
+          addBoard={addBoard}
+          updateBoard={updateBoard}
+          session={session}
+        />
+      ) : (
+        <div></div>
+      )}
+
       <div className="BoardListContainer">
         <Table striped bordered hover responsive style={{textAlign: "center"}}>
           <thead>

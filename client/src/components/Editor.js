@@ -1,15 +1,26 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
+import {API_BASE_URL} from "../app-config";
 import "../styles/Editor.scss";
 
-const Editor = ({addBoard, updateBoard}) => {
+const Editor = ({addBoard, updateBoard, session}) => {
   const [boardItem, setBoardItem] = useState({
     title: "",
     writer: "",
     content: "",
   });
+
+  useEffect(() => {
+    const getMyProfile = async () => {
+      const res = await axios.get(`${API_BASE_URL}/my_profile`);
+      console.log(res.data.userName);
+      setBoardItem({...boardItem, writer: res.data.userName});
+    };
+    getMyProfile();
+  }, []);
 
   // Modal
   const [show, setShow] = useState(false);
@@ -25,11 +36,6 @@ const Editor = ({addBoard, updateBoard}) => {
       addBoard(boardItem);
       alert("게시글 등록이 완료되었습니다.");
     }
-    setBoardItem({
-      title: "",
-      writer: "",
-      content: "",
-    });
     setShow(false);
   };
   const onCancel = () => setShow(false);

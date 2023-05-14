@@ -148,7 +148,10 @@ function App() {
 
           <Route path="/auth" element={<KakaoLogin />} />
 
-          <Route path="/boardList" element={<BoardList boards={boards} />} />
+          <Route
+            path="/boardList"
+            element={<BoardList boards={boards} session={session} />}
+          />
           <Route
             path="/boardDetail/:idx"
             element={<BoardDetail boards={boards} />}
