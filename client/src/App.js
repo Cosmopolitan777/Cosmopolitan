@@ -3,7 +3,6 @@ import CocktailList from "./pages/CocktailList";
 import {useState, useEffect} from "react";
 import CocktailDetail from "./pages/CocktailDetail";
 import axios from "axios";
-// import {process.env.REACT_APP_DB_HOST} from "./app-config";
 import MainPage from "./pages/MainPage";
 import {Header, LoginHeader} from "./components/Header";
 import Mypage from "./pages/Mypage";
@@ -26,6 +25,14 @@ function App() {
 
   useEffect(() => {
     console.log("mount 완료");
+    console.log("REACT_APP_DB_HOST", process.env.REACT_APP_DB_HOST);
+    console.log("REACT_APP_MODE", process.env.REACT_APP_MODE);
+    console.log("REACT_APP_REST_API_KEY", process.env.REACT_APP_REST_API_KEY);
+    console.log("CLIENT_SECRET", process.env.CLIENT_SECRET);
+    console.log("REACT_APP_URL", process.env.REACT_APP_URL);
+    console.log("REST_API_KEY", process.env.REST_API_KEY);
+    console.log("REDIRECT_URI", process.env.REDIRECT_URI);
+    console.log("SECRET_KEY", process.env.SECRET_KEY);
     const getCocktails = async () => {
       const res = await axios.get(
         `${process.env.REACT_APP_DB_HOST}/cocktail/showlist`,
@@ -66,6 +73,8 @@ function App() {
     };
 
     const getBoards = async () => {
+      console.log("0042!!!");
+      console.log(process.env.REACT_APP_DB_HOST);
       const res = await axios.get(
         `${process.env.REACT_APP_DB_HOST}/community/tr`,
       );

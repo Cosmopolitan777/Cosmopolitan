@@ -4,7 +4,6 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Editor from "../components/Editor";
 import BoardListItem from "../components/BoardListItem";
-// import {process.env.REACT_APP_DB_HOST} from "../app-config";
 
 const BoardList = ({boards}) => {
   const [boardItems, setBoardItems] = useState([]);

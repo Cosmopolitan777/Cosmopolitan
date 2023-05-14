@@ -2,7 +2,6 @@ import "../styles/Login.scss";
 import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-// import {process.env.REACT_APP_DB_HOST} from "../app-config";
 import axios from "axios";
 import {Navigate, useNavigate} from "react-router-dom";
 import "../styles/Login.scss";

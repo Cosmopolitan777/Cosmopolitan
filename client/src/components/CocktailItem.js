@@ -4,7 +4,7 @@ import "../styles/CocktailItem.scss";
 import {Rating, Heart} from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import axios from "axios";
-// import {process.env.REACT_APP_DB_HOST} from "../app-config";
+
 const zzimStyles = {
   itemShapes: Heart,
   activeFillColor: "#eb52b0",

@@ -1,5 +1,4 @@
 import axios from "axios";
-// import {process.env.REACT_APP_DB_HOST} from "../app-config";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 

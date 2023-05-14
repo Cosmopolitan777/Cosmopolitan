@@ -190,8 +190,6 @@ exports.kakaoLogin = async (req, res) => {
 
     const response = await axios.post(
       "https://kauth.kakao.com/oauth/token",
-      // `grant_type=authorization_code&client_id=d458501a6c2af3febf9576dfc71847f8&redirect_uri=http://localhost:3000/auth&code=${code}`,
-      // `grant_type=authorization_code&client_id=d458501a6c2af3febf9576dfc71847f8&redirect_uri=${process.env.REACT_APP_HOST}/auth&code=${code}`,
       `grant_type=authorization_code&client_id=d458501a6c2af3febf9576dfc71847f8&redirect_uri=http://3.106.52.247:3000/auth&code=${code}`,
       {
         headers: {

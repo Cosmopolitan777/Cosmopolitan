@@ -1,4 +1,3 @@
-// import "../styles/CocktailDetail.scss";
 import "../styles/Mypage.scss";
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -7,8 +6,7 @@ import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 import {useState, useEffect} from "react";
 import axios from "axios";
-// import {process.env.REACT_APP_DB_HOST} from "../app-config";
-// import {TabsExample} from "../components/MypageDetail";
+
 import {
   InformationModify,
   LikeList,

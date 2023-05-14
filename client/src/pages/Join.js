@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-// import {process.env.REACT_APP_DB_HOST} from "../app-config";
 import axios from "axios";
 import "../styles/Join.scss";
 

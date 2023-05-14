@@ -5,7 +5,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 import "../styles/CocktailDetailCard.scss";
 import CocktailDetailCardMenu from "./CocktailDetailCardMenu";
 import axios from "axios";
-// import {process.env.REACT_APP_DB_HOST} from "../app-config";
 
 const CocktailDetailCard = ({item, session, isstar}) => {
   const [cocktailItem, setCocktailItem] = useState(item);
