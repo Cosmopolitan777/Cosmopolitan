@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {API_BASE_URL} from "../app-config";
+// import {process.env.REACT_APP_DB_HOST} from "../app-config";
 import axios from "axios";
 import "../styles/Join.scss";
 
@@ -22,7 +22,7 @@ export default function Join() {
 
     await axios({
       method: "post",
-      url: `${API_BASE_URL}/check_userid`,
+      url: `${process.env.REACT_APP_DB_HOST}/check_userid`,
       data: {
         userId: userId,
       },
@@ -33,13 +33,12 @@ export default function Join() {
       }
       await axios({
         method: "post",
-        url: `${API_BASE_URL}/result`,
+        url: `${process.env.REACT_APP_DB_HOST}/result`,
         data: {
           userId: userId,
           userPw: userPw,
           userName: userName,
         },
-    
       }).then(res => {
         {
           res.data && (document.location.href = "/");

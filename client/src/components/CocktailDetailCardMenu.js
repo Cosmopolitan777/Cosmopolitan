@@ -52,9 +52,10 @@ const CocktailDetailCardMenu = ({showItem, updateShowInfos, cocktailInfo}) => {
         </div>
         {showInfo.show && (
           <p>
-            {eachTitleContent().map(e => {
-              return <li>{e}</li>;
-            })}
+            {Array.isArray(eachTitleContent()) &&
+              eachTitleContent().map(e => {
+                return <li>{e}</li>;
+              })}
           </p>
         )}
       </ListGroup.Item>

@@ -5,7 +5,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import "../styles/CocktailDetailCard.scss";
 import CocktailDetailCardMenu from "./CocktailDetailCardMenu";
 import axios from "axios";
-import {API_BASE_URL} from "../app-config";
+// import {process.env.REACT_APP_DB_HOST} from "../app-config";
 
 const CocktailDetailCard = ({item, session, isstar}) => {
   const [cocktailItem, setCocktailItem] = useState(item);
@@ -38,7 +38,7 @@ const CocktailDetailCard = ({item, session, isstar}) => {
     }
     const createRate = async () => {
       await axios
-        .post(`${API_BASE_URL}/evaluation`, {
+        .post(`${process.env.REACT_APP_DB_HOST}/evaluation`, {
           user_id: user_id,
           cocktail_id: item.cocktail_id,
           rating: rating,
@@ -82,17 +82,18 @@ const CocktailDetailCard = ({item, session, isstar}) => {
         <Card.Text></Card.Text>
 
         <ListGroup className="list-group-flush ListGroup">
-          {showInfos.map(showItem => {
-            return (
-              <CocktailDetailCardMenu
-                className="CocktailDetailCardMenu"
-                key={showItem.id}
-                showItem={showItem}
-                updateShowInfos={updateShowInfos}
-                cocktailInfo={item}
-              />
-            );
-          })}
+          {Array.isArray(showInfos) &&
+            showInfos.map(showItem => {
+              return (
+                <CocktailDetailCardMenu
+                  className="CocktailDetailCardMenu"
+                  key={showItem.id}
+                  showItem={showItem}
+                  updateShowInfos={updateShowInfos}
+                  cocktailInfo={item}
+                />
+              );
+            })}
         </ListGroup>
         <div className="RatingContainer">
           <Rating

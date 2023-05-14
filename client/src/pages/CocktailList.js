@@ -7,17 +7,18 @@ const CocktailList = ({cocktailItems, session, zzims}) => {
     <>
       <div className="container">
         <div className="row row-cols-4">
-          {cocktailItems.map(item => (
-            // console.log(zzims.indexOf(item.cocktail_id))
-            <div className="col mt-3">
-              <CocktailItem
-                key={item.cocktail_id}
-                item={item}
-                session={session}
-                iszzim={zzims.indexOf(item.cocktail_id) > -1 ? 1 : 0}
-              />
-            </div>
-          ))}
+          {Array.isArray(cocktailItems) &&
+            cocktailItems.map(item => (
+              // console.log(zzims.indexOf(item.cocktail_id))
+              <div className="col mt-3">
+                <CocktailItem
+                  key={item.cocktail_id}
+                  item={item}
+                  session={session}
+                  iszzim={zzims.indexOf(item.cocktail_id) > -1 ? 1 : 0}
+                />
+              </div>
+            ))}
         </div>
       </div>
       {/* pagenation */}
