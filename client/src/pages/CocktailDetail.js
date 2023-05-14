@@ -10,8 +10,12 @@ import "swiper/css/scrollbar";
 
 import "../styles/CocktailDetail.scss";
 import CocktailDetailCard from "../components/CocktailDetailCard";
+import {useLocation} from "react-router-dom";
+import CocktailDetailCardDummy from "../components/CocktailDetailCardDummy";
+import {ContactShadows} from "@react-three/drei";
 
 const CocktailDetail = ({cocktailItems, session, stars}) => {
+  const location = useLocation();
   console.log("cocktailItems>> ", cocktailItems);
   const {cocktailId} = useParams();
   const [targetProduct] = cocktailItems.filter(
@@ -20,24 +24,8 @@ const CocktailDetail = ({cocktailItems, session, stars}) => {
   if (!targetProduct) {
     return <main className="ProductDetailPage">존재하지 않는 상품입니다.</main>;
   }
-  // [10개 지정 로직]
-  const forShowCocktailItems = [];
-  //왼쪽 최대 4개
-  for (let i = 1; i < 5; i++) {
-    if (cocktailItems[cocktailId - 1 - i] !== undefined) {
-      forShowCocktailItems.push(cocktailItems[cocktailId - 1 - i]);
-    }
-  }
-  forShowCocktailItems.reverse();
-  //해당 아이템 아이디
-  forShowCocktailItems.push(cocktailItems[cocktailId - 1]);
-  // //나머지
-  const restArrNum = forShowCocktailItems.length;
-  for (let i = 1; i < 11 - restArrNum; i++) {
-    if (cocktailItems[cocktailId - 1 + i] !== undefined) {
-      forShowCocktailItems.push(cocktailItems[cocktailId - 1 + i]);
-    }
-  }
+
+  var forShowCocktailItems = cocktailItems;
   // [저장된 별점 관련 로직]
   const existCockIds = [];
   const existStarRates = [];
@@ -46,22 +34,45 @@ const CocktailDetail = ({cocktailItems, session, stars}) => {
     existStarRates.push(s["rating"]);
   }
 
+  // link에서 넘긴 각 페이지 해당 목록 받아옴
+  if (location.state !== null && location.state.eachPageItems !== undefined) {
+    forShowCocktailItems = location.state.eachPageItems;
+    console.log("eachPageItems");
+    console.log(location.state.eachPageItems);
+  }
+  console.log("linkItems>>", forShowCocktailItems);
+
+  // 해당 prams의 인덱스 찾기
+  for (const obj of forShowCocktailItems) {
+    if (Number(obj["cocktail_id"]) === Number(cocktailId)) {
+      var targetIdx = forShowCocktailItems.indexOf(obj);
+      break;
+    }
+  }
+  // 슬라이드 수 고정 10개이고 만약 link에서 불러온 아이템 리스트가
+  // 그보다 적을 경우 더미데이터 생성
+  if (forShowCocktailItems.length <= 10) {
+    var dummyArr = [];
+    for (let i = 1; i <= 10 - forShowCocktailItems.length; i++) {
+      dummyArr.push({key: i, idx: i});
+    }
+  }
+  console.log("dummyArr>>", dummyArr);
+
   return (
     <div className="CocktailDetail">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
-        initialSlide={restArrNum - 1} //center 지정1
+        initialSlide={targetIdx} //center 지정1
         centeredSlides={true} //center 지정1
-        // slidesPerView={4}
-        // slidesPerView={1}
+        autoHeight={true}
         breakpoints={{
           0: {
-            forShowCocktailItems: forShowCocktailItems[restArrNum - 1],
-            slidesPerView: 1,
+            slidesPerView: 4,
           },
           400: {
-            slidesPerview: 2,
+            slidesPerview: 4,
           },
           // 500: {
           //   slidesPerView: 2,
@@ -97,10 +108,15 @@ const CocktailDetail = ({cocktailItems, session, stars}) => {
                     ? existStarRates[existCockIds.indexOf(item.cocktail_id)]
                     : 0
                 }
-                // average={item.vote_average}
               />{" "}
             </SwiperSlide>
           ))}
+          {dummyArr !== undefined &&
+            dummyArr.map(item => (
+              <SwiperSlide key={item.key}>
+                <CocktailDetailCardDummy />
+              </SwiperSlide>
+            ))}
         </div>
       </Swiper>
     </div>

@@ -22,12 +22,18 @@ router.post("/check_userid", controller.postCheckUserId);
 router.post("/result", controller.postResult);
 
 //(7) 내정보 화면
-router.post("/my_profile", controller.postMyProfile);
+router.get("/my_profile", controller.getMyProfile);
 //(8) 내정보 수정 화면
 router.patch("/patchUserInfo", controller.patchUserInfo);
 //(9) 회원 탈퇴
 router.delete("/my_profile/delete", controller.deleteUserInfo);
 //(10) 로그 아웃
 router.get("/logout", session.deleteSession);
+
+// kakao 로그인을 위한 토큰 보내기
+router.post("/kakaoLogin", controller.kakaoLogin);
+// router.post("/checkLogin", controller.kakaoLogin);
+// kakao 로그인
+router.post("/checkKakaoLogin", controller.checkKakaoLogin)
 
 module.exports = router;

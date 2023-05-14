@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const session = require("express-session"); // 세션 설정
 const dotenv = require("dotenv"); // 키값 암호화
+const bodyParser = require('body-parser');
 const cors = require("cors");
 const PORT = 8080;
 

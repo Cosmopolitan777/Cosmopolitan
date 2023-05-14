@@ -31,10 +31,18 @@ const User = (Sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: true,
       },
-      // provider: {
-      //   type: DataTypes.TEXT,
-      //   allowNull: true,
-      // },
+      snsPw: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      email: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      provider: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
     },
     {
       tableName: "user", // 실제 테이블 명

@@ -21,7 +21,11 @@ export const LikeList = ({zzimCocktailInfos}) => {
           {zzimCocktailInfos[0] ? (
             zzimCocktailInfos.map(item => (
               <div className="col mt-3" style={{padding: "0 0 10px 0"}}>
-                <LikeListItem key={item.cocktail_id} item={item} />
+                <LikeListItem
+                  key={item.cocktail_id}
+                  item={item}
+                  eachItems={zzimCocktailInfos}
+                />
               </div>
             ))
           ) : (
@@ -93,7 +97,11 @@ export const Recommendation = ({recommends}) => {
         {recommends ? (
           recommends.map(item => (
             <div className="col mt-3">
-              <LikeListItem key={item.cocktail_id} item={item} />
+              <LikeListItem
+                key={item.cocktail_id}
+                item={item}
+                eachItems={recommends}
+              />
             </div>
           ))
         ) : (
@@ -108,52 +116,64 @@ export const Recommendation = ({recommends}) => {
 
 //(3) 회원정보 수정
 export function InformationModify() {
-  const [userId, setUserId] = useState("");
-  const [userPw, setUserPw] = useState("");
-  const [userName, setUserName] = useState("");
+  const [userInfo, setUserInfo] = useState({
+    userId: "",
+    userPw: "",
+    userName: "",
+  });
+
+  useEffect(() => {
+    //(3-1) 유저정보 받아옴
+    const getMyProfile = async () => {
+      const res = await axios.get(`${API_BASE_URL}/my_profile`);
+      setUserInfo(res.data);
+    };
+    getMyProfile();
+  }, []);
+  console.log("getMyProfile userInfo>>>", userInfo);
 
   const validateForm = () => {
-    return userId.length > 0 && userPw.length > 0 && userName.length > 0;
+    return (
+      userInfo.userId.length > 0 &&
+      userInfo.userPw.length > 0 &&
+      userInfo.userName.length > 0
+    );
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(userId);
-    console.log(userPw);
-    console.log(userName);
-
+    //(3-2) 클릭 시 수정 patchUserInfo
     axios({
-      method: "post",
-      url: `${API_BASE_URL}/result`,
+      method: "patch",
+      url: `${API_BASE_URL}/patchUserInfo`,
       data: {
-        userId: userId,
-        userPw: userPw,
-        userName: userName,
+        userId: userInfo.userId,
+        userPw: userInfo.userPw,
+        userName: userInfo.userName,
       },
-    }).then(res => console.log(res));
+    }).then(res => {
+      res.data.hasSuccess && alert("수정이 완료되었습니다");
+    });
+  };
+  //(3-3) 회원 탈퇴
+  const deleteUserInfo = async () => {
+    if (window.confirm("회원 탈퇴를 원하십니까?")) {
+      await axios({
+        method: "delete",
+        url: `${API_BASE_URL}/my_profile/delete`,
+      }).then(res => {
+        console.log(res.data);
+        if (res.data) {
+          alert("회원 탈퇴를 성공했습니다");
+          document.location.href = "/";
+        }
+      });
+    }
   };
 
   return (
     <div className="InformationModify">
-      <div
-        className="InformationModify2"
-        style={
-          {
-            // 회색 박스 가운데 정렬
-            // display: "flex",
-            // justifyContent: "left",
-          }
-        }
-        //   // backgroundColor: "rgb(18, 18, 18)",
-        //   height: "800px",
-        //   width: "800px",
-        //   padding: "20%",
-        //   // margin: "0 5%",
-        //   borderRadius: "6px",
-        //   // color: "#FCFCFC",
-        //   color: "black",
-        // }}
-      >
+      <div className="InformationModify2">
         <div
           style={{
             width: "20rem",
@@ -169,10 +189,32 @@ export function InformationModify() {
               <Form.Control
                 autoFocus
                 type="text"
-                value={userId}
-                onChange={e => setUserId(e.target.value)}
+                value={userInfo && userInfo.userId}
+                onChange={e => {
+                  const {userId, ...rest} = userInfo;
+                  setUserInfo({...rest, userId: e.target.value});
+                }}
                 // style={{backgroundColor: "#212529"}}
                 placeholder="ID"
+              />
+            </Form.Group>
+
+            <Form.Group
+              size="lg"
+              controlId="password"
+              className="InformationModify2"
+            >
+              <Form.Label>비밀번호</Form.Label>
+
+              <Form.Control
+                type="password"
+                value={userInfo && userInfo.userPw}
+                onChange={e => {
+                  const {userPw, ...rest} = userInfo;
+                  setUserInfo({...rest, userPw: e.target.value});
+                }}
+                style={{fontFamily: "Jalnan"}}
+                placeholder="passwaord"
               />
             </Form.Group>
 
@@ -185,26 +227,13 @@ export function InformationModify() {
               {/* <div>닉네임</div> */}
               <Form.Control
                 type="text"
-                value={userName}
-                onChange={e => setUserName(e.target.value)}
+                value={userInfo && userInfo.userName}
+                onChange={e => {
+                  const {userName, ...rest} = userInfo;
+                  setUserInfo({...rest, userName: e.target.value});
+                }}
                 // style={{backgroundColor: "#212529"}}
                 placeholder="name"
-              />
-            </Form.Group>
-            <Form.Group
-              size="lg"
-              controlId="password"
-              className="InformationModify2"
-            >
-              <Form.Label>비밀번호</Form.Label>
-
-              <Form.Control
-                type="password"
-                value={userPw}
-                onChange={e => setUserPw(e.target.value)}
-                // style={{backgroundColor: "#212529"}}
-
-                placeholder="passwaord"
               />
             </Form.Group>
 
@@ -224,7 +253,28 @@ export function InformationModify() {
                 수정
               </Button>
             </div>
-            <br />
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "30px 0",
+              }}
+            >
+              <Button
+                blocksize="xx-lg"
+                type="button"
+                disabled={!validateForm()}
+                style={{
+                  width: "350px",
+                  backgroundColor: "red",
+                  border: "1px solid red",
+                }}
+                onClick={deleteUserInfo}
+              >
+                회원 탈퇴
+              </Button>
+            </div>
           </Form>
         </div>
       </div>
@@ -234,8 +284,9 @@ export function InformationModify() {
 
 // LikeList에 들어가는 하위 컴포넌트
 
-const LikeListItem = ({item}) => {
+const LikeListItem = ({item, eachItems}) => {
   return (
+<<<<<<< HEAD
     <Link to={"/cocktails/" + item.cocktail_id}>
       <div className="ItemCardcenter">
         <div className="CocktailItemCard" style={{width: "20rem"}}>
@@ -260,6 +311,23 @@ const LikeListItem = ({item}) => {
               {item.name}
             </p>
           </div>
+=======
+    <Link
+      to={"/cocktails/" + item.cocktail_id}
+      state={{
+        eachPageItems: eachItems, // 해당 칵테일 목록 넘겨줌 ex) 찜 관련 칵테일 목록
+      }}
+    >
+      <div className="CocktailItemCard" style={{width: "20rem"}}>
+        <img
+          src={item.imagelink}
+          className="CocktailItemImage"
+          alt="test image"
+          style={{padding: "20px"}}
+        />
+        <div className="card-body">
+          <p className="card-title">{item.name}</p>
+>>>>>>> 24a3a937858a2fbcf8229002df6800b1afdcf4c0
         </div>
       </div>
     </Link>
