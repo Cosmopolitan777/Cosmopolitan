@@ -64,7 +64,8 @@ export default function Login() {
     })
       .then(response => {
         if (response.data.hasInfo) {
-          navigate("/", {replace: true});
+          // navigate("/", {replace: true});
+          document.location.href = "/";
         } else {
           alert("로그인에 실패했습니다.");
         }
@@ -115,34 +116,25 @@ export default function Login() {
             placeholder="password"
           />
         </Form.Group>
-            
-          
-          <Button
-              blocksize="lg"
-              type="submit"
-              disabled={!validateForm()}
-              style={{width: "250px", margin: "10px"}}
-          >
-            Login
-          </Button>
 
+        <Button
+          blocksize="lg"
+          type="submit"
+          disabled={!validateForm()}
+          style={{width: "250px", margin: "10px"}}
+        >
+          Login
+        </Button>
 
-          <br />
-     
-
+        <br />
 
         <button
-<<<<<<< HEAD
-          onClick={postKakao}
+          onClick={kakaoHandleSubmit}
           style={{
             width: "185px !important",
             border: "none",
             borderRadius: "10px",
           }}
-=======
-          onClick={kakaoHandleSubmit}
-          style={{width: "185px", outlineStyle: "none"}}
->>>>>>> 24a3a937858a2fbcf8229002df6800b1afdcf4c0
         >
           <img
             alt="kakao"
@@ -151,25 +143,19 @@ export default function Login() {
           />
         </button>
 
-<<<<<<< HEAD
-        <Button
-          blocksize="lg"
-          type="submit"
-          disabled={!validateForm()}
-          style={{width: "250px", margin: "5px"}}
-        >
-          Login
-        </Button>
         <br />
       </Form>
+      <button
+        data-id={"정유진"}
+        data-pw={
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODM5NjA5Njh9.4-Li0MTMuA6EebEYEYtlP2zYU2cW7jzgRvskg2jk7iE"
+        }
+        data-email={"baby2783@naver.com"}
+        onClick={kakaoHandleSubmit}
+      >
+        카카오 로그인하기
+      </button>
       {/* </div> */}
-=======
-
-       
-      
-      {/*<button data-id ={'정유진'} data-pw ={'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODM5NjA5Njh9.4-Li0MTMuA6EebEYEYtlP2zYU2cW7jzgRvskg2jk7iE'} data-email={"baby2783@naver.com"} onClick={kakaoHandleSubmit}>카카오 로그인하기</button>*/}
-    </Form>
->>>>>>> 24a3a937858a2fbcf8229002df6800b1afdcf4c0
     </div>
   );
 }
