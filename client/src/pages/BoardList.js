@@ -30,7 +30,7 @@ const BoardList = () => {
 
   const deleteBoard = async targetBoard => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      await axios.delete(`${API_BASE_URL}/community/td/${targetBoard.idx}`);
+      await axios.post(`${API_BASE_URL}/community/td`, {id: targetBoard.id});
       const newBoardItems = boardItems.filter(
         board => board.idx !== targetBoard.idx,
       );

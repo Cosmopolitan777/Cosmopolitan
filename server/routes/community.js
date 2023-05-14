@@ -16,7 +16,7 @@ router.get("/tr", controller.read);
 router.post("/tu", controller.update);
 
 //게시글 삭제
-router.delete("/td", controller.delete);
+router.post("/td", controller.delete);
 
 //특정 게시글 조회
 router.get("/st/:textidx", controller.showtext);
