@@ -4,20 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import "../styles/Editor.scss";
 
-const Editor = ({addBoard}) => {
-  function getCreateDate() {
-    const today = new Date();
-    const createDate =
-      today.getFullYear() +
-      "-" +
-      (today.getMonth() + 1 < 9
-        ? "0" + (today.getMonth() + 1)
-        : today.getMonth() + 1) +
-      "-" +
-      (today.getDate() < 9 ? "0" + today.getDate() : today.getDate());
-    return createDate;
-  }
-
+const Editor = ({addBoard, updateBoard}) => {
   const [boardItem, setBoardItem] = useState({
     title: "",
     writer: "",

@@ -13,11 +13,9 @@ const BoardListItem = ({board, deleteBoard, updateBoard}) => {
   return (
     <tr key={board.idx} board={board}>
       <td>{board.idx}</td>
-
       <td>
         <Link to={`/boardDetail/${board.idx}`}>{board.title}</Link>
       </td>
-
       <td>{board.writer}</td>
       <td>{board.updatedate}</td>
       <td className="BoardListEdit">
