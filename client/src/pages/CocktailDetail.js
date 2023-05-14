@@ -97,20 +97,21 @@ const CocktailDetail = ({cocktailItems, session, stars}) => {
         className="mySwiper"
       >
         <div className="container">
-          {forShowCocktailItems.map(item => (
-            <SwiperSlide key={item.cocktail_id}>
-              <CocktailDetailCard
-                key={item.cocktail_id}
-                item={item}
-                session={session}
-                isstar={
-                  existCockIds.indexOf(item.cocktail_id) > -1
-                    ? existStarRates[existCockIds.indexOf(item.cocktail_id)]
-                    : 0
-                }
-              />{" "}
-            </SwiperSlide>
-          ))}
+          {Array.isArray(forShowCocktailItems) &&
+            forShowCocktailItems.map(item => (
+              <SwiperSlide key={item.cocktail_id}>
+                <CocktailDetailCard
+                  key={item.cocktail_id}
+                  item={item}
+                  session={session}
+                  isstar={
+                    existCockIds.indexOf(item.cocktail_id) > -1
+                      ? existStarRates[existCockIds.indexOf(item.cocktail_id)]
+                      : 0
+                  }
+                />{" "}
+              </SwiperSlide>
+            ))}
           {dummyArr !== undefined &&
             dummyArr.map(item => (
               <SwiperSlide key={item.key}>

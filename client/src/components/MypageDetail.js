@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {API_BASE_URL} from "../app-config";
 import axios from "axios";
 
 //(1) 찜목록
@@ -125,7 +124,9 @@ export function InformationModify() {
   useEffect(() => {
     //(3-1) 유저정보 받아옴
     const getMyProfile = async () => {
-      const res = await axios.get(`${API_BASE_URL}/my_profile`);
+      const res = await axios.get(
+        `${process.env.REACT_APP_DB_HOST}/my_profile`,
+      );
       setUserInfo(res.data);
     };
     getMyProfile();
@@ -145,7 +146,7 @@ export function InformationModify() {
     //(3-2) 클릭 시 수정 patchUserInfo
     axios({
       method: "patch",
-      url: `${API_BASE_URL}/patchUserInfo`,
+      url: `${process.env.REACT_APP_DB_HOST}/patchUserInfo`,
       data: {
         userId: userInfo.userId,
         userPw: userInfo.userPw,
@@ -160,7 +161,7 @@ export function InformationModify() {
     if (window.confirm("회원 탈퇴를 원하십니까?")) {
       await axios({
         method: "delete",
-        url: `${API_BASE_URL}/my_profile/delete`,
+        url: `${process.env.REACT_APP_DB_HOST}/my_profile/delete`,
       }).then(res => {
         console.log(res.data);
         if (res.data) {

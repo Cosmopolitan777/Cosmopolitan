@@ -1,5 +1,4 @@
 import axios from "axios";
-import {API_BASE_URL} from "../app-config";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -10,7 +9,8 @@ const Redirection = () => {
 
   useEffect(() => {
     console.log(process.env.REACT_APP_URL);
-    axios.post("http://localhost:8080/kakaoLogin", code).then(r => {
+    // axios.post("http://localhost:8080/kakaoLogin", code).then(r => {
+    axios.post(`${process.env.REACT_APP_DB_HOST}/kakaoLogin`, code).then(r => {
       // console.log("is?");
       // console.log(r.data);
 
