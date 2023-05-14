@@ -54,9 +54,14 @@ function TabsExample({
               <ListGroup.Item action href="#link2" onClick={getRecommend}>
                 추천
               </ListGroup.Item>
-              <ListGroup.Item action href="#link3">
-                회원정보수정
-              </ListGroup.Item>
+              {/* 카카오 로그인 시  정보 수정 불가 - 추후 수정 필요*/}
+              {session !== 1 ? (
+                <ListGroup.Item action href="#link3">
+                  회원정보수정
+                </ListGroup.Item>
+              ) : (
+                <></>
+              )}
             </ListGroup>
           </Col>
           {/* <div> */}
@@ -73,9 +78,14 @@ function TabsExample({
                   recommends={recommends}
                 />
               </Tab.Pane>
-              <Tab.Pane eventKey="#link3">
-                <InformationModify />
-              </Tab.Pane>
+              {/* 카카오 로그인 시  정보 수정 불가 - 추후 수정 필요*/}
+              {session !== 1 ? (
+                <Tab.Pane eventKey="#link3">
+                  <InformationModify />
+                </Tab.Pane>
+              ) : (
+                <></>
+              )}
             </Tab.Content>
           </Col>
           {/* </div> */}

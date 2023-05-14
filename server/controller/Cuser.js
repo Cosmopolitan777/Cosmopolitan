@@ -251,7 +251,7 @@ exports.checkKakaoLogin = async (req, res) => {
   const response = await models.User.findOne({
     where: {
       userid: req.body.userId,
-      pw: req.body.password,
+      // pw: req.body.password,
     },
   });
   console.log("response>>>", response);
@@ -266,6 +266,8 @@ exports.checkKakaoLogin = async (req, res) => {
     if (match) {
       //세션 설정 userid로
       req.session.name = response.id;
+      console.log("##############################################");
+      console.log("req.session.name>>", req.session.name);
 
       return res.send({
         hasInfo: true,

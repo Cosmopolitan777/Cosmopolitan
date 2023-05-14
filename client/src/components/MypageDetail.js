@@ -286,32 +286,6 @@ export function InformationModify() {
 
 const LikeListItem = ({item, eachItems}) => {
   return (
-<<<<<<< HEAD
-    <Link to={"/cocktails/" + item.cocktail_id}>
-      <div className="ItemCardcenter">
-        <div className="CocktailItemCard" style={{width: "20rem"}}>
-          <img
-            src={item.imagelink}
-            className="CocktailItemImage"
-            alt="test image"
-            style={{padding: "20px"}}
-          />
-          <div className="card-body">
-            <p
-              className="card-title"
-              style={{
-                color: "black",
-                textDecoration: "underline",
-                textDecorationColor: "whitesmoke",
-                width: "130px",
-                // textAlign: "center",
-                textAlign: "center",
-              }}
-            >
-              {item.name}
-            </p>
-          </div>
-=======
     <Link
       to={"/cocktails/" + item.cocktail_id}
       state={{
@@ -326,8 +300,19 @@ const LikeListItem = ({item, eachItems}) => {
           style={{padding: "20px"}}
         />
         <div className="card-body">
-          <p className="card-title">{item.name}</p>
->>>>>>> 24a3a937858a2fbcf8229002df6800b1afdcf4c0
+          <p
+            className="card-title"
+            style={{
+              color: "black",
+              textDecoration: "underline",
+              textDecorationColor: "whitesmoke",
+              width: "130px",
+              // textAlign: "center",
+              textAlign: "center",
+            }}
+          >
+            {item.name}
+          </p>
         </div>
       </div>
     </Link>
