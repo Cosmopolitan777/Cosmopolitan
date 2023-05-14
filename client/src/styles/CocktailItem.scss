@@ -73,12 +73,17 @@
 //   transition: ease-in-out 600ms;
 // }
 @media (max-width: 758px) {
-  .card {
+  .CocktailItemCard {
     display: grid;
     grid-template-rows: 1fr 1fr;
   }
+  // .card {
+  //   display: grid;
+  //   grid-template-columns: 1fr 1fr;
+  // }
   .card-body {
     font-size: x-small;
+    width: 50px;
   }
   img {
     width: 50%;

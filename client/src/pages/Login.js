@@ -70,16 +70,24 @@ export default function Login() {
 
         <button
           onClick={postKakao}
-          style={{width: "185px", outlineStyle: "none"}}
+          style={{
+            width: "185px !important",
+            border: "none",
+            borderRadius: "10px",
+          }}
         >
-          <img alt="kakao" src="img/kakao_login.png" />
+          <img
+            alt="kakao"
+            src="img/kakao_login.png"
+            style={{width: "200px", height: "40px"}}
+          />
         </button>
 
         <Button
           blocksize="lg"
           type="submit"
           disabled={!validateForm()}
-          style={{width: "250px", margin: "10px"}}
+          style={{width: "250px", margin: "5px"}}
         >
           Login
         </Button>

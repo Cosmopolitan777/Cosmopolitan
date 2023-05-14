@@ -15,12 +15,30 @@
   justify-content: center;
   position: relative;
   // left: 20px;
-  left: 2%;
+  // left: 2%;
+  // right: 10%;
 }
+.row-cols-4 {
+  display: flex;
+  justify-content: center;
+}
+.container {
+  background-color: whitesmoke;
+  color: black;
 
+  padding: 50px 0;
+  border-radius: 25px;
+
+  .row-cols-4 {
+    position: relative;
+    left: 1.5%;
+  }
+}
 @media (max-width: "768px") {
   .mt-3 {
     position: relative;
-    left: 10%;
+    left: 5%;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
   }
 }

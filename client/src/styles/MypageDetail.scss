@@ -3,32 +3,34 @@
 // }
 
 .LikeList {
-  background-color: rgb(18, 18, 18);
+  background-color: whitesmoke;
   height: 100%;
   width: 100vh;
-
   padding: 0 10%;
   margin: 0 20%;
-  // margin: 16px 16px 0px 16px;
   border-radius: 6px;
   box-sizing: border-box;
-  color: white;
-  // color: black;
+  color: black;
+
   h3 {
     margin: 0 3%;
     padding: 5% 0;
   }
+  .container {
+    background-color: whitesmoke;
+    color: black;
+  }
 }
 
 .Recommendation {
-  background-color: rgb(18, 18, 18);
+  background-color: whitesmoke;
   height: 100%;
   width: 100vh;
   padding: 0 10%;
   margin: 0 20%;
   border-radius: 6px;
   box-sizing: border-box;
-  color: white;
+  color: black;
   // color: black;
   h3 {
     margin: 0 3%;
@@ -40,16 +42,19 @@
 }
 
 .InformationModify {
-  background-color: rgb(18, 18, 18);
-  height: 800px;
-  width: 800px;
-  padding: 20%;
-  margin: 0 50%;
+  background-color: whitesmoke;
+  // height: 800px;
+  height: 100%;
+  // width: 800px;
+  width: 100vh;
+
+  padding: 10%;
+  margin: 0 20%;
   border-radius: 6px;
   display: flex;
   justify-content: center;
   // color: "#FCFCFC",
-  color: white;
+  color: black;
   h3 {
     margin: 0 3%;
     text-align: center;
@@ -64,16 +69,15 @@
     background-color: white;
     color: black;
     width: 100%;
-    position: relative;
     top: 100px;
     left: 0;
     padding: 0;
     margin: 0;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    .card-title {
+    .mt-3 {
+      margin: 10px;
       text-align: center;
-      width: 120px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
   }
 
@@ -84,11 +88,15 @@
     left: 0;
     padding: 0;
     margin: 0;
+    // background-color: white;
     background-color: white;
     color: black;
-    .card-title {
+    .mt-3 {
       text-align: center;
+
       width: 120px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
   }
   .InformationModify {
@@ -106,10 +114,25 @@
   .CocktailItemCard {
     color: black;
     font-size: large;
+    text-decoration: underline;
+    text-decoration-color: whitesmoke;
+  }
+  .ItemCardcenter {
+    .CocktailItemCard {
+      img {
+        padding: 20px;
+      }
+      p {
+        text-align: left;
+      }
+    }
   }
 }
 
-// .CocktailItemImage {
-//   display: grid;
-//   grid-template-rows: 1fr 1fr;
-// }
+.ItemCardcenter {
+  position: relative;
+  // width: 180px;
+  left: 7%;
+  text-align: left;
+  // text-align: center;
+}
