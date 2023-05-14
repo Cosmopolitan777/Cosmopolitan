@@ -4,7 +4,7 @@ import "../styles/CocktailItem.scss";
 import {Rating, Heart} from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import axios from "axios";
-
+import {API_BASE_URL} from "../app-config";
 const zzimStyles = {
   itemShapes: Heart,
   activeFillColor: "#eb52b0",
@@ -26,7 +26,7 @@ const CocktailItem = ({item, session, iszzim}) => {
     }
     const createRate = async () => {
       await axios
-        .post(`${process.env.REACT_APP_DB_HOST}/zzim/pz`, {
+        .post(`${API_BASE_URL}/zzim/pz`, {
           user_id: user_id,
           cocktail_id: item.cocktail_id,
         })
@@ -36,7 +36,7 @@ const CocktailItem = ({item, session, iszzim}) => {
     };
     const deleteRate = async () => {
       await axios
-        .post(`${process.env.REACT_APP_DB_HOST}/zzim/dz`, {
+        .post(`${API_BASE_URL}/zzim/dz`, {
           user_id: user_id,
           cocktail_id: item.cocktail_id,
         })

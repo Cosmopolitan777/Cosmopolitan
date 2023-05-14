@@ -2,6 +2,7 @@ import "../styles/Login.scss";
 import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import {API_BASE_URL} from "../app-config";
 import axios from "axios";
 import {Navigate, useNavigate} from "react-router-dom";
 import "../styles/Login.scss";
@@ -23,7 +24,7 @@ export default function Login() {
     // console.log("!!!!!!!!!!!!!!!!!!!!")
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_DB_HOST}/checkLogin`,
+      url: `${API_BASE_URL}/checkLogin`,
       data: {
         userId: userId,
         password: password,
@@ -59,7 +60,7 @@ export default function Login() {
     console.log("####################", Password);
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_DB_HOST}/checkKakaoLogin`,
+      url: `${API_BASE_URL}/checkKakaoLogin`,
       data: {
         userId: userid,
         password: Password,
