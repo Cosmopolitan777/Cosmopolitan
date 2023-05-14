@@ -132,17 +132,44 @@ export default function Login() {
 
 
         <button
+<<<<<<< HEAD
+          onClick={postKakao}
+          style={{
+            width: "185px !important",
+            border: "none",
+            borderRadius: "10px",
+          }}
+=======
           onClick={kakaoHandleSubmit}
           style={{width: "185px", outlineStyle: "none"}}
+>>>>>>> 24a3a937858a2fbcf8229002df6800b1afdcf4c0
         >
-          <img alt="kakao" src="img/kakao_login.png" />
+          <img
+            alt="kakao"
+            src="img/kakao_login.png"
+            style={{width: "200px", height: "40px"}}
+          />
         </button>
 
+<<<<<<< HEAD
+        <Button
+          blocksize="lg"
+          type="submit"
+          disabled={!validateForm()}
+          style={{width: "250px", margin: "5px"}}
+        >
+          Login
+        </Button>
+        <br />
+      </Form>
+      {/* </div> */}
+=======
 
        
       
       {/*<button data-id ={'정유진'} data-pw ={'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODM5NjA5Njh9.4-Li0MTMuA6EebEYEYtlP2zYU2cW7jzgRvskg2jk7iE'} data-email={"baby2783@naver.com"} onClick={kakaoHandleSubmit}>카카오 로그인하기</button>*/}
     </Form>
+>>>>>>> 24a3a937858a2fbcf8229002df6800b1afdcf4c0
     </div>
   );
 }

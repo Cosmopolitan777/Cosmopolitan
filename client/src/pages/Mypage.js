@@ -49,10 +49,10 @@ function TabsExample({
           <Col sm={2}>
             <ListGroup>
               <ListGroup.Item action href="#link1">
-                찜 목록
+                좋아요
               </ListGroup.Item>
               <ListGroup.Item action href="#link2" onClick={getRecommend}>
-                추천 목록
+                추천
               </ListGroup.Item>
               <ListGroup.Item action href="#link3">
                 회원정보수정

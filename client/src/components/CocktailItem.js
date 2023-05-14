@@ -67,7 +67,16 @@ const CocktailItem = ({item, session, iszzim}) => {
 
         <div className="card-body">
           <Link to={"/cocktails/" + item.cocktail_id}>
-            <p className="card-title">{item.name}</p>
+            <p
+              className="card-title"
+              style={{
+                color: "black",
+                textDecoration: "underline",
+                textDecorationColor: "whitesmoke",
+              }}
+            >
+              {item.name}
+            </p>
             {/* <p className="card-text">뭔가 들어갈 설명</p> */}
           </Link>
           <div className="favorite-container">

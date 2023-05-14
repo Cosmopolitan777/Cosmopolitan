@@ -13,23 +13,8 @@ import axios from "axios";
 export const LikeList = ({zzimCocktailInfos}) => {
   console.log("zzimCocktailInfos..", zzimCocktailInfos);
   return (
-    <div
-      className="LikeList"
-      style={
-        {
-          // backgroundColor: "rgb(18,18,18)",
-          // height: "100%",
-          // width: "100vh",
-          // padding: "0 10%",
-          // margin: "0 20%",
-          // borderRadius: "6px",
-          // boxSizing: "border-box",
-          // color: "white",
-          // color: "black",
-        }
-      }
-    >
-      <h3>찜 목록</h3>
+    <div className="LikeList">
+      <h3>찜한 목록 👍</h3>
 
       <div className="container">
         <div className="row row-cols-4" style={{padding: "3%"}}>
@@ -106,7 +91,7 @@ export const Recommendation = ({recommends}) => {
     >
       <h3>
         {/* <FontAwesomeIcon icon={faHandHoldingHeart} className="Icon Holding" /> */}
-        추천목록
+        추천해요 😊
       </h3>
       <div className="row row-cols-4" style={{padding: "3%"}}>
         {recommends ? (
@@ -301,6 +286,32 @@ export function InformationModify() {
 
 const LikeListItem = ({item, eachItems}) => {
   return (
+<<<<<<< HEAD
+    <Link to={"/cocktails/" + item.cocktail_id}>
+      <div className="ItemCardcenter">
+        <div className="CocktailItemCard" style={{width: "20rem"}}>
+          <img
+            src={item.imagelink}
+            className="CocktailItemImage"
+            alt="test image"
+            style={{padding: "20px"}}
+          />
+          <div className="card-body">
+            <p
+              className="card-title"
+              style={{
+                color: "black",
+                textDecoration: "underline",
+                textDecorationColor: "whitesmoke",
+                width: "130px",
+                // textAlign: "center",
+                textAlign: "center",
+              }}
+            >
+              {item.name}
+            </p>
+          </div>
+=======
     <Link
       to={"/cocktails/" + item.cocktail_id}
       state={{
@@ -316,6 +327,7 @@ const LikeListItem = ({item, eachItems}) => {
         />
         <div className="card-body">
           <p className="card-title">{item.name}</p>
+>>>>>>> 24a3a937858a2fbcf8229002df6800b1afdcf4c0
         </div>
       </div>
     </Link>
