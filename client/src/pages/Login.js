@@ -52,7 +52,11 @@ export default function Login() {
     // console.log(password);
     const userid = event.target.getAttribute("data-id");
     const Password = event.target.getAttribute("data-pw");
-
+    // const userid = window.localStorage.getItem("userid");
+    // const Password = window.localStorage.getItem("pw");
+    console.log("i want ");
+    console.log(userid);
+    console.log(password);
     console.log("####################", Password);
     axios({
       method: "post",
@@ -128,7 +132,7 @@ export default function Login() {
 
         <br />
 
-        <button
+        {/* <button
           onClick={kakaoHandleSubmit}
           style={{
             width: "185px !important",
@@ -141,19 +145,28 @@ export default function Login() {
             src="img/kakao_login.png"
             style={{width: "200px", height: "40px"}}
           />
-        </button>
+        </button> */}
 
         <br />
       </Form>
       <button
-        data-id={"정유진"}
+        data-id={"자영"}
         data-pw={
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODM5NjA5Njh9.4-Li0MTMuA6EebEYEYtlP2zYU2cW7jzgRvskg2jk7iE"
         }
         data-email={"baby2783@naver.com"}
         onClick={kakaoHandleSubmit}
+        style={{
+          width: "185px !important",
+          border: "none",
+          borderRadius: "10px",
+        }}
       >
-        카카오 로그인하기
+        <img
+          alt="kakao"
+          src="img/kakao_login.png"
+          style={{width: "200px", height: "40px"}}
+        />
       </button>
       {/* </div> */}
     </div>

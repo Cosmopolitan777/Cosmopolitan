@@ -251,7 +251,7 @@ exports.checkKakaoLogin = async (req, res) => {
   const response = await models.User.findOne({
     where: {
       userid: req.body.userId,
-      pw: req.body.password,
+      // pw: req.body.password,
     },
   });
   console.log("response>>>", response);
