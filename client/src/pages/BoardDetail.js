@@ -9,9 +9,8 @@ const BoardDetail = ({boards}) => {
   console.log("board length", boards.length);
   const navigate = useNavigate();
 
-  const [targetBoard] = boards.filter(
-    board => board.idx === parseInt(boardId.idx),
-  );
+  const [targetBoard] =
+    boards && boards.filter(board => board.idx === parseInt(boardId.idx));
   console.log("targetBoard >>>", targetBoard);
 
   if (!targetBoard) {
@@ -23,6 +22,12 @@ const BoardDetail = ({boards}) => {
       <main className="BoardDetail">
         <h2>게시글 상세 정보</h2>
         <Button onClick={() => navigate(-1)}>목록 보기</Button>
+        <Button variant="info" onClick={() => navigate(-1)}>
+          수정
+        </Button>
+        <Button variant="danger" onClick={() => navigate(-1)}>
+          삭제
+        </Button>
         <div className="BoardDetailContainer">
           <div className="BoardDetailHeader">
             <div className="BoardDetailTitle">제목 : {targetBoard.title}</div>
