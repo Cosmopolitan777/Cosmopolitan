@@ -38,14 +38,6 @@ https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/595033d0-becd-4
 - **회원정보수정 및 삭제 기능** - CRUD 사용
 - **페이지 보안성 강화** - XSS, SQL injection  방지
 
-<details>
-<summary>카카오 로그인</summary>
-<div markdown="1">
-
-[screen-recording (11).webm](https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/52cf0b01-c173-438e-bc7a-20c667146240)
-
-</div>
-</details>
 
 <details>
 <summary>칵테일 추천 기능</summary>
@@ -61,6 +53,14 @@ https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/595033d0-becd-4
 </div>
 </details>
 
+<details>
+<summary>카카오 로그인</summary>
+<div markdown="1">
+
+[screen-recording (11).webm](https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/52cf0b01-c173-438e-bc7a-20c667146240)
+
+</div>
+</details>
 
 ## :arrows_counterclockwise: 서비스 흐름
 
@@ -96,11 +96,8 @@ node app.js
 ## :speech_balloon: 보완점
 - 페이지네이션 구현 미완
 - three.js 모델 로딩 지연
-<!-- - 전체 페이지를 초기에 **반응형**으로 적용하였으나 </br> **&rarr; 메인 화면 좌표가 맞지않는  문제가 발생되어 각 자치구 페이지에만 반응형을 추가했습니다.**
-- 미로 찾기에서 **대각선으로 길찾기되는 문제**가 발생하여 </br> **&rarr; 좌표 넣는 지점을 수정해 해결하였습니다.**
-- 리뷰작성시 **리뷰내용이 저장되지 않는 문제**가 발생하여 </br> **&rarr; 경로 수정 및 변수 지정을 통해 해결했습니다.**
-- 리뷰작성시 **리뷰 혹은 별점이 추가되지 않는 경우** 리뷰가 저장되지 않고 </br> **&rarr; 경고창을 띄우도록 하여 평균평점에 오류가 생기지 않도록 하였습니다.**  -->
-
+- 게시판 업데이트 미완
+- 카카오 로그인 배포링크에서 미작동
 
 ## :shipit: 팀원 소개
 
