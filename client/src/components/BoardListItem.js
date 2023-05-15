@@ -18,11 +18,6 @@ const BoardListItem = ({board, deleteBoard, updateBoard}) => {
       </td>
       <td>{board.writer}</td>
       <td>{board.updatedate}</td>
-      <td className="BoardListEdit">
-        <button>
-          <PencilSquare />
-        </button>
-      </td>
       <td className="BoardListDelete">
         <button onClick={onDeleteButtonClicked}>
           <Trash />
