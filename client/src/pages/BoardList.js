@@ -5,9 +5,9 @@ import Button from "react-bootstrap/Button";
 import Editor from "../components/Editor";
 import BoardListItem from "../components/BoardListItem";
 
-const BoardList = ({boards}) => {
+const BoardList = ({session}) => {
   const [boardItems, setBoardItems] = useState([]);
-
+  console.log("boardlist session", session);
   useEffect(() => {
     console.log("게시물 리스트 마운트 완료");
     const getBoards = async () => {
@@ -17,22 +17,17 @@ const BoardList = ({boards}) => {
       console.log(res.data);
       setBoardItems(res.data);
     };
-
     getBoards();
   }, []);
-
   const addBoard = async newBoard => {
     console.log("newBoard", newBoard);
-
     const res = await axios.post(
       `${process.env.REACT_APP_DB_HOST}/community/tc`,
       newBoard,
     );
     console.log(res.data);
-
     setBoardItems([...boardItems, res.data]);
   };
-
   const deleteBoard = async targetBoard => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       await axios.post(`${process.env.REACT_APP_DB_HOST}/community/td`, {
@@ -44,26 +39,18 @@ const BoardList = ({boards}) => {
       setBoardItems(newBoardItems);
     }
   };
-
   const updateBoard = async targetBoard => {
-    await axios.patch(`${process.env.REACT_APP_DB_HOST}/community/tu`, {
-      id: targetBoard.id,
-      title: targetBoard.title,
-      content: targetBoard.content,
-    });
+    await axios.patch(`${process.env.REACT_APP_DB_HOST}/community/tu`);
   };
-
   const [currentPage, setCurrentPage] = useState(1);
   const [boardPerPage] = useState(10);
-
   // const indexOfLastBoard = currentPage * boardPerPage;
   // const indexOfFirstBoard = indexOfLastBoard - boardPerPage;
   // const currentBoard = board.slice(indexOfFirstBoard, indexOfLastBoard);
-  // const paginate = pageNumber => setCurrentPage(pageNumber);
-
+  // const paginate = pageNumber => setCurrentPage(pageNumber);``````
   return (
     <>
-      <Editor addBoard={addBoard} updateBoard={updateBoard} />
+      <Editor addBoard={addBoard} updateBoard={updateBoard} session={session} />
       <div className="BoardListContainer">
         <Table striped bordered hover responsive style={{textAlign: "center"}}>
           <thead>
@@ -84,6 +71,7 @@ const BoardList = ({boards}) => {
                     board={board}
                     deleteBoard={deleteBoard}
                     updateBoard={updateBoard}
+                    session={session}
                   />
                 );
               })
@@ -96,9 +84,7 @@ const BoardList = ({boards}) => {
         </Table>
       </div>
     </>
-
     // <Pagination></Pagination>
   );
 };
-
 export default BoardList;

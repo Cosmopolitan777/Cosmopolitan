@@ -31,19 +31,16 @@ const MainPage = () => {
 
   return (
     <>
-      <img
+      {/* <img
         src={process.env.PUBLIC_URL + `/img/main.png`}
         style={{height: "100vw", width: "100vw"}}
-      />
-      {/* <Canvas
-        style={{height: "100vw", width: "100vw"}}
-        camera={camera}
-      >
+      /> */}
+      <Canvas style={{height: "100vw", width: "100vw"}} camera={camera}>
         <pointLight position={[12, 10, 10]} />
         <Box OrbitControls />
         <OrbitControls camera={cameraRef.current} enableZoom={false} />
         <ambientLight intensity={0.1} />
-      </Canvas> */}
+      </Canvas>
     </>
   );
 };

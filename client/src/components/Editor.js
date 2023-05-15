@@ -1,15 +1,31 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
 import "../styles/Editor.scss";
 
-const Editor = ({addBoard, updateBoard}) => {
+const Editor = ({addBoard, updateBoard, session}) => {
   const [boardItem, setBoardItem] = useState({
     title: "",
     writer: "",
     content: "",
   });
+
+  useEffect(() => {
+    if (session != null) {
+      const getMyProfile = async () => {
+        const res = await axios.get(
+          `${process.env.REACT_APP_DB_HOST}/my_profile`,
+        );
+        console.log(res.data.userName);
+        setBoardItem({...boardItem, writer: res.data.userName});
+      };
+      getMyProfile();
+    } else {
+      setBoardItem({...boardItem, writer: "익명"});
+    }
+  }, []);
 
   // Modal
   const [show, setShow] = useState(false);
