@@ -38,6 +38,30 @@ https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/595033d0-becd-4
 - **회원정보수정 및 삭제 기능** - CRUD 사용
 - **페이지 보안성 강화** - XSS, SQL injection  방지
 
+<details>
+<summary>카카오 로그인</summary>
+<div markdown="1">
+
+[screen-recording (11).webm](https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/52cf0b01-c173-438e-bc7a-20c667146240)
+
+</div>
+</details>
+
+<details>
+<summary>칵테일 추천 기능</summary>
+<div markdown="1">
+
+![스크린샷 2023-05-15 13 57 39](https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/e2d248e8-1c52-4227-90d5-bb06db12e773)
+
+
+![스크린샷 2023-05-15 13 57 58](https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/3f41496d-ebbc-4b80-8b29-209c669b43e6)
+
+
+
+</div>
+</details>
+
+
 ## :arrows_counterclockwise: 서비스 흐름
 
 ![스크린샷 2023-05-15 14 16 36](https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/4f34dcdb-2645-4ef7-a7e4-5bdae1fa5e4b)
@@ -53,16 +77,9 @@ https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/595033d0-becd-4
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/61008837/227681579-0b4730a5-43a9-4dfb-babd-50edd64c65fa.png">
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/61008837/227681589-afb888c6-e02d-46ec-85e0-8495d14221e2.png"> -->
 
-![스크린샷 2023-05-15 13 57 39](https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/e2d248e8-1c52-4227-90d5-bb06db12e773)
-
-
-![스크린샷 2023-05-15 13 57 58](https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/3f41496d-ebbc-4b80-8b29-209c669b43e6)
 
 
 
-## :arrows_counterclockwise: 카카오톡 로그인 시현 영상
-
-[screen-recording (11).webm](https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/52cf0b01-c173-438e-bc7a-20c667146240)
 
 
 <!-- <p align='center' width="800">https://user-images.githubusercontent.com/61008837/236637691-0bea1299-eb87-4318-8810-1b39b996f2c3.mp4</p> -->
