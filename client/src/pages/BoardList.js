@@ -8,6 +8,7 @@ import {API_BASE_URL} from "../app-config";
 
 const BoardList = ({session}) => {
   const [boardItems, setBoardItems] = useState([]);
+  console.log("boardlist session", session);
 
   useEffect(() => {
     console.log("게시물 리스트 마운트 완료");
@@ -40,11 +41,7 @@ const BoardList = ({session}) => {
   };
 
   const updateBoard = async targetBoard => {
-    await axios.patch(`${API_BASE_URL}/community/tu`, {
-      id: targetBoard.id,
-      title: targetBoard.title,
-      content: targetBoard.content,
-    });
+    await axios.patch(`${API_BASE_URL}/community/tu`);
   };
 
   const [currentPage, setCurrentPage] = useState(1);

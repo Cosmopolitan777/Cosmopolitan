@@ -154,7 +154,7 @@ function App() {
           />
           <Route
             path="/boardDetail/:idx"
-            element={<BoardDetail boards={boards} />}
+            element={<BoardDetail boards={boards} session={session} />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
