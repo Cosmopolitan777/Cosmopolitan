@@ -59,7 +59,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     const result = await Models.Community.destroy({
-      where: {idx: req.body.id},
+      where: {idx: req.body.idx},
     });
     console.log("** delete result ", result); // 1
     res.end(); // 데이터 받을 필요없으니 끝 신호를 보내는 것
