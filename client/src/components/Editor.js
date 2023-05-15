@@ -4,7 +4,8 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import "../styles/Editor.scss";
 
-const Editor = ({addBoard, updateBoard}) => {
+const Editor = ({addBoard, updateBoard, session, targetBoardId}) => {
+  console.log(targetBoardId);
   const [boardItem, setBoardItem] = useState({
     title: "",
     writer: "",
@@ -37,9 +38,20 @@ const Editor = ({addBoard, updateBoard}) => {
 
   return (
     <div className="BoardListButton">
-      <Button variant="primary" onClick={handleShow}>
-        글쓰기
-      </Button>
+      {session && session == targetBoardId ? (
+        <>
+          <Button variant="info" onClick={handleShow}>
+            수정
+          </Button>
+        </>
+      ) : (
+        <>
+          <Button variant="primary" onClick={handleShow}>
+            글쓰기
+          </Button>
+        </>
+      )}
+
       <Modal show={show} onHide={onCancel} backdrop="static">
         <Modal.Header closeButton>
           <Modal.Title>게시글 작성</Modal.Title>
