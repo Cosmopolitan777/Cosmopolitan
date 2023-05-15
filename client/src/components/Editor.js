@@ -43,9 +43,16 @@ const Editor = ({addBoard, updateBoard, session}) => {
 
   return (
     <div className="BoardListButton">
-      <Button variant="primary" onClick={handleShow}>
-        글쓰기
-      </Button>
+      {session ? (
+        <Button variant="primary" onClick={handleShow}>
+          글쓰기
+        </Button>
+      ) : (
+        <Button variant="primary" onClick={handleShow} disabled>
+          글쓰기
+        </Button>
+      )}
+
       <Modal show={show} onHide={onCancel} backdrop="static">
         <Modal.Header closeButton>
           <Modal.Title>게시글 작성</Modal.Title>

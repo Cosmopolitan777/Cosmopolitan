@@ -57,15 +57,7 @@ const BoardList = ({session}) => {
 
   return (
     <>
-      {session ? (
-        <Editor
-          addBoard={addBoard}
-          updateBoard={updateBoard}
-          session={session}
-        />
-      ) : (
-        <div></div>
-      )}
+      <Editor addBoard={addBoard} updateBoard={updateBoard} session={session} />
 
       <div className="BoardListContainer">
         <Table striped bordered hover responsive style={{textAlign: "center"}}>
