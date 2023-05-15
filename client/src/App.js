@@ -150,7 +150,7 @@ function App() {
 
           <Route
             path="/boardList"
-            element={<BoardList boards={boards} sessiont={session} />}
+            element={<BoardList boards={boards} session={session} />}
           />
           <Route
             path="/boardDetail/:idx"
