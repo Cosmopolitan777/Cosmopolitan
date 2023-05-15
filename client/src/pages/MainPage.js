@@ -31,19 +31,17 @@ const MainPage = () => {
 
   return (
     <>
-      <img
-        src={process.env.PUBLIC_URL + `/img/main.png`}
+      <Canvas
         style={{height: "100vw", width: "100vw"}}
-      />
-      {/* <Canvas
-        style={{height: "100vw", width: "100vw"}}
+        // camera={{position: [-30, 40, 100], zoom: 1, left: -1, right: 1}}
         camera={camera}
       >
         <pointLight position={[12, 10, 10]} />
         <Box OrbitControls />
         <OrbitControls camera={cameraRef.current} enableZoom={false} />
         <ambientLight intensity={0.1} />
-      </Canvas> */}
+        {/* <sketchfab url={sketchfabEmbedCode} /> */}
+      </Canvas>
     </>
   );
 };
