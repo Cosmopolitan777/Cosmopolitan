@@ -37,7 +37,19 @@ https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/595033d0-becd-4
 - **카카오톡 로그인 기능** - Rest API 사용
 - **회원정보수정 및 삭제 기능** - CRUD 사용
 - **페이지 보안성 강화** - XSS, SQL injection  방지
+- **파이썬을 이용한 칵테일 정보 크롤링** - beautifulsoap 모듈을 이용해 칵테일 정보 및 api 값 조합. googletrans 모듈을 사용해 자동 번역
+- **테스트 DB 데이터 통일** - 테스트 데이터 생성 파일을 통해 개발과정에서 같은 데이터 사용 
 
+<details>
+<summary>칵테일 데이터 크롤링</summary>
+<div markdown="1">
+
+ ![image](https://github.com/Cosmopolitan777/Cosmopolitan/assets/127190327/5230d85f-c10a-4dc8-b075-22e33f73f865)
+![image](https://github.com/Cosmopolitan777/Cosmopolitan/assets/127190327/43bb5ef0-80db-4410-8015-2a947919a36b)
+
+English Highball|11338|Alcoholic|Ordinary Drink|Highball glass|Brandy|Gin|Sweet Vermouth|Carbonated water|Lemon peel|null|null|null|null|null|null|null|null|null|null|3/4 oz |3/4 oz |3/4 oz |null|null|null|null|null|null|null|null|null|null|null|null|null|https://www.thecocktaildb.com/images/media/drink/dhvr7d1504519752.jpg|브랜디, 진, 스위트 베르무트를 하이볼 글래스에 얼음과 함께 붓습니다. 탄산수를 채웁니다. 레몬 껍질 트위스트를 넣고 저은 후 서빙합니다. (진저에일은 기호에 따라 탄산수로 대체 가능합니다.)
+</div>
+</details>
 
 <details>
 <summary>칵테일 추천 기능</summary>
@@ -98,6 +110,7 @@ node app.js
 - three.js 모델 로딩 지연
 - 게시판 업데이트 미완
 - 카카오 로그인 배포링크에서 미작동
+- nginx로 프록시 서버 구축 
 
 ## :shipit: 팀원 소개
 
