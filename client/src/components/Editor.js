@@ -3,7 +3,6 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
-import {API_BASE_URL} from "../app-config";
 import "../styles/Editor.scss";
 
 const Editor = ({addBoard, updateBoard, session}) => {
@@ -14,12 +13,18 @@ const Editor = ({addBoard, updateBoard, session}) => {
   });
 
   useEffect(() => {
-    const getMyProfile = async () => {
-      const res = await axios.get(`${API_BASE_URL}/my_profile`);
-      console.log(res.data.userName);
-      setBoardItem({...boardItem, writer: res.data.userName});
-    };
-    getMyProfile();
+    if (session != null) {
+      const getMyProfile = async () => {
+        const res = await axios.get(
+          `${process.env.REACT_APP_DB_HOST}/my_profile`,
+        );
+        console.log(res.data.userName);
+        setBoardItem({...boardItem, writer: res.data.userName});
+      };
+      getMyProfile();
+    } else {
+      setBoardItem({...boardItem, writer: "익명"});
+    }
   }, []);
 
   // Modal

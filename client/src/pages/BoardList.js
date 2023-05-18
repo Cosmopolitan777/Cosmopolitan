@@ -9,7 +9,6 @@ import {API_BASE_URL} from "../app-config";
 const BoardList = ({session}) => {
   const [boardItems, setBoardItems] = useState([]);
   console.log("boardlist session", session);
-
   useEffect(() => {
     console.log("게시물 리스트 마운트 완료");
     const getBoards = async () => {
@@ -17,19 +16,17 @@ const BoardList = ({session}) => {
       console.log(res.data);
       setBoardItems(res.data);
     };
-
     getBoards();
   }, []);
-
   const addBoard = async newBoard => {
     console.log("newBoard", newBoard);
-
-    const res = await axios.post(`${API_BASE_URL}/community/tc`, newBoard);
+    const res = await axios.post(
+      `${process.env.REACT_APP_DB_HOST}/community/tc`,
+      newBoard,
+    );
     console.log(res.data);
-
     setBoardItems([...boardItems, res.data]);
   };
-
   const deleteBoard = async targetBoard => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       await axios.post(`${API_BASE_URL}/community/td`, {idx: targetBoard.idx});
@@ -39,23 +36,18 @@ const BoardList = ({session}) => {
       setBoardItems(newBoardItems);
     }
   };
-
   const updateBoard = async targetBoard => {
-    await axios.patch(`${API_BASE_URL}/community/tu`);
+    await axios.patch(`${process.env.REACT_APP_DB_HOST}/community/tu`);
   };
-
   const [currentPage, setCurrentPage] = useState(1);
   const [boardPerPage] = useState(10);
-
   // const indexOfLastBoard = currentPage * boardPerPage;
   // const indexOfFirstBoard = indexOfLastBoard - boardPerPage;
   // const currentBoard = board.slice(indexOfFirstBoard, indexOfLastBoard);
-  // const paginate = pageNumber => setCurrentPage(pageNumber);
-
+  // const paginate = pageNumber => setCurrentPage(pageNumber);``````
   return (
     <>
       <Editor addBoard={addBoard} updateBoard={updateBoard} session={session} />
-
       <div className="BoardListContainer">
         <Table striped bordered hover responsive style={{textAlign: "center"}}>
           <thead>
@@ -76,6 +68,7 @@ const BoardList = ({session}) => {
                     board={board}
                     deleteBoard={deleteBoard}
                     updateBoard={updateBoard}
+                    session={session}
                   />
                 );
               })
@@ -88,9 +81,7 @@ const BoardList = ({session}) => {
         </Table>
       </div>
     </>
-
     // <Pagination></Pagination>
   );
 };
-
 export default BoardList;
