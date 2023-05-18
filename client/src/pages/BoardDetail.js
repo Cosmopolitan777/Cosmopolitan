@@ -28,6 +28,26 @@ const BoardDetail = ({boards, session}) => {
       <main className="BoardDetail">
         <h2>게시글 상세 정보</h2>
         <Button onClick={() => navigate(-1)}>목록 보기</Button>
+        {session ? (
+          <>
+            <Editor
+              updateBoard={updateBoard}
+              session={session}
+              targetBoardId={targetBoard.idx}
+            />
+            <Button variant="danger" onClick={() => navigate(-1)}>
+              삭제
+            </Button>
+          </>
+        ) : (
+          <>
+            <Editor updateBoard={updateBoard} session={session} disabled />
+            <Button variant="danger" onClick={() => navigate(-1)} disabled>
+              삭제
+            </Button>
+          </>
+        )}
+
         <div className="BoardDetailContainer">
           <div className="BoardDetailHeader">
             <div className="BoardDetailTitle">제목 : {targetBoard.title}</div>

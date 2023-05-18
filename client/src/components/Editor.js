@@ -41,11 +41,6 @@ const Editor = ({addBoard, updateBoard, session}) => {
       addBoard(boardItem);
       alert("게시글 등록이 완료되었습니다.");
     }
-    setBoardItem({
-      title: "",
-      writer: "",
-      content: "",
-    });
     setShow(false);
   };
   const onCancel = () => setShow(false);
@@ -53,9 +48,16 @@ const Editor = ({addBoard, updateBoard, session}) => {
 
   return (
     <div className="BoardListButton">
-      <Button variant="primary" onClick={handleShow}>
-        글쓰기
-      </Button>
+      {session ? (
+        <Button variant="primary" onClick={handleShow}>
+          글쓰기
+        </Button>
+      ) : (
+        <Button variant="primary" onClick={handleShow} disabled>
+          글쓰기
+        </Button>
+      )}
+
       <Modal show={show} onHide={onCancel} backdrop="static">
         <Modal.Header closeButton>
           <Modal.Title>게시글 작성</Modal.Title>
