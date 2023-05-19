@@ -12,8 +12,12 @@ const Editor = ({addBoard, updateBoard, session}) => {
     content: "",
   });
 
+  console.log("session", session);
+
   useEffect(() => {
-    if (session != null) {
+    if (session === null) {
+      setBoardItem({...boardItem, writer: "익명"});
+    } else {
       const getMyProfile = async () => {
         const res = await axios.get(
           `${process.env.REACT_APP_DB_HOST}/my_profile`,
@@ -22,8 +26,6 @@ const Editor = ({addBoard, updateBoard, session}) => {
         setBoardItem({...boardItem, writer: res.data.userName});
       };
       getMyProfile();
-    } else {
-      setBoardItem({...boardItem, writer: "익명"});
     }
   }, []);
 
