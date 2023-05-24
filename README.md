@@ -113,6 +113,10 @@ node app.js
 - 카카오 로그인 배포링크에서 미작동
 - nginx로 프록시 서버 구축 
 
+## :sparkles: 팀프로젝트 최우수상 수상
+
+[포스코X코딩온 2차_팀프로젝트_최우수상_C조.pdf](https://drive.google.com/uc?id=1ZVEmIQaf6BQ7VZri_F1E5U1OSH0k8saq)
+
 ## :shipit: 팀원 소개
 
 
