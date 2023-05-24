@@ -8,9 +8,10 @@
 
 
 <!-- https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/ef5597c1-6383-4c63-bb26-f24e75d795e4 -->
+![ezgif com-gif-maker](https://github.com/Cosmopolitan777/Cosmopolitan/assets/61008837/6cc3a915-0b28-4271-962c-84a475d37537)
 
 
-https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/595033d0-becd-4563-94b5-76929039107b
+<!-- https://github.com/Cosmopolitan777/Cosmopolitan/assets/127120819/595033d0-becd-4563-94b5-76929039107b -->
 
  
 </p>
