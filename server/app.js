@@ -1,9 +1,10 @@
 // 예시 코드
 const express = require("express");
 const app = express();
+const helmet = require("helmet");
 const session = require("express-session"); // 세션 설정
 const dotenv = require("dotenv"); // 키값 암호화
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const PORT = 8080;
 
@@ -16,6 +17,7 @@ app.use(
 );
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(helmet());
 
 const indexRouter = require("./routes");
 const cocktailRouter = require("./routes/cocktail");
@@ -24,7 +26,6 @@ const recommendRouter = require("./routes/recommend");
 const zzimRouter = require("./routes/zzim");
 const replyRouter = require("./routes/reply");
 const communityRouter = require("./routes/community");
-
 
 app.use(
   session({
@@ -39,10 +40,9 @@ app.use("/", indexRouter);
 app.use("/cocktail", cocktailRouter);
 app.use("/evaluation", evaluationRouter);
 app.use("/recommend", recommendRouter);
-app.use("/zzim",zzimRouter);
-app.use("/reply",replyRouter);
+app.use("/zzim", zzimRouter);
+app.use("/reply", replyRouter);
 app.use("/community", communityRouter);
-
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
