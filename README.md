@@ -104,7 +104,7 @@ English Highball|11338|Alcoholic|Ordinary Drink|Highball glass|Brandy|Gin|Sweet 
 git clone https://github.com/Cosmopolitan777/Cosmopolitan.git
 node app.js
 ```
-- 배포링크: http://3.106.52.247:3000/
+- 배포링크: http://13.236.182.92:3000/cocktails
 
 ## :speech_balloon: 보완점
 - 페이지네이션 구현 미완 -> 2023/05/26 자영 완료
