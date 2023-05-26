@@ -7,7 +7,7 @@ import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 import {useState, useEffect} from "react";
 import axios from "axios";
-import {API_BASE_URL} from "../app-config";
+
 // import {TabsExample} from "../components/MypageDetail";
 import {
   InformationModify,

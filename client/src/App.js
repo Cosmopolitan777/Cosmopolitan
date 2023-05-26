@@ -3,7 +3,6 @@ import CocktailList from "./pages/CocktailList";
 import {useState, useEffect} from "react";
 import CocktailDetail from "./pages/CocktailDetail";
 import axios from "axios";
-import {API_BASE_URL} from "./app-config";
 import MainPage from "./pages/MainPage";
 import {Header, LoginHeader} from "./components/Header";
 import Mypage from "./pages/Mypage";
@@ -28,20 +27,25 @@ function App() {
   useEffect(() => {
     console.log("mount 완료");
     const getCocktails = async () => {
-      const res = await axios.get(`${API_BASE_URL}/cocktail/showlist`);
+      const res = await axios.get(
+        `${process.env.REACT_APP_DB_HOST}/cocktail/showlist`,
+      );
       setCocktailItems(res.data);
       // setCocktailItems(res.data.slice(0, 20)); //테스트를 위한 슬라이스
       console.log("res.data", res.data);
     };
 
     const getSession = async () => {
-      const [sessionId] = (await axios.get(`${API_BASE_URL}/`)).data;
+      const [sessionId] = (await axios.get(`${process.env.REACT_APP_DB_HOST}/`))
+        .data;
       setSession(sessionId);
       console.log("sessionId>>", sessionId); //3
     };
     //해당 유저에 대한 찜한 칵테일 아이디 배열 반환 ; 예) [4]
     const postZzim = async () => {
-      const zzimList = (await axios.post(`${API_BASE_URL}/zzim/sz`)).data;
+      const zzimList = (
+        await axios.post(`${process.env.REACT_APP_DB_HOST}/zzim/sz`)
+      ).data;
 
       {
         zzimList && setZzims(zzimList);
@@ -52,8 +56,9 @@ function App() {
 
     //해당 유저에 대한 찜한 별점 배열 반환 ; 예) [4]
     const postStar = async () => {
-      const starList = (await axios.post(`${API_BASE_URL}/evaluation/userrate`))
-        .data;
+      const starList = (
+        await axios.post(`${process.env.REACT_APP_DB_HOST}/evaluation/userrate`)
+      ).data;
       console.log("starList>>", starList);
 
       {
@@ -63,7 +68,9 @@ function App() {
 
     // 게시판 관련 코드
     const getBoards = async () => {
-      const res = await axios.get(`${API_BASE_URL}/community/tr`);
+      const res = await axios.get(
+        `${process.env.REACT_APP_DB_HOST}/community/tr`,
+      );
       console.log(res.data);
       setBoards(res.data);
     };
@@ -79,13 +86,15 @@ function App() {
   console.log("session", session);
   //로그아웃
   const getLogout = async () => {
-    const isLogout = (await axios.get(`${API_BASE_URL}/logout`)).data;
+    const isLogout = (
+      await axios.get(`${process.env.REACT_APP_DB_HOST}/logout`)
+    ).data;
     console.log("isLogout", isLogout);
     setSession();
   };
   //클릭시 서버에서 해당 유저에 대한 추천 목록 받아옴
   const getRecommend = async () => {
-    const res = await axios.get(`${API_BASE_URL}/recommend`);
+    const res = await axios.get(`${process.env.REACT_APP_DB_HOST}/recommend`);
     setRecommends(res.data);
     // console.log(" recommends res.data", res.data);
   };
@@ -94,7 +103,9 @@ function App() {
   const getSearchCocktail = async value => {
     // console.log("cocktailword", cocktailWord);
     const searchCocktailList = (
-      await axios.get(`${API_BASE_URL}/cocktail/searchcock/${value}`)
+      await axios.get(
+        `${process.env.REACT_APP_DB_HOST}/cocktail/searchcock/${value}`,
+      )
     ).data;
     setCocktailItems(searchCocktailList.slice(0, 10));
     console.log("searchCocktailList search", searchCocktailList);

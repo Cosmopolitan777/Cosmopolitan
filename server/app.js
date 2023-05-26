@@ -11,7 +11,7 @@ const PORT = 8080;
 //요청한 곳의 포트번호가 다르더라도 허용
 app.use(
   cors({
-    origin: "http://localhost:3000", // server의 url이 아닌, 요청하는 client의 url
+    origin: ["http://13.236.182.92:3000", "http://localhost:3000"], // server의 url이 아닌, 요청하는 client의 url
     credentials: true,
   }),
 );

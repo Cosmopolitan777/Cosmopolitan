@@ -5,7 +5,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 import "../styles/CocktailDetailCard.scss";
 import CocktailDetailCardMenu from "./CocktailDetailCardMenu";
 import axios from "axios";
-import {API_BASE_URL} from "../app-config";
 
 const CocktailDetailCard = ({item, session, isstar}) => {
   const [cocktailItem, setCocktailItem] = useState(item);
@@ -38,7 +37,7 @@ const CocktailDetailCard = ({item, session, isstar}) => {
     }
     const createRate = async () => {
       await axios
-        .post(`${API_BASE_URL}/evaluation`, {
+        .post(`${process.env.REACT_APP_DB_HOST}/evaluation`, {
           user_id: user_id,
           cocktail_id: item.cocktail_id,
           rating: rating,
