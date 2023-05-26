@@ -1,8 +1,30 @@
 import {useState} from "react";
 import CocktailItem from "../components/CocktailItem";
 import "../styles/CocktailList.scss";
+import "../styles/Pagination.scss";
 
-const CocktailList = ({cocktailItems, session, zzims}) => {
+import Pagination from "react-js-pagination";
+
+const CocktailList = ({
+  cocktailItems,
+  session,
+  zzims,
+  currentPage,
+  cocktailPerPage,
+  totalCocktailItems,
+  paginate,
+}) => {
+  const [page, setPage] = useState(currentPage);
+
+  const handlePageChange = currentPage => {
+    setPage(currentPage);
+    paginate(currentPage);
+  };
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalCocktailItems / cocktailPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <>
       <div className="container">
@@ -22,36 +44,18 @@ const CocktailList = ({cocktailItems, session, zzims}) => {
       </div>
       {/* pagenation */}
       <footer className="navbar-fixed-bottom mt-3">
-        <nav aria-label="Page navigation example">
-          <ul className="pagination d-flex justify-content-center">
-            <li className="page-item">
-              <a className="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                1
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                2
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                3
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <Pagination
+          activePage={page}
+          itemsCountPerPage={20}
+          totalItemsCount={totalCocktailItems}
+          // pageRangeDisplayed={pageNumbers.length}
+          pageRangeDisplayed={10}
+          prevPageText={"..."}
+          nextPageText={"..."}
+          onChange={handlePageChange}
+        />
       </footer>
+      <br />
     </>
   );
 };

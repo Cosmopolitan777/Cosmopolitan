@@ -12,7 +12,6 @@ import Login from "./pages/Login";
 import Join from "./pages/Join";
 import BoardList from "./pages/BoardList";
 import BoardDetail from "./pages/BoardDetail";
-
 import KakaoLogin from "./components/KakaoLogin";
 
 axios.defaults.withCredentials = true;
@@ -23,12 +22,15 @@ function App() {
   const [zzims, setZzims] = useState([]);
   const [stars, setStars] = useState([]);
   const [boards, setBoards] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cocktailPerPage, setCocktailPerPage] = useState(20);
 
   useEffect(() => {
     console.log("mount 완료");
     const getCocktails = async () => {
       const res = await axios.get(`${API_BASE_URL}/cocktail/showlist`);
-      setCocktailItems(res.data.slice(0, 20)); //테스트를 위한 슬라이스
+      setCocktailItems(res.data);
+      // setCocktailItems(res.data.slice(0, 20)); //테스트를 위한 슬라이스
       console.log("res.data", res.data);
     };
 
@@ -59,6 +61,7 @@ function App() {
       }
     };
 
+    // 게시판 관련 코드
     const getBoards = async () => {
       const res = await axios.get(`${API_BASE_URL}/community/tr`);
       console.log(res.data);
@@ -97,6 +100,14 @@ function App() {
     console.log("searchCocktailList search", searchCocktailList);
   };
 
+  // 페이지네이션 관련 코드
+  const indexOfLast = currentPage * cocktailPerPage;
+  const indexOfFirst = indexOfLast - cocktailPerPage;
+  const currentCocktailItems = cocktailItems => {
+    let currentCocktailItems = 0;
+    currentCocktailItems = cocktailItems.slice(indexOfFirst, indexOfLast);
+    return currentCocktailItems;
+  };
   return (
     <div className="App">
       <BrowserRouter>
@@ -112,9 +123,13 @@ function App() {
             path="/cocktails"
             element={
               <CocktailList
-                cocktailItems={cocktailItems}
+                cocktailItems={currentCocktailItems(cocktailItems)}
                 session={session}
                 zzims={zzims}
+                currentPage={currentPage}
+                cocktailPerPage={cocktailPerPage}
+                totalCocktailItems={cocktailItems.length}
+                paginate={setCurrentPage}
               />
             }
           />
